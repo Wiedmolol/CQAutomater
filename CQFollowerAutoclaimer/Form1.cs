@@ -46,28 +46,11 @@ namespace CQFollowerAutoclaimer
         long initialFollowers;
 
 
-
-        struct Auction
-        {
-            public int ID;
-            public string bidderName;
-            public DateTime end;
-            public int price;
-            public Auction(int hid, string bd, DateTime e, int p)
-            {
-                ID = hid;
-                bidderName = bd;
-                end = e;
-                price = p;
-            }
-        }
         public Form1()
         {
             InitializeComponent();
             timeLabels = new Label[] { claimtime1, claimtime2, claimtime3, claimtime4, claimtime5, claimtime6, claimtime7, claimtime8, claimtime9 };
-            init();
-
-         
+            init();         
             miracleLoop();
             timeElapsed.Interval = 1000;
             timeElapsed.Elapsed += timeElapsed_Elapsed;
@@ -249,6 +232,10 @@ namespace CQFollowerAutoclaimer
 
         private void init()
         {
+            if (!File.Exists("Newtonsoft.Json.dll") || !File.Exists("Newtonsoft.Json.xml"))
+            {
+                MessageBox.Show("Newtonsoft files not found. Please download them from this project's github");
+            }
             if (File.Exists("MacroSettings.txt"))
             {
                 System.IO.StreamReader sr = new System.IO.StreamReader("MacroSettings.txt");
@@ -266,6 +253,7 @@ namespace CQFollowerAutoclaimer
             {
                 token = null;
                 KongregateId = null;
+                MessageBox.Show("MacroSettings.txt file not found.");
             }
             if (token != null && KongregateId != null)
             {
@@ -287,9 +275,7 @@ namespace CQFollowerAutoclaimer
             }
             else
             {
-                Console.Write("\nDupa\n");
-                //Thread.Sleep(1);
-                //throw new System.InvalidOperationException("Failed to log in");
+                MessageBox.Show("Failed to log in.\nYour kong ID: " + KongregateId + "\nYour auth ticket: " + token + "\nLenght of token should be 64, yours is: " + token.Length);
             }
         }
 

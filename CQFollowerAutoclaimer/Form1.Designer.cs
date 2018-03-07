@@ -68,6 +68,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label17 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.DQCalcBox = new System.Windows.Forms.CheckBox();
             this.DQSoundBox = new System.Windows.Forms.CheckBox();
@@ -77,7 +78,7 @@
             this.label18 = new System.Windows.Forms.Label();
             this.DQLevelLabel = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
             this.contextMenuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -493,6 +494,15 @@
             this.tabPage2.Text = "DQ";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(100, 212);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(194, 26);
+            this.label17.TabIndex = 9;
+            this.label17.Text = "Run the calc option will be added soon.\r\nI still need to test that feature.";
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.DQCalcBox);
@@ -581,20 +591,21 @@
             this.label16.TabIndex = 0;
             this.label16.Text = "Current DQ level:";
             // 
-            // label17
+            // label22
             // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(100, 212);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(194, 26);
-            this.label17.TabIndex = 9;
-            this.label17.Text = "Run the calc option will be added soon.\r\nI still need to test that feature.";
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(372, 9);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(28, 13);
+            this.label22.TabIndex = 32;
+            this.label22.Text = "v0.2";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(415, 455);
+            this.Controls.Add(this.label22);
             this.Controls.Add(this.tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
@@ -609,6 +620,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -662,6 +674,7 @@
         private System.Windows.Forms.CheckBox DQCalcBox;
         private System.Windows.Forms.CheckBox DQSoundBox;
         private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label22;
     }
 }
 

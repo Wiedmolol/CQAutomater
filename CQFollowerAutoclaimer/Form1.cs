@@ -50,14 +50,17 @@ namespace CQFollowerAutoclaimer
         {
             InitializeComponent();
             timeLabels = new Label[] { claimtime1, claimtime2, claimtime3, claimtime4, claimtime5, claimtime6, claimtime7, claimtime8, claimtime9 };
-            init();         
-            miracleLoop();
-            timeElapsed.Interval = 1000;
-            timeElapsed.Elapsed += timeElapsed_Elapsed;
-            timeElapsed.Start();
-            logoutTimer.Interval = 24 * 3600;
-            logoutTimer.Elapsed += logoutTimer_Elapsed;
-            logoutTimer.Start();
+            init();
+            if (pf != null)
+            {
+                miracleLoop();
+                timeElapsed.Interval = 1000;
+                timeElapsed.Elapsed += timeElapsed_Elapsed;
+                timeElapsed.Start();
+                logoutTimer.Interval = 24 * 3600;
+                logoutTimer.Elapsed += logoutTimer_Elapsed;
+                logoutTimer.Start();
+            }
         }
 
 
@@ -91,6 +94,10 @@ namespace CQFollowerAutoclaimer
             if (!PlayFab.PlayFabClientAPI.IsClientLoggedIn())
             {
                 login();
+            }
+            if (!PFStuff.logres)
+            {
+                return;
             }
             getData();
             times = getTimes(PFStuff.miracleTimes);
@@ -232,9 +239,9 @@ namespace CQFollowerAutoclaimer
 
         private void init()
         {
-            if (!File.Exists("Newtonsoft.Json.dll") || !File.Exists("Newtonsoft.Json.xml"))
+            if (!File.Exists("Newtonsoft.Json.dll"))
             {
-                MessageBox.Show("Newtonsoft files not found. Please download them from this project's github");
+                MessageBox.Show("Newtonsoft file not found. Please download it from this project's github");
             }
             if (File.Exists("MacroSettings.txt"))
             {
@@ -253,7 +260,13 @@ namespace CQFollowerAutoclaimer
             {
                 token = null;
                 KongregateId = null;
-                MessageBox.Show("MacroSettings.txt file not found.");
+                DialogResult dr = MessageBox.Show("MacroSettings file not found. Do you want help with creating one?", "Settings Question", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                if (dr == DialogResult.Yes)
+                {
+                    MacroSettingsHelper msh = new MacroSettingsHelper();
+                    msh.Show();
+                    msh.BringToFront();
+                }
             }
             if (token != null && KongregateId != null)
             {
@@ -274,8 +287,14 @@ namespace CQFollowerAutoclaimer
                 Console.Write("Successfully logged in\n");
             }
             else
-            {
-                MessageBox.Show("Failed to log in.\nYour kong ID: " + KongregateId + "\nYour auth ticket: " + token + "\nLenght of token should be 64, yours is: " + token.Length);
+            {            
+                DialogResult dr = MessageBox.Show("Failed to log in.\nYour kong ID: " + KongregateId + "\nYour auth ticket: " + token + "\nLenght of token should be 64, yours is: " + token.Length + "\nDo you want help with creating MacroSettings file?", "Settings Question", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                if (dr == DialogResult.Yes)
+                {
+                    MacroSettingsHelper msh = new MacroSettingsHelper();
+                    msh.Show();
+                    msh.BringToFront();
+                }
             }
         }
 

@@ -97,7 +97,7 @@ namespace CQFollowerAutoclaimer
                         JObject json = JObject.Parse(apiResult.FunctionResult.ToString());
                         miracleTimes = json["data"]["miracles"].ToString();
                         initialFollowers = json["data"]["followers"].ToString();
-                        DQTime = json["data"]["city"]["daily"]["timer"].ToString();
+                        DQTime = json["data"]["city"]["daily"]["timer2"].ToString();
                         DQLevel = json["data"]["city"]["daily"]["lvl"].ToString();
                         return;
                     }

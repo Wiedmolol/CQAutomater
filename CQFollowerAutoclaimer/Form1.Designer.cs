@@ -596,9 +596,9 @@
             this.label22.AutoSize = true;
             this.label22.Location = new System.Drawing.Point(372, 9);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(28, 13);
+            this.label22.Size = new System.Drawing.Size(34, 13);
             this.label22.TabIndex = 32;
-            this.label22.Text = "v0.2";
+            this.label22.Text = "v0.2a";
             // 
             // Form1
             // 

@@ -124,6 +124,11 @@
             this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
             this.label44 = new System.Windows.Forms.Label();
             this.label45 = new System.Windows.Forms.Label();
+            this.chestToOpenCount = new System.Windows.Forms.NumericUpDown();
+            this.label46 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.contextMenuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -138,6 +143,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chestToOpenCount)).BeginInit();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -650,6 +657,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.groupBox2);
             this.tabPage3.Controls.Add(this.button1);
             this.tabPage3.Controls.Add(this.label32);
             this.tabPage3.Controls.Add(this.HeroChestLabel);
@@ -874,7 +882,7 @@
             // NormalChestLabel
             // 
             this.NormalChestLabel.AutoSize = true;
-            this.NormalChestLabel.Location = new System.Drawing.Point(34, 147);
+            this.NormalChestLabel.Location = new System.Drawing.Point(34, 142);
             this.NormalChestLabel.Name = "NormalChestLabel";
             this.NormalChestLabel.Size = new System.Drawing.Size(18, 13);
             this.NormalChestLabel.TabIndex = 20;
@@ -883,7 +891,7 @@
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(82, 147);
+            this.label26.Location = new System.Drawing.Point(82, 142);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(75, 13);
             this.label26.TabIndex = 21;
@@ -892,7 +900,7 @@
             // label31
             // 
             this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(19, 124);
+            this.label31.Location = new System.Drawing.Point(19, 119);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(56, 13);
             this.label31.TabIndex = 22;
@@ -901,7 +909,7 @@
             // label32
             // 
             this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(82, 169);
+            this.label32.Location = new System.Drawing.Point(82, 164);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(65, 13);
             this.label32.TabIndex = 24;
@@ -910,7 +918,7 @@
             // HeroChestLabel
             // 
             this.HeroChestLabel.AutoSize = true;
-            this.HeroChestLabel.Location = new System.Drawing.Point(34, 169);
+            this.HeroChestLabel.Location = new System.Drawing.Point(34, 164);
             this.HeroChestLabel.Name = "HeroChestLabel";
             this.HeroChestLabel.Size = new System.Drawing.Size(18, 13);
             this.HeroChestLabel.TabIndex = 23;
@@ -918,7 +926,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(316, 120);
+            this.button1.Location = new System.Drawing.Point(316, 115);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(55, 21);
             this.button1.TabIndex = 25;
@@ -1161,6 +1169,60 @@
             this.label45.TabIndex = 18;
             this.label45.Text = "Under construction";
             // 
+            // chestToOpenCount
+            // 
+            this.chestToOpenCount.Location = new System.Drawing.Point(50, 28);
+            this.chestToOpenCount.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.chestToOpenCount.Name = "chestToOpenCount";
+            this.chestToOpenCount.Size = new System.Drawing.Size(51, 20);
+            this.chestToOpenCount.TabIndex = 26;
+            // 
+            // label46
+            // 
+            this.label46.AutoSize = true;
+            this.label46.Location = new System.Drawing.Point(11, 30);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(33, 13);
+            this.label46.TabIndex = 27;
+            this.label46.Text = "Open";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(107, 11);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(99, 24);
+            this.button2.TabIndex = 28;
+            this.button2.Text = "Normal Chests";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(107, 37);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(99, 24);
+            this.button3.TabIndex = 29;
+            this.button3.Text = "Hero Chests";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.button3);
+            this.groupBox2.Controls.Add(this.button2);
+            this.groupBox2.Controls.Add(this.label46);
+            this.groupBox2.Controls.Add(this.chestToOpenCount);
+            this.groupBox2.Location = new System.Drawing.Point(22, 190);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(248, 67);
+            this.groupBox2.TabIndex = 30;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Chest Opener";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1192,6 +1254,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chestToOpenCount)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1293,6 +1358,11 @@
         private System.Windows.Forms.NumericUpDown numericUpDown4;
         private System.Windows.Forms.Label label44;
         private System.Windows.Forms.Label label45;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label46;
+        private System.Windows.Forms.NumericUpDown chestToOpenCount;
     }
 }
 

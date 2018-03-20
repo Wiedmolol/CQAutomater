@@ -47,6 +47,7 @@ namespace CQFollowerAutoclaimer
         System.Timers.Timer DQTimer = new System.Timers.Timer();
         System.Timers.Timer PVPTimer = new System.Timers.Timer();
         System.Timers.Timer FreeChestTimer = new System.Timers.Timer();
+        System.Timers.Timer chestTimer = new System.Timers.Timer();
 
         string[] rewardNames = new string[] {"20 Disasters(not rewarded in game)", "50 Disasters(not rewarded in game)", "200 Disasters(not rewarded in game)", 
             "1H Energy Boost(not rewarded in game)", "4H Energy Boost(not rewarded in game)", "12H Energy Boost(not rewarded in game)", 
@@ -196,6 +197,7 @@ namespace CQFollowerAutoclaimer
             getCurr();
             if (PFStuff.freeChestAvailable && freeChestBox.Checked)
             {
+                PFStuff.chestMode = "normal";
                 openChest();
                 PFStuff.freeChestAvailable = false;
             }
@@ -211,7 +213,7 @@ namespace CQFollowerAutoclaimer
             mt.Start();
             mt.Join();
             string rew = "Got ";
-            rew += PFStuff.chestResult < 0 ? heroNames[PFStuff.chestResult] : rewardNames[PFStuff.chestResult];
+            rew += PFStuff.chestResult < 0 ? heroNames[-PFStuff.chestResult] : rewardNames[PFStuff.chestResult];
             ChestLog.SynchronizedInvoke(() => ChestLog.AppendText(rew + "\n"));
         }
 
@@ -497,9 +499,41 @@ namespace CQFollowerAutoclaimer
             getCurr();
             if (PFStuff.freeChestAvailable)
             {
+                PFStuff.chestMode = "normal";
                 openChest();
                 PFStuff.freeChestAvailable = false;
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            PFStuff.chestMode = "normal";
+            chestsToOpen = (int)chestToOpenCount.Value;            
+            chestTimer.Interval = 4000;
+            chestTimer.Elapsed += chestTimer_Elapsed;
+            chestTimer.Start();
+        }
+
+        void chestTimer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            if (chestsToOpen == 0)
+            {
+                chestTimer.Stop();
+            }
+            else
+            {
+                openChest();
+                chestsToOpen--;
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            PFStuff.chestMode = "hero";
+            chestsToOpen = (int)chestToOpenCount.Value;
+            chestTimer.Interval = 4000;
+            chestTimer.Elapsed += chestTimer_Elapsed;
+            chestTimer.Start();
         }
 
 

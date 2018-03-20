@@ -41,7 +41,8 @@ namespace CQFollowerAutoclaimer
         static public int heroChests;
 
         static public bool freeChestAvailable = false;
-       // static int counter = 0;
+
+        static public string chestMode = "normal";
         public PFStuff(string t, string kid)
         {
             token = t;
@@ -83,9 +84,6 @@ namespace CQFollowerAutoclaimer
             logres = false;
             return;
         }
-
-
-
 
         public void GetGameData()
         {
@@ -243,8 +241,7 @@ namespace CQFollowerAutoclaimer
             {
                 RevisionSelection = CloudScriptRevisionOption.Live,
                 FunctionName = "fight",
-                FunctionParameter = new { token = token, kid = kongID, id = nearbyPlayersIDs[PVPEnemyIndex] }
-                //FunctionParameter = new { token = token, kid = kongID, id = "71979FBB505E9A0" }
+                FunctionParameter = new { token = token, kid = kongID, id = nearbyPlayersIDs[PVPEnemyIndex] }                
             };
             var statusTask = PlayFabClientAPI.ExecuteCloudScriptAsync(request);
             bool _running = true;
@@ -257,12 +254,10 @@ namespace CQFollowerAutoclaimer
 
                     if (apiError != null)
                     {
-                       // Console.Write("\nSelf battle fail");
                         return;
                     }
                     else if (apiResult.FunctionResult != null && apiResult.FunctionResult.ToString().Contains("true"))
                     {
-                        //Console.Write("\nSelf battle no. " + counter +" success");
                         JObject json = JObject.Parse(apiResult.FunctionResult.ToString());
                         PVPTime = json["data"]["city"]["nextfight"].ToString();
                         switch (json["data"]["city"]["log"][0]["result"].ToString())
@@ -285,7 +280,6 @@ namespace CQFollowerAutoclaimer
                 }
                 Thread.Sleep(1);
             }
-            //Console.Write("\nSelf battle fail");
             return;
 
         }
@@ -296,7 +290,7 @@ namespace CQFollowerAutoclaimer
             {
                 RevisionSelection = CloudScriptRevisionOption.Live,
                 FunctionName = "open",                
-                FunctionParameter = new { kid = kongID, mode = "normal" }
+                FunctionParameter = new { kid = kongID, mode = chestMode }
             };
             var statusTask = PlayFabClientAPI.ExecuteCloudScriptAsync(request);
             bool _running = true;

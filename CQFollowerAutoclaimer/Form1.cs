@@ -18,10 +18,13 @@ using System.Diagnostics;
 using System.Media;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Runtime.InteropServices;
 
 
 namespace CQFollowerAutoclaimer
 {
+
+
     public partial class Form1 : Form
     {
         static string calcOut;
@@ -29,35 +32,55 @@ namespace CQFollowerAutoclaimer
         int count = 0;
         string KongregateId;
         static Label[] timeLabels;
+        static int chestsToOpen;
 
         DateTime epoch = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
         DateTime start = DateTime.Now;
         DateTime nextClaim;
         DateTime nextDQTime;
-
+        DateTime nextPVP;
+        DateTime nextFreeChest;
 
         System.Timers.Timer tmr = new System.Timers.Timer();
         System.Timers.Timer timeElapsed = new System.Timers.Timer();
         System.Timers.Timer logoutTimer = new System.Timers.Timer();
-
         System.Timers.Timer DQTimer = new System.Timers.Timer();
+        System.Timers.Timer PVPTimer = new System.Timers.Timer();
+        System.Timers.Timer FreeChestTimer = new System.Timers.Timer();
+
+        string[] rewardNames = new string[] {"20 Disasters(not rewarded in game)", "50 Disasters(not rewarded in game)", "200 Disasters(not rewarded in game)", 
+            "1H Energy Boost(not rewarded in game)", "4H Energy Boost(not rewarded in game)", "12H Energy Boost(not rewarded in game)", 
+            "Common Followers", "Rare Followers", "Legendary Followers",
+            "20 UM", "50 UM", "200 UM"};
+
+        string[] heroNames = new string[] { "NULL", "James", "Hunter", "Shaman", "Alpha", "Carl", "Nimue", "Athos", "Jet", "Geron", "Rei", "Ailen", "Faefyr", "Auri", 
+            "K41ry", "T4urus", "Tr0n1x", "Aquortis", "Aeris", "Geum", "Rudean", "Aural", "Geror", "Ourea", "Erebus", "Pontus", "Oymos", "Xarth", "Atzar", "Ladyoftwilight", 
+            "Tiny", "Nebra", "Veildur", "Brynhildr", "Groth", "Zeth", "Koth", "Gurth", "Spyke", "Aoyuki", "Gaiabyte", "Valor", "Rokka", "Pyromancer", "Bewat", "Nicte", 
+            "Forestdruid", "Ignitor", "Undine", "Chroma", "Petry", "Zaytus", "Werewolf", "Jackoknight", "Dullahan", "Ladyodelith", "Shygu", "Thert", "Lordkirk", "Neptunius", 
+            "Sigrun", "Koldis", "Alvitr", "Hama", "Hallinskidi", "Rigr", "Aalpha", "Aathos", "Arei", "Aauri", "Atr0n1x", "Ageum", "Ageror", "Lordofchaos", "Christmaself", 
+            "Reindeer", "Santaclaus", "Sexysanta", "Toth", "Ganah", "Dagda", "Bubbles", "Apontus", "Aatzar", "Arshen", "Rua", "Dorth", "Arigr", "Moak", "Hosokawa", "Takeda", 
+            "Hirate", "Hattori", "Adagda", "Bylar", "Boor", "Bavah", "Leprechaun" };
 
         PFStuff pf;
         long initialFollowers;
 
+        [DllImport("user32.dll")]
+        static extern void FlashWindow(IntPtr a, bool b);
 
         public Form1()
         {
             InitializeComponent();
             timeLabels = new Label[] { claimtime1, claimtime2, claimtime3, claimtime4, claimtime5, claimtime6, claimtime7, claimtime8, claimtime9 };
             init();
+            ((Control)tabPage5).Enabled = false;
             if (pf != null)
             {
+                PFStuff.getUsername(KongregateId);
                 miracleLoop();
                 timeElapsed.Interval = 1000;
                 timeElapsed.Elapsed += timeElapsed_Elapsed;
                 timeElapsed.Start();
-                logoutTimer.Interval = 24 * 3600;
+                logoutTimer.Interval = 24 * 3600 * 1000;
                 logoutTimer.Elapsed += logoutTimer_Elapsed;
                 logoutTimer.Start();
             }
@@ -84,6 +107,18 @@ namespace CQFollowerAutoclaimer
             {
                 DQCountdownLabel.SynchronizedInvoke(() => DQCountdownLabel.Text = (nextDQTime - DateTime.Now).ToString("hh\\:mm\\:ss"));
             }
+
+            if (nextFreeChest != null)
+            {
+                FreeChestCountdownLabel.SynchronizedInvoke(() => FreeChestCountdownLabel.Text = (nextFreeChest - DateTime.Now).ToString("hh\\:mm\\:ss"));
+            }
+
+
+            if (nextPVP != null)
+            {
+                PvPCountdownLabel.SynchronizedInvoke(() => PvPCountdownLabel.Text = (nextPVP - DateTime.Now).ToString("hh\\:mm\\:ss"));
+            }
+
 
         }
 
@@ -121,7 +156,8 @@ namespace CQFollowerAutoclaimer
                 {
                     using (var soundPlayer = new SoundPlayer(@"c:\Windows\Media\Windows Notify.wav"))
                     {
-                        soundPlayer.Play(); 
+                        soundPlayer.Play();
+                        FlashWindow(this.Handle, true);
                     }
                 }
                 if (DQCalcBox.Checked)
@@ -136,11 +172,78 @@ namespace CQFollowerAutoclaimer
                 DQTimer.Elapsed += DQTimer_Elapsed;
                 DQTimer.Start();
             }
+
+            nextPVP = getTime(PFStuff.PVPTime);            
+            PvPTimeLabel.SynchronizedInvoke(() => PvPTimeLabel.Text = nextPVP.ToString());
+            PVPTimer.Interval = Math.Max(3000, (nextPVP - DateTime.Now).TotalMilliseconds);
+            PVPTimer.Elapsed += PVPTimer_Elapsed;
+            PVPTimer.Start();
+
+            getCurr();
+            nextFreeChest = DateTime.Now.AddSeconds(PFStuff.freeChestRecharge);           
+            FreeChestTimeLabel.SynchronizedInvoke(() => FreeChestTimeLabel.Text = nextFreeChest.ToString());
+            FreeChestTimer.Interval = PFStuff.freeChestRecharge * 1000;
+            FreeChestTimer.Elapsed += FreeChestTimer_Elapsed;
+            FreeChestTimer.Start();
         }
 
-       
+        void FreeChestTimer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            if (!PlayFab.PlayFabClientAPI.IsClientLoggedIn())
+            {
+                login();
+            }
+            getCurr();
+            if (PFStuff.freeChestAvailable && freeChestBox.Checked)
+            {
+                openChest();
+                PFStuff.freeChestAvailable = false;
+            }
+            nextFreeChest = DateTime.Now.AddSeconds(PFStuff.freeChestRecharge);
+            FreeChestTimeLabel.SynchronizedInvoke(() => FreeChestTimeLabel.Text = nextFreeChest.ToString());
+            FreeChestTimer.Interval = PFStuff.freeChestRecharge * 1000;
+        }
 
+        void openChest()
+        {
+            Thread mt;
+            mt = new Thread(pf.sendOpen);
+            mt.Start();
+            mt.Join();
+            string rew = "Got ";
+            rew += PFStuff.chestResult < 0 ? heroNames[PFStuff.chestResult] : rewardNames[PFStuff.chestResult];
+            ChestLog.SynchronizedInvoke(() => ChestLog.AppendText(rew + "\n"));
+        }
 
+        void PVPTimer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            if (autoPvPCheckbox.Checked)
+            {
+                if (!PlayFab.PlayFabClientAPI.IsClientLoggedIn())
+                {
+                    login();
+                }
+                Thread mt;
+                PFStuff.LeaderboardRange = Math.Max(3, 2 * (int)Math.Max(playersAboveCount.Value, playersBelowCount.Value + 1));
+                mt = new Thread(pf.getLeaderboard);
+                mt.Start();
+                mt.Join();
+                Random r = new Random();
+                do
+                {
+                    PFStuff.PVPEnemyIndex = r.Next(0, PFStuff.nearbyPlayersIDs.Length);
+                } while (PFStuff.PVPEnemyIndex == PFStuff.userIndex ||
+                        PFStuff.PVPEnemyIndex > PFStuff.userIndex + (int)playersBelowCount.Value ||
+                        PFStuff.PVPEnemyIndex < PFStuff.userIndex - (int)playersAboveCount.Value);
+
+                mt = new Thread(pf.sendPVPFight);
+                mt.Start();
+                mt.Join();
+                nextPVP = getTime(PFStuff.PVPTime);
+                PVPTimer.Interval = Math.Max(3000, (nextPVP - DateTime.Now).TotalMilliseconds);                
+                PvPLog.SynchronizedInvoke(() => PvPLog.AppendText(PFStuff.battleResult));
+            }
+        }
 
         void DQTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
@@ -149,6 +252,7 @@ namespace CQFollowerAutoclaimer
                 using (var soundPlayer = new SoundPlayer(@"c:\Windows\Media\Windows Notify.wav"))
                 {
                     soundPlayer.Play();
+                    FlashWindow(this.Handle, true);
                 }
             }
             if (DQCalcBox.Checked)
@@ -220,6 +324,18 @@ namespace CQFollowerAutoclaimer
             mt = new Thread(pf.GetGameData);
             mt.Start();
             mt.Join();
+
+           
+        }
+
+        private void getCurr()
+        {
+            Thread mt;
+            mt = new Thread(pf.getCurrencies);
+            mt.Start();
+            mt.Join();
+            NormalChestLabel.SynchronizedInvoke(() => NormalChestLabel.Text = PFStuff.normalChests.ToString());
+            HeroChestLabel.SynchronizedInvoke(() => HeroChestLabel.Text = PFStuff.heroChests.ToString());
         }
         private string getSetting(string s)
         {
@@ -287,7 +403,7 @@ namespace CQFollowerAutoclaimer
                 Console.Write("Successfully logged in\n");
             }
             else
-            {            
+            {
                 DialogResult dr = MessageBox.Show("Failed to log in.\nYour kong ID: " + KongregateId + "\nYour auth ticket: " + token + "\nLenght of token should be 64, yours is: " + token.Length + "\nDo you want help with creating MacroSettings file?", "Settings Question", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
                 if (dr == DialogResult.Yes)
                 {
@@ -350,6 +466,42 @@ namespace CQFollowerAutoclaimer
         {
             Close();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (!PlayFab.PlayFabClientAPI.IsClientLoggedIn())
+            {
+                login();
+            }
+            Thread mt;
+            mt = new Thread(pf.sendPVPFight);
+            mt.Start();
+            mt.Join();
+        }
+
+        private void autoPvPCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            getData();
+            nextPVP = getTime(PFStuff.PVPTime);
+            PvPTimeLabel.Text = nextPVP.ToString();
+            PVPTimer.Interval = Math.Max(8000, (nextPVP - DateTime.Now).TotalMilliseconds);
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            getCurr();
+        }
+
+        private void freeChestBox_CheckedChanged(object sender, EventArgs e)
+        {
+            getCurr();
+            if (PFStuff.freeChestAvailable)
+            {
+                openChest();
+                PFStuff.freeChestAvailable = false;
+            }
+        }
+
 
 
 

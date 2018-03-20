@@ -78,12 +78,66 @@
             this.label18 = new System.Windows.Forms.Label();
             this.DQLevelLabel = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.FreeChestCountdownLabel = new System.Windows.Forms.Label();
+            this.FreeChestTimeLabel = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.label27 = new System.Windows.Forms.Label();
+            this.playersBelowCount = new System.Windows.Forms.NumericUpDown();
+            this.playersAboveCount = new System.Windows.Forms.NumericUpDown();
+            this.PvPCountdownLabel = new System.Windows.Forms.Label();
+            this.PvPTimeLabel = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.freeChestBox = new System.Windows.Forms.CheckBox();
+            this.label33 = new System.Windows.Forms.Label();
+            this.PvPLog = new System.Windows.Forms.RichTextBox();
+            this.autoPvPCheckbox = new System.Windows.Forms.CheckBox();
+            this.ChestLog = new System.Windows.Forms.RichTextBox();
+            this.NormalChestLabel = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
+            this.HeroChestLabel = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.label36 = new System.Windows.Forms.Label();
+            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.label37 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label38 = new System.Windows.Forms.Label();
+            this.label39 = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
+            this.label41 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label42 = new System.Windows.Forms.Label();
+            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
+            this.label43 = new System.Windows.Forms.Label();
+            this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
+            this.label44 = new System.Windows.Forms.Label();
+            this.label45 = new System.Windows.Forms.Label();
             this.contextMenuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.playersBelowCount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playersAboveCount)).BeginInit();
+            this.tabPage5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -429,10 +483,13 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(12, 12);
+            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.tabPage5);
+            this.tabControl1.Location = new System.Drawing.Point(12, 9);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(399, 438);
+            this.tabControl1.Size = new System.Drawing.Size(399, 441);
             this.tabControl1.TabIndex = 31;
             // 
             // tabPage1
@@ -471,7 +528,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(391, 412);
+            this.tabPage1.Size = new System.Drawing.Size(391, 415);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Followers";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -489,7 +546,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(391, 412);
+            this.tabPage2.Size = new System.Drawing.Size(391, 415);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "DQ";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -591,14 +648,518 @@
             this.label16.TabIndex = 0;
             this.label16.Text = "Current DQ level:";
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.button1);
+            this.tabPage3.Controls.Add(this.label32);
+            this.tabPage3.Controls.Add(this.HeroChestLabel);
+            this.tabPage3.Controls.Add(this.label31);
+            this.tabPage3.Controls.Add(this.label26);
+            this.tabPage3.Controls.Add(this.NormalChestLabel);
+            this.tabPage3.Controls.Add(this.ChestLog);
+            this.tabPage3.Controls.Add(this.label33);
+            this.tabPage3.Controls.Add(this.freeChestBox);
+            this.tabPage3.Controls.Add(this.FreeChestCountdownLabel);
+            this.tabPage3.Controls.Add(this.FreeChestTimeLabel);
+            this.tabPage3.Controls.Add(this.label24);
+            this.tabPage3.Controls.Add(this.label23);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(391, 415);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Chests";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // FreeChestCountdownLabel
+            // 
+            this.FreeChestCountdownLabel.AutoSize = true;
+            this.FreeChestCountdownLabel.Location = new System.Drawing.Point(129, 39);
+            this.FreeChestCountdownLabel.Name = "FreeChestCountdownLabel";
+            this.FreeChestCountdownLabel.Size = new System.Drawing.Size(18, 13);
+            this.FreeChestCountdownLabel.TabIndex = 3;
+            this.FreeChestCountdownLabel.Text = "-/-";
+            // 
+            // FreeChestTimeLabel
+            // 
+            this.FreeChestTimeLabel.AutoSize = true;
+            this.FreeChestTimeLabel.Location = new System.Drawing.Point(129, 17);
+            this.FreeChestTimeLabel.Name = "FreeChestTimeLabel";
+            this.FreeChestTimeLabel.Size = new System.Drawing.Size(18, 13);
+            this.FreeChestTimeLabel.TabIndex = 2;
+            this.FreeChestTimeLabel.Text = "-/-";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(59, 39);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(64, 13);
+            this.label24.TabIndex = 1;
+            this.label24.Text = "Countdown:";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(19, 17);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(104, 13);
+            this.label23.TabIndex = 0;
+            this.label23.Text = "Free chest ready at: ";
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.autoPvPCheckbox);
+            this.tabPage4.Controls.Add(this.PvPLog);
+            this.tabPage4.Controls.Add(this.label28);
+            this.tabPage4.Controls.Add(this.label27);
+            this.tabPage4.Controls.Add(this.playersBelowCount);
+            this.tabPage4.Controls.Add(this.playersAboveCount);
+            this.tabPage4.Controls.Add(this.PvPCountdownLabel);
+            this.tabPage4.Controls.Add(this.PvPTimeLabel);
+            this.tabPage4.Controls.Add(this.label29);
+            this.tabPage4.Controls.Add(this.label30);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(391, 415);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "PvP";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(100, 93);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(132, 13);
+            this.label27.TabIndex = 10;
+            this.label27.Text = "players that are above you";
+            // 
+            // playersBelowCount
+            // 
+            this.playersBelowCount.Location = new System.Drawing.Point(28, 115);
+            this.playersBelowCount.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.playersBelowCount.Name = "playersBelowCount";
+            this.playersBelowCount.Size = new System.Drawing.Size(66, 20);
+            this.playersBelowCount.TabIndex = 9;
+            this.playersBelowCount.Value = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
+            // 
+            // playersAboveCount
+            // 
+            this.playersAboveCount.Location = new System.Drawing.Point(28, 91);
+            this.playersAboveCount.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.playersAboveCount.Name = "playersAboveCount";
+            this.playersAboveCount.Size = new System.Drawing.Size(66, 20);
+            this.playersAboveCount.TabIndex = 8;
+            this.playersAboveCount.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            // 
+            // PvPCountdownLabel
+            // 
+            this.PvPCountdownLabel.AutoSize = true;
+            this.PvPCountdownLabel.Location = new System.Drawing.Point(128, 41);
+            this.PvPCountdownLabel.Name = "PvPCountdownLabel";
+            this.PvPCountdownLabel.Size = new System.Drawing.Size(18, 13);
+            this.PvPCountdownLabel.TabIndex = 7;
+            this.PvPCountdownLabel.Text = "-/-";
+            // 
+            // PvPTimeLabel
+            // 
+            this.PvPTimeLabel.AutoSize = true;
+            this.PvPTimeLabel.Location = new System.Drawing.Point(128, 19);
+            this.PvPTimeLabel.Name = "PvPTimeLabel";
+            this.PvPTimeLabel.Size = new System.Drawing.Size(18, 13);
+            this.PvPTimeLabel.TabIndex = 6;
+            this.PvPTimeLabel.Text = "-/-";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(58, 41);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(64, 13);
+            this.label29.TabIndex = 5;
+            this.label29.Text = "Countdown:";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(45, 19);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(77, 13);
+            this.label30.TabIndex = 4;
+            this.label30.Text = "Fight ready at: ";
+            // 
             // label22
             // 
             this.label22.AutoSize = true;
             this.label22.Location = new System.Drawing.Point(372, 9);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(34, 13);
+            this.label22.Size = new System.Drawing.Size(28, 13);
             this.label22.TabIndex = 32;
-            this.label22.Text = "v0.2a";
+            this.label22.Text = "v0.4";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(100, 117);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(130, 13);
+            this.label28.TabIndex = 11;
+            this.label28.Text = "players that are below you";
+            // 
+            // freeChestBox
+            // 
+            this.freeChestBox.AutoSize = true;
+            this.freeChestBox.Location = new System.Drawing.Point(22, 57);
+            this.freeChestBox.Name = "freeChestBox";
+            this.freeChestBox.Size = new System.Drawing.Size(191, 17);
+            this.freeChestBox.TabIndex = 4;
+            this.freeChestBox.Text = "Open free chest when it\'s available\r\n";
+            this.freeChestBox.UseVisualStyleBackColor = true;
+            this.freeChestBox.CheckedChanged += new System.EventHandler(this.freeChestBox_CheckedChanged);
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(19, 77);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(352, 26);
+            this.label33.TabIndex = 5;
+            this.label33.Text = "WARNING: if you roll disasters or production boost that bonus will be lost!\r\nUMs," +
+    " followers and heroes are fine";
+            // 
+            // PvPLog
+            // 
+            this.PvPLog.Location = new System.Drawing.Point(3, 263);
+            this.PvPLog.Name = "PvPLog";
+            this.PvPLog.Size = new System.Drawing.Size(382, 143);
+            this.PvPLog.TabIndex = 18;
+            this.PvPLog.Text = "";
+            // 
+            // autoPvPCheckbox
+            // 
+            this.autoPvPCheckbox.AutoSize = true;
+            this.autoPvPCheckbox.Location = new System.Drawing.Point(6, 68);
+            this.autoPvPCheckbox.Name = "autoPvPCheckbox";
+            this.autoPvPCheckbox.Size = new System.Drawing.Size(307, 17);
+            this.autoPvPCheckbox.TabIndex = 19;
+            this.autoPvPCheckbox.Text = "Attack a random player from a list of players. List will contain";
+            this.autoPvPCheckbox.UseVisualStyleBackColor = true;
+            this.autoPvPCheckbox.CheckedChanged += new System.EventHandler(this.autoPvPCheckbox_CheckedChanged);
+            // 
+            // ChestLog
+            // 
+            this.ChestLog.Location = new System.Drawing.Point(3, 263);
+            this.ChestLog.Name = "ChestLog";
+            this.ChestLog.Size = new System.Drawing.Size(384, 143);
+            this.ChestLog.TabIndex = 19;
+            this.ChestLog.Text = "";
+            // 
+            // NormalChestLabel
+            // 
+            this.NormalChestLabel.AutoSize = true;
+            this.NormalChestLabel.Location = new System.Drawing.Point(34, 147);
+            this.NormalChestLabel.Name = "NormalChestLabel";
+            this.NormalChestLabel.Size = new System.Drawing.Size(18, 13);
+            this.NormalChestLabel.TabIndex = 20;
+            this.NormalChestLabel.Text = "-/-";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(82, 147);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(75, 13);
+            this.label26.TabIndex = 21;
+            this.label26.Text = "Normal Chests";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(19, 124);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(56, 13);
+            this.label31.TabIndex = 22;
+            this.label31.Text = "You have:";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(82, 169);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(65, 13);
+            this.label32.TabIndex = 24;
+            this.label32.Text = "Hero Chests";
+            // 
+            // HeroChestLabel
+            // 
+            this.HeroChestLabel.AutoSize = true;
+            this.HeroChestLabel.Location = new System.Drawing.Point(34, 169);
+            this.HeroChestLabel.Name = "HeroChestLabel";
+            this.HeroChestLabel.Size = new System.Drawing.Size(18, 13);
+            this.HeroChestLabel.TabIndex = 23;
+            this.HeroChestLabel.Text = "-/-";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(316, 120);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(55, 21);
+            this.button1.TabIndex = 25;
+            this.button1.Text = "Refresh";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.label45);
+            this.tabPage5.Controls.Add(this.label40);
+            this.tabPage5.Controls.Add(this.label41);
+            this.tabPage5.Controls.Add(this.textBox2);
+            this.tabPage5.Controls.Add(this.label42);
+            this.tabPage5.Controls.Add(this.numericUpDown3);
+            this.tabPage5.Controls.Add(this.label43);
+            this.tabPage5.Controls.Add(this.numericUpDown4);
+            this.tabPage5.Controls.Add(this.label44);
+            this.tabPage5.Controls.Add(this.label39);
+            this.tabPage5.Controls.Add(this.label38);
+            this.tabPage5.Controls.Add(this.textBox1);
+            this.tabPage5.Controls.Add(this.label37);
+            this.tabPage5.Controls.Add(this.numericUpDown2);
+            this.tabPage5.Controls.Add(this.label36);
+            this.tabPage5.Controls.Add(this.numericUpDown1);
+            this.tabPage5.Controls.Add(this.label35);
+            this.tabPage5.Controls.Add(this.label34);
+            this.tabPage5.Controls.Add(this.label25);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Size = new System.Drawing.Size(391, 415);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "WB";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.label25.Location = new System.Drawing.Point(17, 19);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(203, 17);
+            this.label25.TabIndex = 0;
+            this.label25.Text = "Lord of Chaos, Heroes Allowed";
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.label34.Location = new System.Drawing.Point(17, 133);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(173, 17);
+            this.label34.TabIndex = 1;
+            this.label34.Text = "Lord of Chaos, No Heroes";
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(17, 48);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(13, 13);
+            this.label35.TabIndex = 2;
+            this.label35.Text = "If";
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(32, 46);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(40, 20);
+            this.numericUpDown1.TabIndex = 3;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(76, 48);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(207, 13);
+            this.label36.TabIndex = 4;
+            this.label36.Text = "(or more)attacks available, attack the boss";
+            // 
+            // numericUpDown2
+            // 
+            this.numericUpDown2.Location = new System.Drawing.Point(288, 46);
+            this.numericUpDown2.Maximum = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
+            this.numericUpDown2.Name = "numericUpDown2";
+            this.numericUpDown2.Size = new System.Drawing.Size(35, 20);
+            this.numericUpDown2.TabIndex = 5;
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(327, 48);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(56, 13);
+            this.label37.TabIndex = 6;
+            this.label37.Text = "times with:";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(20, 92);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(356, 20);
+            this.textBox1.TabIndex = 7;
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Location = new System.Drawing.Point(23, 76);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(38, 13);
+            this.label38.TabIndex = 8;
+            this.label38.Text = "<- First";
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(338, 76);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(39, 13);
+            this.label39.TabIndex = 9;
+            this.label39.Text = "Last ->";
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(338, 184);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(39, 13);
+            this.label40.TabIndex = 17;
+            this.label40.Text = "Last ->";
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Location = new System.Drawing.Point(23, 184);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(38, 13);
+            this.label41.TabIndex = 16;
+            this.label41.Text = "<- First";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(20, 200);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(356, 20);
+            this.textBox2.TabIndex = 15;
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Location = new System.Drawing.Point(327, 156);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(56, 13);
+            this.label42.TabIndex = 14;
+            this.label42.Text = "times with:";
+            // 
+            // numericUpDown3
+            // 
+            this.numericUpDown3.Location = new System.Drawing.Point(288, 154);
+            this.numericUpDown3.Maximum = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
+            this.numericUpDown3.Name = "numericUpDown3";
+            this.numericUpDown3.Size = new System.Drawing.Size(35, 20);
+            this.numericUpDown3.TabIndex = 13;
+            this.numericUpDown3.Value = new decimal(new int[] {
+            6,
+            0,
+            0,
+            0});
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Location = new System.Drawing.Point(76, 156);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(207, 13);
+            this.label43.TabIndex = 12;
+            this.label43.Text = "(or more)attacks available, attack the boss";
+            // 
+            // numericUpDown4
+            // 
+            this.numericUpDown4.Location = new System.Drawing.Point(32, 154);
+            this.numericUpDown4.Maximum = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
+            this.numericUpDown4.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown4.Name = "numericUpDown4";
+            this.numericUpDown4.Size = new System.Drawing.Size(40, 20);
+            this.numericUpDown4.TabIndex = 11;
+            this.numericUpDown4.Value = new decimal(new int[] {
+            7,
+            0,
+            0,
+            0});
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.Location = new System.Drawing.Point(17, 156);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(13, 13);
+            this.label44.TabIndex = 10;
+            this.label44.Text = "If";
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.25F);
+            this.label45.Location = new System.Drawing.Point(90, 336);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(193, 25);
+            this.label45.TabIndex = 18;
+            this.label45.Text = "Under construction";
             // 
             // Form1
             // 
@@ -619,6 +1180,18 @@
             this.tabPage2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.playersBelowCount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playersAboveCount)).EndInit();
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -675,6 +1248,51 @@
         private System.Windows.Forms.CheckBox DQSoundBox;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.Label FreeChestCountdownLabel;
+        private System.Windows.Forms.Label FreeChestTimeLabel;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.Label PvPCountdownLabel;
+        private System.Windows.Forms.Label PvPTimeLabel;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.NumericUpDown playersBelowCount;
+        private System.Windows.Forms.NumericUpDown playersAboveCount;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.CheckBox freeChestBox;
+        private System.Windows.Forms.RichTextBox PvPLog;
+        private System.Windows.Forms.CheckBox autoPvPCheckbox;
+        private System.Windows.Forms.RichTextBox ChestLog;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.Label HeroChestLabel;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label NormalChestLabel;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.NumericUpDown numericUpDown3;
+        private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.NumericUpDown numericUpDown4;
+        private System.Windows.Forms.Label label44;
+        private System.Windows.Forms.Label label45;
     }
 }
 

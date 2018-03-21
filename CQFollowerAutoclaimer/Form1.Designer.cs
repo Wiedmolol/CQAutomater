@@ -68,7 +68,6 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.label17 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.DQCalcBox = new System.Windows.Forms.CheckBox();
             this.DQSoundBox = new System.Windows.Forms.CheckBox();
@@ -542,7 +541,6 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.label17);
             this.tabPage2.Controls.Add(this.groupBox1);
             this.tabPage2.Controls.Add(this.DQCountdownLabel);
             this.tabPage2.Controls.Add(this.label21);
@@ -557,15 +555,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "DQ";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(100, 212);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(194, 26);
-            this.label17.TabIndex = 9;
-            this.label17.Text = "Run the calc option will be added soon.\r\nI still need to test that feature.";
             // 
             // groupBox1
             // 
@@ -588,6 +577,7 @@
             this.DQCalcBox.TabIndex = 7;
             this.DQCalcBox.Text = "Run the calc";
             this.DQCalcBox.UseVisualStyleBackColor = true;
+            this.DQCalcBox.CheckedChanged += new System.EventHandler(this.DQCalcBox_CheckedChanged);
             // 
             // DQSoundBox
             // 
@@ -1311,7 +1301,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.CheckBox DQCalcBox;
         private System.Windows.Forms.CheckBox DQSoundBox;
-        private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.Label FreeChestCountdownLabel;

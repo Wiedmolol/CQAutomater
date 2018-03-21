@@ -272,7 +272,7 @@ namespace CQFollowerAutoclaimer
                                 battleResult = "Win";
                                 break;
                         }
-                        battleResult += " vs " + json["data"]["city"]["log"][0]["enemy"].ToString() + ", ELO " + json["data"]["city"]["log"][0]["rankd"].ToString() +
+                        battleResult += " vs " + json["data"]["city"]["log"][0]["enemy"].ToString() + ", ELO " + int.Parse(json["data"]["city"]["log"][0]["rankd"].ToString()).ToString("+0;-#") +
                             ", Followers +" + json["data"]["city"]["log"][0]["earn"].ToString() + "\n";
                         return;
                     }

@@ -54,13 +54,13 @@ namespace CQFollowerAutoclaimer
             "Common Followers", "Rare Followers", "Legendary Followers",
             "20 UM", "50 UM", "200 UM"};
 
-        string[] heroNames = new string[] { "NULL", "James", "Hunter", "Shaman", "Alpha", "Carl", "Nimue", "Athos", "Jet", "Geron", "Rei", "Ailen", "Faefyr", "Auri", 
-            "K41ry", "T4urus", "Tr0n1x", "Aquortis", "Aeris", "Geum", "Rudean", "Aural", "Geror", "Ourea", "Erebus", "Pontus", "Oymos", "Xarth", "Atzar", "Ladyoftwilight", 
-            "Tiny", "Nebra", "Veildur", "Brynhildr", "Groth", "Zeth", "Koth", "Gurth", "Spyke", "Aoyuki", "Gaiabyte", "Valor", "Rokka", "Pyromancer", "Bewat", "Nicte", 
-            "Forestdruid", "Ignitor", "Undine", "Chroma", "Petry", "Zaytus", "Werewolf", "Jackoknight", "Dullahan", "Ladyodelith", "Shygu", "Thert", "Lordkirk", "Neptunius", 
+        string[] heroNames = new string[] { "NULL", "NULL", "Ladyoftwilight", "Tiny", "Nebra", "Valor", "Rokka", "Pyromancer", "Bewat", "Hunter", "Shaman", "Alpha", "Carl", 
+            "Nimue", "Athos", "Jet", "Geron", "Rei", "Ailen", "Faefyr", "Auri", "Nicte", "James", "Kairy", "Taurus", "Tronix", "Aquortis", "Aeris", "Geum", "Forestdruid", 
+            "Ignitor", "Undine", "Rudean", "Aural", "Geror", "Veildur", "Brynhildr", "Groth", "Ourea", "Erebus", "Pontus", "Chroma", "Petry", "Zaytus", "Spyke", "Aoyuki",
+            "Gaiabyte", "Oymos", "Xarth", "Atzar", "Zeth", "Koth", "Gurth", "Werewolf", "Jackoknight", "Dullahan", "Ladyodelith", "Shygu", "Thert", "Lordkirk", "Neptunius", 
             "Sigrun", "Koldis", "Alvitr", "Hama", "Hallinskidi", "Rigr", "Aalpha", "Aathos", "Arei", "Aauri", "Atr0n1x", "Ageum", "Ageror", "Lordofchaos", "Christmaself", 
             "Reindeer", "Santaclaus", "Sexysanta", "Toth", "Ganah", "Dagda", "Bubbles", "Apontus", "Aatzar", "Arshen", "Rua", "Dorth", "Arigr", "Moak", "Hosokawa", "Takeda", 
-            "Hirate", "Hattori", "Adagda", "Bylar", "Boor", "Bavah", "Leprechaun" };
+            "Hirate", "Hattori", "Adagda", "Bylar", "Boor", "Bavah", "Leprechaun", };
 
         PFStuff pf;
         long initialFollowers;
@@ -174,14 +174,14 @@ namespace CQFollowerAutoclaimer
                 DQTimer.Start();
             }
 
-            nextPVP = getTime(PFStuff.PVPTime);            
+            nextPVP = getTime(PFStuff.PVPTime);
             PvPTimeLabel.SynchronizedInvoke(() => PvPTimeLabel.Text = nextPVP.ToString());
             PVPTimer.Interval = Math.Max(3000, (nextPVP - DateTime.Now).TotalMilliseconds);
             PVPTimer.Elapsed += PVPTimer_Elapsed;
             PVPTimer.Start();
 
             getCurr();
-            nextFreeChest = DateTime.Now.AddSeconds(PFStuff.freeChestRecharge);           
+            nextFreeChest = DateTime.Now.AddSeconds(PFStuff.freeChestRecharge);
             FreeChestTimeLabel.SynchronizedInvoke(() => FreeChestTimeLabel.Text = nextFreeChest.ToString());
             FreeChestTimer.Interval = PFStuff.freeChestRecharge * 1000;
             FreeChestTimer.Elapsed += FreeChestTimer_Elapsed;
@@ -242,8 +242,9 @@ namespace CQFollowerAutoclaimer
                 mt.Start();
                 mt.Join();
                 nextPVP = getTime(PFStuff.PVPTime);
-                PVPTimer.Interval = Math.Max(3000, (nextPVP - DateTime.Now).TotalMilliseconds);                
+                PVPTimer.Interval = Math.Max(3000, (nextPVP - DateTime.Now).TotalMilliseconds);
                 PvPLog.SynchronizedInvoke(() => PvPLog.AppendText(PFStuff.battleResult));
+                PvPTimeLabel.SynchronizedInvoke(() => PvPTimeLabel.Text = nextPVP.ToString());
             }
         }
 
@@ -254,13 +255,19 @@ namespace CQFollowerAutoclaimer
                 using (var soundPlayer = new SoundPlayer(@"c:\Windows\Media\Windows Notify.wav"))
                 {
                     soundPlayer.Play();
-                    FlashWindow(this.Handle, true);
+                    //FlashWindow(this.Handle, true);
                 }
             }
             if (DQCalcBox.Checked)
             {
                 RunCalc();
             }
+            getData();
+            DateTime DQRunTime = getTime(PFStuff.DQTime);
+            DQTimer.Interval = Math.Max(3000, (DQRunTime - DateTime.Now).TotalMilliseconds);
+
+            DQLevelLabel.SynchronizedInvoke(() => DQLevelLabel.Text = PFStuff.DQLevel);
+            DQTimeLabel.SynchronizedInvoke(() => DQTimeLabel.Text = nextDQTime.ToString());
         }
 
         void RunCalc()
@@ -326,8 +333,6 @@ namespace CQFollowerAutoclaimer
             mt = new Thread(pf.GetGameData);
             mt.Start();
             mt.Join();
-
-           
         }
 
         private void getCurr()
@@ -485,7 +490,7 @@ namespace CQFollowerAutoclaimer
         {
             getData();
             nextPVP = getTime(PFStuff.PVPTime);
-            PvPTimeLabel.Text = nextPVP.ToString();
+            PvPTimeLabel.SynchronizedInvoke(() => PvPTimeLabel.Text = nextPVP.ToString());
             PVPTimer.Interval = Math.Max(8000, (nextPVP - DateTime.Now).TotalMilliseconds);
         }
 
@@ -508,7 +513,7 @@ namespace CQFollowerAutoclaimer
         private void button2_Click(object sender, EventArgs e)
         {
             PFStuff.chestMode = "normal";
-            chestsToOpen = (int)chestToOpenCount.Value;            
+            chestsToOpen = (int)chestToOpenCount.Value;
             chestTimer.Interval = 4000;
             chestTimer.Elapsed += chestTimer_Elapsed;
             chestTimer.Start();
@@ -534,6 +539,24 @@ namespace CQFollowerAutoclaimer
             chestTimer.Interval = 4000;
             chestTimer.Elapsed += chestTimer_Elapsed;
             chestTimer.Start();
+        }
+
+        private void DQCalcBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (PFStuff.DQLevel == "1")
+            {
+                DialogResult dr = MessageBox.Show("Do you want to run the auto-solve now?", "Calc Question", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                if (dr == DialogResult.Yes)
+                {
+                    RunCalc();
+                    getData();
+                    DateTime DQRunTime = getTime(PFStuff.DQTime);
+                    DQTimer.Interval = Math.Max(3000, (DQRunTime - DateTime.Now).TotalMilliseconds);
+
+                    DQLevelLabel.SynchronizedInvoke(() => DQLevelLabel.Text = PFStuff.DQLevel);
+                    DQTimeLabel.SynchronizedInvoke(() => DQTimeLabel.Text = nextDQTime.ToString());
+                }
+            }
         }
 
 

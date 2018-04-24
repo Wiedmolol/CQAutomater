@@ -6,7 +6,8 @@ I also plan to add simple system that automatically attacks World Bosses and aut
 
 # v 0.6
 #### General: 
-Changed settings file from simple .txt to .json; New settings file will be automatically created from old MacroSettings.txt file after you run new version for the first time or you can create one from scratch using the "Settings Creator Helper". Creator Helper can be run with a button in "Other" tab. Program will also ask you if you want to run it, if you don't have any settings file present in your folder.
+Changed settings file from simple .txt to .json; New settings file will be automatically created from old MacroSettings.txt file after you run new version for the first time or you can create one from scratch using the "Settings Creator Helper". Creator Helper can be run with a button in "Other" tab. Program will also ask you if you want to run it, if you don't have any settings file present in your folder. Old "MacroSettings.txt" file can be removed after Settings.json file is created.
+
 #### Auto-DQ: 
 There is now a possibility to do DQs with preset lineup. It will use that lineup until it can no longer beat current DQ. If you don't check that option but have "Run the calc" option enabled it will still use the best lineup first, before attempting to solve DQs with calc. If you don't provide your best lineup(meaning all slots are empty) the app will automatically set best lineup to the last lineup used after calc is finished. 
 

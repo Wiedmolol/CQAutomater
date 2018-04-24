@@ -12,19 +12,21 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Net;
 using System.IO;
-
+using System.Net.Http;
 namespace CQFollowerAutoclaimer
 {
     class PFStuff
     {
         string token;
-        string kongID;
+        static string kongID;
         static bool _running = true;
         static public bool logres;
         static public string miracleTimes;
         static public string initialFollowers;
         static public string DQTime;
         static public string DQLevel;
+        static public bool DQResult;
+        static public int[] DQlineup;
         static public string PVPTime;
 
         static public string[] nearbyPlayersIDs = new string[10];
@@ -33,7 +35,7 @@ namespace CQFollowerAutoclaimer
         static public int userIndex;
         static public int LeaderboardRange = 10;
         static public int freeChestRecharge;
-
+        
         static public string battleResult;
         static public int chestResult;
 
@@ -42,13 +44,23 @@ namespace CQFollowerAutoclaimer
 
         static public bool freeChestAvailable = false;
 
+        static public int wbDamageDealt;
+        static public int wbMode;
+        static public int wbAttacksAvailable;
+        static public int WB_ID;
+        static public string WBName;
+        static public int attacksLeft;
+
         static public string chestMode = "normal";
+        static public int[] WBlineup;
+        static public bool WBchanged = false;
         public PFStuff(string t, string kid)
         {
             token = t;
             kongID = kid;
         }
 
+        #region Getting Data
         public void LoginKong()
         {
             PlayFabSettings.TitleId = "E3FA";
@@ -114,6 +126,7 @@ namespace CQFollowerAutoclaimer
                         DQTime = json["data"]["city"]["daily"]["timer2"].ToString();
                         DQLevel = json["data"]["city"]["daily"]["lvl"].ToString();
                         PVPTime = json["data"]["city"]["nextfight"].ToString();
+                        wbAttacksAvailable = int.Parse(json["data"]["city"]["WB"]["atks"].ToString());
                         return;
                     }
                     _running = false;
@@ -122,44 +135,6 @@ namespace CQFollowerAutoclaimer
             }
             return;
         }
-
-
-
-        public void sendClaimAll()
-        {
-            var request = new ExecuteCloudScriptRequest()
-            {
-                RevisionSelection = CloudScriptRevisionOption.Live,
-                FunctionName = "claimall",
-                FunctionParameter = new { kid = kongID }
-            };
-            var statusTask = PlayFabClientAPI.ExecuteCloudScriptAsync(request);
-            bool _running = true;
-            while (_running)
-            {
-                if (statusTask.IsCompleted)
-                {
-                    var apiError = statusTask.Result.Error;
-                    var apiResult = statusTask.Result.Result;
-
-                    if (apiError != null)
-                    {
-                        return;
-                    }
-                    else if (apiResult != null)
-                    {
-                        JObject json = JObject.Parse(apiResult.FunctionResult.ToString());
-                        miracleTimes = json["data"]["miracles"].ToString();
-                        initialFollowers = json["data"]["followers"].ToString();
-                        return;
-                    }
-                    _running = false;
-                }
-                Thread.Sleep(1);
-            }
-            return;
-        }
-
 
         public void getLeaderboard()
         {
@@ -199,32 +174,122 @@ namespace CQFollowerAutoclaimer
                 Thread.Sleep(1);
             }
             return;
-
         }
-
 
         public void getCurrencies()
         {
             var request = new GetUserInventoryRequest();
             var currenciesTask = PlayFabClientAPI.GetUserInventoryAsync(request);
             bool _running = true;
+            do
+            {
+                while (_running)
+                {
+                    if (currenciesTask.IsCompleted)
+                    {
+                        var apiError = currenciesTask.Result.Error;
+                        var apiResult = currenciesTask.Result.Result;
+
+                        if (apiError != null)
+                        {
+                            return;
+                        }
+                        else if (apiResult != null)
+                        {
+                            freeChestRecharge = apiResult.VirtualCurrencyRechargeTimes["BK"].SecondsToRecharge;
+                            normalChests = int.Parse(apiResult.VirtualCurrency["PK"].ToString());
+                            heroChests = int.Parse(apiResult.VirtualCurrency["KU"].ToString()) / 10;
+                            freeChestAvailable = apiResult.VirtualCurrency["BK"].ToString() == "1" ? true : false;
+                            return;
+                        }
+                        _running = false;
+                    }
+                    Thread.Sleep(1);
+                }                
+            } while (currenciesTask.Status != TaskStatus.RanToCompletion);
+            return;
+        }
+
+        internal static void getUsername(string id)
+        {
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(@"http://api.kongregate.com/api/user_info.json?user_id=" + id);
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+
+            string content = new StreamReader(response.GetResponseStream()).ReadToEnd();
+
+            JObject json = JObject.Parse(content);
+            username = json["username"].ToString();
+        }
+
+        internal static void getWebsiteData(string id)
+        {
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(@"https://cosmosquest.net/public.php?kid=" + id);
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+
+            string content = new StreamReader(response.GetResponseStream()).ReadToEnd();
+
+            JObject json = JObject.Parse(content);
+            var WBData = json["WB"];
+
+            wbDamageDealt = int.Parse(WBData["dealt"].ToString());
+            wbMode = int.Parse(WBData["mode"].ToString());          
+            WBName = WBData["name"].ToString();
+            attacksLeft = int.Parse(WBData["atk"].ToString());
+
+
+            HttpWebRequest request2 = (HttpWebRequest)WebRequest.Create(@"https://cosmosquest.net/wb.php");
+            HttpWebResponse response2 = (HttpWebResponse)request2.GetResponse();
+            string content2 = new StreamReader(response2.GetResponseStream()).ReadToEnd();
+            string a = Regex.Match(content2, "(?<=<a href.*>).*?(?=</a>)").ToString();
+            WBchanged = (WB_ID != int.Parse(a)) ? true : false;
+            WB_ID = int.Parse(a);
+        }
+
+        internal static int getWBData(string id)
+        {            
+            if (username == null)
+            {
+                getUsername(kongID);
+            }
+
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(@"https://cosmosquest.net/wb.php?id=" + id);
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+
+            string content = new StreamReader(response.GetResponseStream()).ReadToEnd();
+            string a = Regex.Match(content, username + ".*?</tr>").ToString();
+            var b = Regex.Matches(a, "(?<=\"small\">).*?(?=</td>)");
+            if (string.IsNullOrEmpty(a) || b.Count == 0)
+            {
+                return 0;
+            }            
+            return int.Parse(b[1].ToString().Replace(".", ""));
+        }
+        #endregion
+
+        #region Sending requests
+        public void sendBuyWC()
+        {
+            var request = new ExecuteCloudScriptRequest()
+            {
+                RevisionSelection = CloudScriptRevisionOption.Live,
+                FunctionName = "buywc",
+                FunctionParameter = new { wc = 0 }
+            };
+            var statusTask = PlayFabClientAPI.ExecuteCloudScriptAsync(request);
+            bool _running = true;
             while (_running)
             {
-                if (currenciesTask.IsCompleted)
+                if (statusTask.IsCompleted)
                 {
-                    var apiError = currenciesTask.Result.Error;
-                    var apiResult = currenciesTask.Result.Result;
+                    var apiError = statusTask.Result.Error;
+                    var apiResult = statusTask.Result.Result;
 
                     if (apiError != null)
                     {
                         return;
                     }
                     else if (apiResult != null)
-                    {
-                        freeChestRecharge = apiResult.VirtualCurrencyRechargeTimes["BK"].SecondsToRecharge;
-                        normalChests = int.Parse(apiResult.VirtualCurrency["PK"].ToString());
-                        heroChests = int.Parse(apiResult.VirtualCurrency["KU"].ToString())/10;
-                        freeChestAvailable = apiResult.VirtualCurrency["BK"].ToString() == "1" ? true : false;
+                    {                        
                         return;
                     }
                     _running = false;
@@ -232,9 +297,41 @@ namespace CQFollowerAutoclaimer
                 Thread.Sleep(1);
             }
             return;
-
         }
+        public void sendClaimAll()
+        {
+            var request = new ExecuteCloudScriptRequest()
+            {
+                RevisionSelection = CloudScriptRevisionOption.Live,
+                FunctionName = "claimall",
+                FunctionParameter = new { kid = kongID }
+            };
+            var statusTask = PlayFabClientAPI.ExecuteCloudScriptAsync(request);
+            bool _running = true;
+            while (_running)
+            {
+                if (statusTask.IsCompleted)
+                {
+                    var apiError = statusTask.Result.Error;
+                    var apiResult = statusTask.Result.Result;
 
+                    if (apiError != null)
+                    {
+                        return;
+                    }
+                    else if (apiResult != null)
+                    {
+                        JObject json = JObject.Parse(apiResult.FunctionResult.ToString());
+                        miracleTimes = json["data"]["miracles"].ToString();
+                        initialFollowers = json["data"]["followers"].ToString();
+                        return;
+                    }
+                    _running = false;
+                }
+                Thread.Sleep(1);
+            }
+            return;
+        }
         public void sendPVPFight()
         {
             var request = new ExecuteCloudScriptRequest()
@@ -281,7 +378,6 @@ namespace CQFollowerAutoclaimer
                 Thread.Sleep(1);
             }
             return;
-
         }
 
         public void sendOpen()
@@ -303,45 +399,95 @@ namespace CQFollowerAutoclaimer
 
                     if (apiError != null)
                     {
-                        chestResult = 0;
+                        chestResult = -1;
                         return;
                     }
                     else if (apiResult.FunctionResult != null && apiResult.FunctionResult.ToString().Contains("true"))
                     {               
                         JObject json = JObject.Parse(apiResult.FunctionResult.ToString());
                         chestResult = int.Parse(json["result"].ToString());
+                        freeChestAvailable = false;
                         return;
                     }
                     _running = false;
                 }
                 Thread.Sleep(1);
             }
-            chestResult = 0;
+            chestResult = -1;
             return;
-
         }
 
-        internal static void getUsername(string id)
+        public void sendDQSolution()
         {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(@"http://api.kongregate.com/api/user_info.json?user_id=" + id);
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            var request = new ExecuteCloudScriptRequest()
+            {
+                RevisionSelection = CloudScriptRevisionOption.Live,
+                FunctionName = "pved",
+                FunctionParameter = new { setup = DQlineup, kid = kongID, max = true }
+            };
+            var statusTask = PlayFabClientAPI.ExecuteCloudScriptAsync(request);
+            bool _running = true;
+            while (_running)
+            {
+                if (statusTask.IsCompleted)
+                {
+                    var apiError = statusTask.Result.Error;
+                    var apiResult = statusTask.Result.Result;
 
-            string content = new StreamReader(response.GetResponseStream()).ReadToEnd();
-
-            JObject json = JObject.Parse(content);
-            username = json["username"].ToString();
+                    if (apiError != null)
+                    {
+                        DQResult = false;
+                        return;
+                    }
+                    else if (apiResult.FunctionResult.ToString().Contains("true"))
+                    {
+                        JObject json = JObject.Parse(apiResult.FunctionResult.ToString());
+                        DQLevel = json["data"]["city"]["daily"]["lvl"].ToString();
+                        DQResult = true;
+                        return;
+                    }
+                    _running = false;
+                }
+                Thread.Sleep(1);
+            }
+            DQResult = false;
+            return;
         }
 
-        internal static void getWebsiteData(string id)
+
+        public void sendWBFight()
         {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(@"https://cosmosquest.net/event.php?kid=" + id);
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            var request = new ExecuteCloudScriptRequest()
+            {
+                RevisionSelection = CloudScriptRevisionOption.Live,
+                FunctionName = "fightWB",
+                FunctionParameter = new { setup = WBlineup, kid = kongID }
+            };
+            var statusTask = PlayFabClientAPI.ExecuteCloudScriptAsync(request);
+            bool _running = true;
+            while (_running)
+            {
+                if (statusTask.IsCompleted)
+                {
+                    var apiError = statusTask.Result.Error;
+                    var apiResult = statusTask.Result.Result;
 
-            string content = new StreamReader(response.GetResponseStream()).ReadToEnd();
-
-            JObject json = JObject.Parse(content);
-            var WBData = json["WB"];
+                    if (apiError != null)
+                    {                        
+                        return;
+                    }
+                    else if (apiResult.FunctionResult != null && apiResult.FunctionResult.ToString().Contains("true"))
+                    {
+                        JObject json = JObject.Parse(apiResult.FunctionResult.ToString());
+                        return;
+                    }
+                    _running = false;
+                }
+                Thread.Sleep(1);
+            }
+            return;
         }
 
+        #endregion
     }
 }

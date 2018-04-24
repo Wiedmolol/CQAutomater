@@ -55,6 +55,11 @@
             this.upperFlatRadio = new System.Windows.Forms.RadioButton();
             this.button2 = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.autoWBBox = new System.Windows.Forms.CheckBox();
+            this.autoPVPBox = new System.Windows.Forms.CheckBox();
+            this.autoChestBox = new System.Windows.Forms.CheckBox();
+            this.autoDQBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.defaultActionCount)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lowerPercCount)).BeginInit();
@@ -62,6 +67,7 @@
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.upperPercCount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.upperFlatCount)).BeginInit();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -122,7 +128,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(266, 287);
+            this.button1.Location = new System.Drawing.Point(266, 330);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(233, 58);
             this.button1.TabIndex = 10;
@@ -143,11 +149,11 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
-            this.label7.Location = new System.Drawing.Point(156, 9);
+            this.label7.Location = new System.Drawing.Point(179, 9);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(233, 20);
+            this.label7.Size = new System.Drawing.Size(186, 20);
             this.label7.TabIndex = 12;
-            this.label7.Text = "MacroSettings Creator Helper";
+            this.label7.Text = "Settings Creator Helper";
             // 
             // ticketStatus
             // 
@@ -332,7 +338,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(27, 287);
+            this.button2.Location = new System.Drawing.Point(27, 330);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(233, 58);
             this.button2.TabIndex = 23;
@@ -344,18 +350,72 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(76, 348);
+            this.label6.Location = new System.Drawing.Point(76, 391);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(385, 13);
             this.label6.TabIndex = 24;
             this.label6.Text = "Note: default action on start and follower limits are used only by CQMacroCreator" +
     "";
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.autoWBBox);
+            this.groupBox3.Controls.Add(this.autoPVPBox);
+            this.groupBox3.Controls.Add(this.autoChestBox);
+            this.groupBox3.Controls.Add(this.autoDQBox);
+            this.groupBox3.Location = new System.Drawing.Point(27, 284);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(471, 41);
+            this.groupBox3.TabIndex = 25;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "On Automater startup:";
+            // 
+            // autoWBBox
+            // 
+            this.autoWBBox.AutoSize = true;
+            this.autoWBBox.Location = new System.Drawing.Point(348, 19);
+            this.autoWBBox.Name = "autoWBBox";
+            this.autoWBBox.Size = new System.Drawing.Size(101, 17);
+            this.autoWBBox.TabIndex = 3;
+            this.autoWBBox.Text = "Enable autoWB";
+            this.autoWBBox.UseVisualStyleBackColor = true;
+            // 
+            // autoPVPBox
+            // 
+            this.autoPVPBox.AutoSize = true;
+            this.autoPVPBox.Location = new System.Drawing.Point(237, 19);
+            this.autoPVPBox.Name = "autoPVPBox";
+            this.autoPVPBox.Size = new System.Drawing.Size(103, 17);
+            this.autoPVPBox.TabIndex = 2;
+            this.autoPVPBox.Text = "Enable autoPvP";
+            this.autoPVPBox.UseVisualStyleBackColor = true;
+            // 
+            // autoChestBox
+            // 
+            this.autoChestBox.AutoSize = true;
+            this.autoChestBox.Location = new System.Drawing.Point(119, 19);
+            this.autoChestBox.Name = "autoChestBox";
+            this.autoChestBox.Size = new System.Drawing.Size(110, 17);
+            this.autoChestBox.TabIndex = 1;
+            this.autoChestBox.Text = "Enable autoChest";
+            this.autoChestBox.UseVisualStyleBackColor = true;
+            // 
+            // autoDQBox
+            // 
+            this.autoDQBox.AutoSize = true;
+            this.autoDQBox.Location = new System.Drawing.Point(12, 19);
+            this.autoDQBox.Name = "autoDQBox";
+            this.autoDQBox.Size = new System.Drawing.Size(99, 17);
+            this.autoDQBox.TabIndex = 0;
+            this.autoDQBox.Text = "Enable autoDQ";
+            this.autoDQBox.UseVisualStyleBackColor = true;
+            // 
             // MacroSettingsHelper
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(544, 369);
+            this.ClientSize = new System.Drawing.Size(544, 413);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.groupBox2);
@@ -372,7 +432,7 @@
             this.Controls.Add(this.defaultActionCount);
             this.Controls.Add(this.label1);
             this.Name = "MacroSettingsHelper";
-            this.Text = "MacroSettingsHelper";
+            this.Text = "SettingsHelper";
             ((System.ComponentModel.ISupportInitialize)(this.defaultActionCount)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -382,6 +442,8 @@
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.upperPercCount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.upperFlatCount)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -416,5 +478,10 @@
         private System.Windows.Forms.RadioButton upperFlatRadio;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.CheckBox autoDQBox;
+        private System.Windows.Forms.CheckBox autoWBBox;
+        private System.Windows.Forms.CheckBox autoPVPBox;
+        private System.Windows.Forms.CheckBox autoChestBox;
     }
 }

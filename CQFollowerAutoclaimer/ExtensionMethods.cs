@@ -23,5 +23,7 @@ namespace CQFollowerAutoclaimer
             // Marshal to the required context.
             sync.Invoke(action, new object[] { });
         }
+
+        
     }
 }

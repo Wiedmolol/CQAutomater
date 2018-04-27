@@ -54,6 +54,9 @@ namespace CQFollowerAutoclaimer
         static public string chestMode = "normal";
         static public int[] WBlineup;
         static public bool WBchanged = false;
+        static public JArray auctionData;
+        static public int bidHeroID;
+        static public int bidPrice;
         public PFStuff(string t, string kid)
         {
             token = t;
@@ -230,7 +233,7 @@ namespace CQFollowerAutoclaimer
 
             JObject json = JObject.Parse(content);
             var WBData = json["WB"];
-
+            auctionData = (JArray)json["auction"];
             wbDamageDealt = int.Parse(WBData["dealt"].ToString());
             wbMode = int.Parse(WBData["mode"].ToString());          
             WBName = WBData["name"].ToString();
@@ -351,6 +354,7 @@ namespace CQFollowerAutoclaimer
 
                     if (apiError != null)
                     {
+                        battleResult = "";
                         return;
                     }
                     else if (apiResult.FunctionResult != null && apiResult.FunctionResult.ToString().Contains("true"))
@@ -377,6 +381,7 @@ namespace CQFollowerAutoclaimer
                 }
                 Thread.Sleep(1);
             }
+            battleResult = "";
             return;
         }
 
@@ -451,6 +456,39 @@ namespace CQFollowerAutoclaimer
                 Thread.Sleep(1);
             }
             DQResult = false;
+            return;
+        }
+
+        public void sendBid()
+        {
+            var request = new ExecuteCloudScriptRequest()
+            {
+                RevisionSelection = CloudScriptRevisionOption.Live,
+                FunctionName = "auction",
+                FunctionParameter = new { hid = bidHeroID, kid = kongID, name = username, bid = bidPrice }
+            };
+            var statusTask = PlayFabClientAPI.ExecuteCloudScriptAsync(request);
+            bool _running = true;
+            while (_running)
+            {
+                if (statusTask.IsCompleted)
+                {
+                    var apiError = statusTask.Result.Error;
+                    var apiResult = statusTask.Result.Result;
+
+                    if (apiError != null)
+                    {
+                        return;
+                    }
+                    else if (apiResult != null)
+                    {
+                        return;
+                    }
+                    _running = false;
+                }
+                Thread.Sleep(1);
+            }
+
             return;
         }
 

@@ -39,6 +39,8 @@
             this.chestIndicator = new System.Windows.Forms.Label();
             this.PVPIndicator = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.currentBossLabel = new System.Windows.Forms.Label();
+            this.label61 = new System.Windows.Forms.Label();
             this.label55 = new System.Windows.Forms.Label();
             this.label53 = new System.Windows.Forms.Label();
             this.label52 = new System.Windows.Forms.Label();
@@ -95,6 +97,7 @@
             this.label34 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.savePvPSettingsButton = new System.Windows.Forms.Button();
             this.label54 = new System.Windows.Forms.Label();
             this.autoPvPCheckbox = new System.Windows.Forms.CheckBox();
             this.PvPLog = new System.Windows.Forms.RichTextBox();
@@ -107,6 +110,7 @@
             this.label29 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.saveChestSettingsButton = new System.Windows.Forms.Button();
             this.chestStatus = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.openHeroButton = new System.Windows.Forms.Button();
@@ -127,6 +131,7 @@
             this.label24 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label62 = new System.Windows.Forms.Label();
             this.label60 = new System.Windows.Forms.Label();
             this.label57 = new System.Windows.Forms.Label();
             this.DQLineup6 = new System.Windows.Forms.ComboBox();
@@ -141,6 +146,7 @@
             this.label17 = new System.Windows.Forms.Label();
             this.calcStatus = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.DQBestBox = new System.Windows.Forms.CheckBox();
             this.DQCalcBox = new System.Windows.Forms.CheckBox();
             this.DQSoundBox = new System.Windows.Forms.CheckBox();
             this.DQRefreshButton = new System.Windows.Forms.Button();
@@ -183,17 +189,49 @@
             this.claimtime8 = new System.Windows.Forms.Label();
             this.claimtime7 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.saveAHSettingsButton = new System.Windows.Forms.Button();
+            this.AHCountdownLabel = new System.Windows.Forms.Label();
+            this.label84 = new System.Windows.Forms.Label();
+            this.auctionHero3BidderLabel = new System.Windows.Forms.Label();
+            this.auctionHero3CostLabel = new System.Windows.Forms.Label();
+            this.label81 = new System.Windows.Forms.Label();
+            this.label82 = new System.Windows.Forms.Label();
+            this.auctionHero2BidderLabel = new System.Windows.Forms.Label();
+            this.auctionHero2CostLabel = new System.Windows.Forms.Label();
+            this.label77 = new System.Windows.Forms.Label();
+            this.label78 = new System.Windows.Forms.Label();
+            this.auctionHero1BidderLabel = new System.Windows.Forms.Label();
+            this.auctionHero1CostLabel = new System.Windows.Forms.Label();
+            this.label72 = new System.Windows.Forms.Label();
+            this.label71 = new System.Windows.Forms.Label();
+            this.label70 = new System.Windows.Forms.Label();
+            this.label69 = new System.Windows.Forms.Label();
+            this.auctionHero3PriceCount = new System.Windows.Forms.NumericUpDown();
+            this.label68 = new System.Windows.Forms.Label();
+            this.auctionHero2PriceCount = new System.Windows.Forms.NumericUpDown();
+            this.label67 = new System.Windows.Forms.Label();
+            this.auctionHero1PriceCount = new System.Windows.Forms.NumericUpDown();
+            this.label66 = new System.Windows.Forms.Label();
+            this.auctionHero3LevelCount = new System.Windows.Forms.NumericUpDown();
+            this.auctionHero2LevelCount = new System.Windows.Forms.NumericUpDown();
+            this.auctionHero1LevelCount = new System.Windows.Forms.NumericUpDown();
+            this.label65 = new System.Windows.Forms.Label();
+            this.label64 = new System.Windows.Forms.Label();
+            this.label63 = new System.Windows.Forms.Label();
+            this.auctionHero3Combo = new System.Windows.Forms.ComboBox();
+            this.auctionHero2Combo = new System.Windows.Forms.ComboBox();
+            this.auctionHero1Combo = new System.Windows.Forms.ComboBox();
+            this.auctionHero3Box = new System.Windows.Forms.CheckBox();
+            this.auctionHero2Box = new System.Windows.Forms.CheckBox();
+            this.auctionHero1Box = new System.Windows.Forms.CheckBox();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.macroCreatorGithubButton = new System.Windows.Forms.Button();
             this.automaterGithubButton = new System.Windows.Forms.Button();
             this.openMSHButton = new System.Windows.Forms.Button();
             this.WBIndicator = new System.Windows.Forms.Label();
+            this.label73 = new System.Windows.Forms.Label();
             this.saveDQSettingsButton = new System.Windows.Forms.Button();
-            this.savePvPSettingsButton = new System.Windows.Forms.Button();
-            this.DQBestBox = new System.Windows.Forms.CheckBox();
-            this.saveChestSettingsButton = new System.Windows.Forms.Button();
-            this.label61 = new System.Windows.Forms.Label();
-            this.currentBossLabel = new System.Windows.Forms.Label();
             this.contextMenuStrip1.SuspendLayout();
             this.tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.superMOAKNHAtkCount)).BeginInit();
@@ -222,6 +260,13 @@
             this.groupBox1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabControl1.SuspendLayout();
+            this.tabPage7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.auctionHero3PriceCount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.auctionHero2PriceCount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.auctionHero1PriceCount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.auctionHero3LevelCount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.auctionHero2LevelCount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.auctionHero1LevelCount)).BeginInit();
             this.tabPage6.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -361,6 +406,24 @@
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "WB";
             this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // currentBossLabel
+            // 
+            this.currentBossLabel.AutoSize = true;
+            this.currentBossLabel.Location = new System.Drawing.Point(72, 10);
+            this.currentBossLabel.Name = "currentBossLabel";
+            this.currentBossLabel.Size = new System.Drawing.Size(18, 13);
+            this.currentBossLabel.TabIndex = 102;
+            this.currentBossLabel.Text = "-/-";
+            // 
+            // label61
+            // 
+            this.label61.AutoSize = true;
+            this.label61.Location = new System.Drawing.Point(5, 10);
+            this.label61.Name = "label61";
+            this.label61.Size = new System.Drawing.Size(69, 13);
+            this.label61.TabIndex = 101;
+            this.label61.Text = "Current boss:";
             // 
             // label55
             // 
@@ -1044,6 +1107,16 @@
             this.tabPage4.Text = "PvP";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // savePvPSettingsButton
+            // 
+            this.savePvPSettingsButton.Location = new System.Drawing.Point(140, 232);
+            this.savePvPSettingsButton.Name = "savePvPSettingsButton";
+            this.savePvPSettingsButton.Size = new System.Drawing.Size(117, 25);
+            this.savePvPSettingsButton.TabIndex = 89;
+            this.savePvPSettingsButton.Text = "Save PvP Settings";
+            this.savePvPSettingsButton.UseVisualStyleBackColor = true;
+            this.savePvPSettingsButton.Click += new System.EventHandler(this.savePvPSettingsButton_Click);
+            // 
             // label54
             // 
             this.label54.AutoSize = true;
@@ -1136,7 +1209,7 @@
             // PvPTimeLabel
             // 
             this.PvPTimeLabel.AutoSize = true;
-            this.PvPTimeLabel.Location = new System.Drawing.Point(100, 10);
+            this.PvPTimeLabel.Location = new System.Drawing.Point(90, 10);
             this.PvPTimeLabel.Name = "PvPTimeLabel";
             this.PvPTimeLabel.Size = new System.Drawing.Size(18, 13);
             this.PvPTimeLabel.TabIndex = 6;
@@ -1184,6 +1257,16 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Chests";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // saveChestSettingsButton
+            // 
+            this.saveChestSettingsButton.Location = new System.Drawing.Point(140, 232);
+            this.saveChestSettingsButton.Name = "saveChestSettingsButton";
+            this.saveChestSettingsButton.Size = new System.Drawing.Size(110, 25);
+            this.saveChestSettingsButton.TabIndex = 89;
+            this.saveChestSettingsButton.Text = "Save chest settings";
+            this.saveChestSettingsButton.UseVisualStyleBackColor = true;
+            this.saveChestSettingsButton.Click += new System.EventHandler(this.saveChestSettingsButton_Click);
             // 
             // chestStatus
             // 
@@ -1343,7 +1426,7 @@
             // FreeChestTimeLabel
             // 
             this.FreeChestTimeLabel.AutoSize = true;
-            this.FreeChestTimeLabel.Location = new System.Drawing.Point(100, 10);
+            this.FreeChestTimeLabel.Location = new System.Drawing.Point(90, 10);
             this.FreeChestTimeLabel.Name = "FreeChestTimeLabel";
             this.FreeChestTimeLabel.Size = new System.Drawing.Size(18, 13);
             this.FreeChestTimeLabel.TabIndex = 2;
@@ -1370,6 +1453,7 @@
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.saveDQSettingsButton);
+            this.tabPage2.Controls.Add(this.label62);
             this.tabPage2.Controls.Add(this.label60);
             this.tabPage2.Controls.Add(this.label57);
             this.tabPage2.Controls.Add(this.DQLineup6);
@@ -1398,6 +1482,15 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "DQ";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // label62
+            // 
+            this.label62.AutoSize = true;
+            this.label62.Location = new System.Drawing.Point(8, 287);
+            this.label62.Name = "label62";
+            this.label62.Size = new System.Drawing.Size(40, 13);
+            this.label62.TabIndex = 89;
+            this.label62.Text = "Status:";
             // 
             // label60
             // 
@@ -1530,11 +1623,11 @@
             // 
             this.calcStatus.AutoSize = true;
             this.calcStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.calcStatus.Location = new System.Drawing.Point(168, 285);
+            this.calcStatus.Location = new System.Drawing.Point(53, 285);
             this.calcStatus.Name = "calcStatus";
-            this.calcStatus.Size = new System.Drawing.Size(12, 15);
+            this.calcStatus.Size = new System.Drawing.Size(55, 15);
             this.calcStatus.TabIndex = 10;
-            this.calcStatus.Text = "-";
+            this.calcStatus.Text = "Waiting";
             // 
             // groupBox1
             // 
@@ -1547,6 +1640,16 @@
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Actions performed on timer end";
+            // 
+            // DQBestBox
+            // 
+            this.DQBestBox.AutoSize = true;
+            this.DQBestBox.Location = new System.Drawing.Point(6, 42);
+            this.DQBestBox.Name = "DQBestBox";
+            this.DQBestBox.Size = new System.Drawing.Size(244, 17);
+            this.DQBestBox.TabIndex = 8;
+            this.DQBestBox.Text = "Use best lineup until it can no longer solve DQ";
+            this.DQBestBox.UseVisualStyleBackColor = true;
             // 
             // DQCalcBox
             // 
@@ -1602,7 +1705,7 @@
             // DQTimeLabel
             // 
             this.DQTimeLabel.AutoSize = true;
-            this.DQTimeLabel.Location = new System.Drawing.Point(100, 10);
+            this.DQTimeLabel.Location = new System.Drawing.Point(90, 10);
             this.DQTimeLabel.Name = "DQTimeLabel";
             this.DQTimeLabel.Size = new System.Drawing.Size(18, 13);
             this.DQTimeLabel.TabIndex = 3;
@@ -1993,12 +2096,400 @@
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage5);
+            this.tabControl1.Controls.Add(this.tabPage7);
             this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Location = new System.Drawing.Point(12, 9);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(399, 441);
             this.tabControl1.TabIndex = 31;
+            // 
+            // tabPage7
+            // 
+            this.tabPage7.Controls.Add(this.label73);
+            this.tabPage7.Controls.Add(this.saveAHSettingsButton);
+            this.tabPage7.Controls.Add(this.AHCountdownLabel);
+            this.tabPage7.Controls.Add(this.label84);
+            this.tabPage7.Controls.Add(this.auctionHero3BidderLabel);
+            this.tabPage7.Controls.Add(this.auctionHero3CostLabel);
+            this.tabPage7.Controls.Add(this.label81);
+            this.tabPage7.Controls.Add(this.label82);
+            this.tabPage7.Controls.Add(this.auctionHero2BidderLabel);
+            this.tabPage7.Controls.Add(this.auctionHero2CostLabel);
+            this.tabPage7.Controls.Add(this.label77);
+            this.tabPage7.Controls.Add(this.label78);
+            this.tabPage7.Controls.Add(this.auctionHero1BidderLabel);
+            this.tabPage7.Controls.Add(this.auctionHero1CostLabel);
+            this.tabPage7.Controls.Add(this.label72);
+            this.tabPage7.Controls.Add(this.label71);
+            this.tabPage7.Controls.Add(this.label70);
+            this.tabPage7.Controls.Add(this.label69);
+            this.tabPage7.Controls.Add(this.auctionHero3PriceCount);
+            this.tabPage7.Controls.Add(this.label68);
+            this.tabPage7.Controls.Add(this.auctionHero2PriceCount);
+            this.tabPage7.Controls.Add(this.label67);
+            this.tabPage7.Controls.Add(this.auctionHero1PriceCount);
+            this.tabPage7.Controls.Add(this.label66);
+            this.tabPage7.Controls.Add(this.auctionHero3LevelCount);
+            this.tabPage7.Controls.Add(this.auctionHero2LevelCount);
+            this.tabPage7.Controls.Add(this.auctionHero1LevelCount);
+            this.tabPage7.Controls.Add(this.label65);
+            this.tabPage7.Controls.Add(this.label64);
+            this.tabPage7.Controls.Add(this.label63);
+            this.tabPage7.Controls.Add(this.auctionHero3Combo);
+            this.tabPage7.Controls.Add(this.auctionHero2Combo);
+            this.tabPage7.Controls.Add(this.auctionHero1Combo);
+            this.tabPage7.Controls.Add(this.auctionHero3Box);
+            this.tabPage7.Controls.Add(this.auctionHero2Box);
+            this.tabPage7.Controls.Add(this.auctionHero1Box);
+            this.tabPage7.Location = new System.Drawing.Point(4, 22);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage7.Size = new System.Drawing.Size(391, 415);
+            this.tabPage7.TabIndex = 6;
+            this.tabPage7.Text = "AH";
+            this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // saveAHSettingsButton
+            // 
+            this.saveAHSettingsButton.Location = new System.Drawing.Point(135, 384);
+            this.saveAHSettingsButton.Name = "saveAHSettingsButton";
+            this.saveAHSettingsButton.Size = new System.Drawing.Size(117, 25);
+            this.saveAHSettingsButton.TabIndex = 115;
+            this.saveAHSettingsButton.Text = "Save AH Settings";
+            this.saveAHSettingsButton.UseVisualStyleBackColor = true;
+            this.saveAHSettingsButton.Click += new System.EventHandler(this.saveAHSettingsButton_Click);
+            // 
+            // AHCountdownLabel
+            // 
+            this.AHCountdownLabel.AutoSize = true;
+            this.AHCountdownLabel.Location = new System.Drawing.Point(299, 10);
+            this.AHCountdownLabel.Name = "AHCountdownLabel";
+            this.AHCountdownLabel.Size = new System.Drawing.Size(18, 13);
+            this.AHCountdownLabel.TabIndex = 114;
+            this.AHCountdownLabel.Text = "-/-";
+            // 
+            // label84
+            // 
+            this.label84.AutoSize = true;
+            this.label84.Location = new System.Drawing.Point(227, 10);
+            this.label84.Name = "label84";
+            this.label84.Size = new System.Drawing.Size(67, 13);
+            this.label84.TabIndex = 113;
+            this.label84.Text = "Next refresh:";
+            // 
+            // auctionHero3BidderLabel
+            // 
+            this.auctionHero3BidderLabel.AutoSize = true;
+            this.auctionHero3BidderLabel.Location = new System.Drawing.Point(198, 205);
+            this.auctionHero3BidderLabel.Name = "auctionHero3BidderLabel";
+            this.auctionHero3BidderLabel.Size = new System.Drawing.Size(18, 13);
+            this.auctionHero3BidderLabel.TabIndex = 112;
+            this.auctionHero3BidderLabel.Text = "-/-";
+            // 
+            // auctionHero3CostLabel
+            // 
+            this.auctionHero3CostLabel.AutoSize = true;
+            this.auctionHero3CostLabel.Location = new System.Drawing.Point(98, 205);
+            this.auctionHero3CostLabel.Name = "auctionHero3CostLabel";
+            this.auctionHero3CostLabel.Size = new System.Drawing.Size(18, 13);
+            this.auctionHero3CostLabel.TabIndex = 111;
+            this.auctionHero3CostLabel.Text = "-/-";
+            // 
+            // label81
+            // 
+            this.label81.AutoSize = true;
+            this.label81.Location = new System.Drawing.Point(153, 205);
+            this.label81.Name = "label81";
+            this.label81.Size = new System.Drawing.Size(39, 13);
+            this.label81.TabIndex = 110;
+            this.label81.Text = "bidder:";
+            // 
+            // label82
+            // 
+            this.label82.AutoSize = true;
+            this.label82.Location = new System.Drawing.Point(22, 205);
+            this.label82.Name = "label82";
+            this.label82.Size = new System.Drawing.Size(70, 13);
+            this.label82.TabIndex = 109;
+            this.label82.Text = "Current price:";
+            // 
+            // auctionHero2BidderLabel
+            // 
+            this.auctionHero2BidderLabel.AutoSize = true;
+            this.auctionHero2BidderLabel.Location = new System.Drawing.Point(198, 139);
+            this.auctionHero2BidderLabel.Name = "auctionHero2BidderLabel";
+            this.auctionHero2BidderLabel.Size = new System.Drawing.Size(18, 13);
+            this.auctionHero2BidderLabel.TabIndex = 108;
+            this.auctionHero2BidderLabel.Text = "-/-";
+            // 
+            // auctionHero2CostLabel
+            // 
+            this.auctionHero2CostLabel.AutoSize = true;
+            this.auctionHero2CostLabel.Location = new System.Drawing.Point(98, 139);
+            this.auctionHero2CostLabel.Name = "auctionHero2CostLabel";
+            this.auctionHero2CostLabel.Size = new System.Drawing.Size(18, 13);
+            this.auctionHero2CostLabel.TabIndex = 107;
+            this.auctionHero2CostLabel.Text = "-/-";
+            // 
+            // label77
+            // 
+            this.label77.AutoSize = true;
+            this.label77.Location = new System.Drawing.Point(153, 139);
+            this.label77.Name = "label77";
+            this.label77.Size = new System.Drawing.Size(39, 13);
+            this.label77.TabIndex = 106;
+            this.label77.Text = "bidder:";
+            // 
+            // label78
+            // 
+            this.label78.AutoSize = true;
+            this.label78.Location = new System.Drawing.Point(22, 139);
+            this.label78.Name = "label78";
+            this.label78.Size = new System.Drawing.Size(70, 13);
+            this.label78.TabIndex = 105;
+            this.label78.Text = "Current price:";
+            // 
+            // auctionHero1BidderLabel
+            // 
+            this.auctionHero1BidderLabel.AutoSize = true;
+            this.auctionHero1BidderLabel.Location = new System.Drawing.Point(198, 75);
+            this.auctionHero1BidderLabel.Name = "auctionHero1BidderLabel";
+            this.auctionHero1BidderLabel.Size = new System.Drawing.Size(18, 13);
+            this.auctionHero1BidderLabel.TabIndex = 104;
+            this.auctionHero1BidderLabel.Text = "-/-";
+            // 
+            // auctionHero1CostLabel
+            // 
+            this.auctionHero1CostLabel.AutoSize = true;
+            this.auctionHero1CostLabel.Location = new System.Drawing.Point(98, 75);
+            this.auctionHero1CostLabel.Name = "auctionHero1CostLabel";
+            this.auctionHero1CostLabel.Size = new System.Drawing.Size(18, 13);
+            this.auctionHero1CostLabel.TabIndex = 103;
+            this.auctionHero1CostLabel.Text = "-/-";
+            // 
+            // label72
+            // 
+            this.label72.AutoSize = true;
+            this.label72.Location = new System.Drawing.Point(153, 75);
+            this.label72.Name = "label72";
+            this.label72.Size = new System.Drawing.Size(39, 13);
+            this.label72.TabIndex = 102;
+            this.label72.Text = "bidder:";
+            // 
+            // label71
+            // 
+            this.label71.AutoSize = true;
+            this.label71.Location = new System.Drawing.Point(22, 75);
+            this.label71.Name = "label71";
+            this.label71.Size = new System.Drawing.Size(70, 13);
+            this.label71.TabIndex = 101;
+            this.label71.Text = "Current price:";
+            // 
+            // label70
+            // 
+            this.label70.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label70.Location = new System.Drawing.Point(5, 156);
+            this.label70.Name = "label70";
+            this.label70.Size = new System.Drawing.Size(380, 1);
+            this.label70.TabIndex = 100;
+            // 
+            // label69
+            // 
+            this.label69.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label69.Location = new System.Drawing.Point(5, 90);
+            this.label69.Name = "label69";
+            this.label69.Size = new System.Drawing.Size(380, 1);
+            this.label69.TabIndex = 99;
+            // 
+            // auctionHero3PriceCount
+            // 
+            this.auctionHero3PriceCount.Location = new System.Drawing.Point(322, 182);
+            this.auctionHero3PriceCount.Maximum = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            0});
+            this.auctionHero3PriceCount.Name = "auctionHero3PriceCount";
+            this.auctionHero3PriceCount.Size = new System.Drawing.Size(52, 20);
+            this.auctionHero3PriceCount.TabIndex = 97;
+            // 
+            // label68
+            // 
+            this.label68.AutoSize = true;
+            this.label68.Location = new System.Drawing.Point(257, 185);
+            this.label68.Name = "label68";
+            this.label68.Size = new System.Drawing.Size(55, 13);
+            this.label68.TabIndex = 96;
+            this.label68.Text = "max price:";
+            // 
+            // auctionHero2PriceCount
+            // 
+            this.auctionHero2PriceCount.Location = new System.Drawing.Point(322, 116);
+            this.auctionHero2PriceCount.Maximum = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            0});
+            this.auctionHero2PriceCount.Name = "auctionHero2PriceCount";
+            this.auctionHero2PriceCount.Size = new System.Drawing.Size(52, 20);
+            this.auctionHero2PriceCount.TabIndex = 95;
+            // 
+            // label67
+            // 
+            this.label67.AutoSize = true;
+            this.label67.Location = new System.Drawing.Point(257, 119);
+            this.label67.Name = "label67";
+            this.label67.Size = new System.Drawing.Size(55, 13);
+            this.label67.TabIndex = 94;
+            this.label67.Text = "max price:";
+            // 
+            // auctionHero1PriceCount
+            // 
+            this.auctionHero1PriceCount.Location = new System.Drawing.Point(322, 51);
+            this.auctionHero1PriceCount.Maximum = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            0});
+            this.auctionHero1PriceCount.Name = "auctionHero1PriceCount";
+            this.auctionHero1PriceCount.Size = new System.Drawing.Size(52, 20);
+            this.auctionHero1PriceCount.TabIndex = 93;
+            // 
+            // label66
+            // 
+            this.label66.AutoSize = true;
+            this.label66.Location = new System.Drawing.Point(257, 54);
+            this.label66.Name = "label66";
+            this.label66.Size = new System.Drawing.Size(55, 13);
+            this.label66.TabIndex = 92;
+            this.label66.Text = "max price:";
+            // 
+            // auctionHero3LevelCount
+            // 
+            this.auctionHero3LevelCount.Location = new System.Drawing.Point(197, 182);
+            this.auctionHero3LevelCount.Maximum = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.auctionHero3LevelCount.Name = "auctionHero3LevelCount";
+            this.auctionHero3LevelCount.Size = new System.Drawing.Size(52, 20);
+            this.auctionHero3LevelCount.TabIndex = 91;
+            // 
+            // auctionHero2LevelCount
+            // 
+            this.auctionHero2LevelCount.Location = new System.Drawing.Point(197, 116);
+            this.auctionHero2LevelCount.Maximum = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.auctionHero2LevelCount.Name = "auctionHero2LevelCount";
+            this.auctionHero2LevelCount.Size = new System.Drawing.Size(52, 20);
+            this.auctionHero2LevelCount.TabIndex = 90;
+            // 
+            // auctionHero1LevelCount
+            // 
+            this.auctionHero1LevelCount.Location = new System.Drawing.Point(197, 51);
+            this.auctionHero1LevelCount.Maximum = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.auctionHero1LevelCount.Name = "auctionHero1LevelCount";
+            this.auctionHero1LevelCount.Size = new System.Drawing.Size(52, 20);
+            this.auctionHero1LevelCount.TabIndex = 89;
+            // 
+            // label65
+            // 
+            this.label65.AutoSize = true;
+            this.label65.Location = new System.Drawing.Point(132, 184);
+            this.label65.Name = "label65";
+            this.label65.Size = new System.Drawing.Size(59, 13);
+            this.label65.TabIndex = 88;
+            this.label65.Text = "up to level:";
+            // 
+            // label64
+            // 
+            this.label64.AutoSize = true;
+            this.label64.Location = new System.Drawing.Point(132, 118);
+            this.label64.Name = "label64";
+            this.label64.Size = new System.Drawing.Size(59, 13);
+            this.label64.TabIndex = 87;
+            this.label64.Text = "up to level:";
+            // 
+            // label63
+            // 
+            this.label63.AutoSize = true;
+            this.label63.Location = new System.Drawing.Point(132, 54);
+            this.label63.Name = "label63";
+            this.label63.Size = new System.Drawing.Size(59, 13);
+            this.label63.TabIndex = 86;
+            this.label63.Text = "up to level:";
+            // 
+            // auctionHero3Combo
+            // 
+            this.auctionHero3Combo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.auctionHero3Combo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.auctionHero3Combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.auctionHero3Combo.FormattingEnabled = true;
+            this.auctionHero3Combo.Location = new System.Drawing.Point(25, 181);
+            this.auctionHero3Combo.Name = "auctionHero3Combo";
+            this.auctionHero3Combo.Size = new System.Drawing.Size(101, 21);
+            this.auctionHero3Combo.TabIndex = 85;
+            // 
+            // auctionHero2Combo
+            // 
+            this.auctionHero2Combo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.auctionHero2Combo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.auctionHero2Combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.auctionHero2Combo.FormattingEnabled = true;
+            this.auctionHero2Combo.Location = new System.Drawing.Point(25, 115);
+            this.auctionHero2Combo.Name = "auctionHero2Combo";
+            this.auctionHero2Combo.Size = new System.Drawing.Size(101, 21);
+            this.auctionHero2Combo.TabIndex = 84;
+            // 
+            // auctionHero1Combo
+            // 
+            this.auctionHero1Combo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.auctionHero1Combo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.auctionHero1Combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.auctionHero1Combo.FormattingEnabled = true;
+            this.auctionHero1Combo.Location = new System.Drawing.Point(25, 51);
+            this.auctionHero1Combo.Name = "auctionHero1Combo";
+            this.auctionHero1Combo.Size = new System.Drawing.Size(101, 21);
+            this.auctionHero1Combo.TabIndex = 83;
+            // 
+            // auctionHero3Box
+            // 
+            this.auctionHero3Box.AutoSize = true;
+            this.auctionHero3Box.Location = new System.Drawing.Point(12, 161);
+            this.auctionHero3Box.Name = "auctionHero3Box";
+            this.auctionHero3Box.Size = new System.Drawing.Size(114, 17);
+            this.auctionHero3Box.TabIndex = 2;
+            this.auctionHero3Box.Text = "Enable bidding on:";
+            this.auctionHero3Box.UseVisualStyleBackColor = true;
+            // 
+            // auctionHero2Box
+            // 
+            this.auctionHero2Box.AutoSize = true;
+            this.auctionHero2Box.Location = new System.Drawing.Point(12, 95);
+            this.auctionHero2Box.Name = "auctionHero2Box";
+            this.auctionHero2Box.Size = new System.Drawing.Size(114, 17);
+            this.auctionHero2Box.TabIndex = 1;
+            this.auctionHero2Box.Text = "Enable bidding on:";
+            this.auctionHero2Box.UseVisualStyleBackColor = true;
+            // 
+            // auctionHero1Box
+            // 
+            this.auctionHero1Box.AutoSize = true;
+            this.auctionHero1Box.Location = new System.Drawing.Point(12, 31);
+            this.auctionHero1Box.Name = "auctionHero1Box";
+            this.auctionHero1Box.Size = new System.Drawing.Size(114, 17);
+            this.auctionHero1Box.TabIndex = 0;
+            this.auctionHero1Box.Text = "Enable bidding on:";
+            this.auctionHero1Box.UseVisualStyleBackColor = true;
             // 
             // tabPage6
             // 
@@ -2055,63 +2546,25 @@
             this.WBIndicator.TabIndex = 35;
             this.WBIndicator.Text = "          ";
             // 
+            // label73
+            // 
+            this.label73.AutoSize = true;
+            this.label73.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.label73.Location = new System.Drawing.Point(44, 309);
+            this.label73.Name = "label73";
+            this.label73.Size = new System.Drawing.Size(304, 34);
+            this.label73.TabIndex = 116;
+            this.label73.Text = "Auto-AG is under construction and won\'t make \r\nany bids yet. ";
+            // 
             // saveDQSettingsButton
             // 
-            this.saveDQSettingsButton.Location = new System.Drawing.Point(137, 328);
+            this.saveDQSettingsButton.Location = new System.Drawing.Point(133, 341);
             this.saveDQSettingsButton.Name = "saveDQSettingsButton";
-            this.saveDQSettingsButton.Size = new System.Drawing.Size(117, 25);
-            this.saveDQSettingsButton.TabIndex = 88;
-            this.saveDQSettingsButton.Text = "Save DQ Settings";
+            this.saveDQSettingsButton.Size = new System.Drawing.Size(110, 25);
+            this.saveDQSettingsButton.TabIndex = 90;
+            this.saveDQSettingsButton.Text = "Save DQ settings";
             this.saveDQSettingsButton.UseVisualStyleBackColor = true;
             this.saveDQSettingsButton.Click += new System.EventHandler(this.saveDQSettingsButton_Click);
-            // 
-            // savePvPSettingsButton
-            // 
-            this.savePvPSettingsButton.Location = new System.Drawing.Point(140, 232);
-            this.savePvPSettingsButton.Name = "savePvPSettingsButton";
-            this.savePvPSettingsButton.Size = new System.Drawing.Size(117, 25);
-            this.savePvPSettingsButton.TabIndex = 89;
-            this.savePvPSettingsButton.Text = "Save PvP Settings";
-            this.savePvPSettingsButton.UseVisualStyleBackColor = true;
-            this.savePvPSettingsButton.Click += new System.EventHandler(this.savePvPSettingsButton_Click);
-            // 
-            // DQBestBox
-            // 
-            this.DQBestBox.AutoSize = true;
-            this.DQBestBox.Location = new System.Drawing.Point(6, 42);
-            this.DQBestBox.Name = "DQBestBox";
-            this.DQBestBox.Size = new System.Drawing.Size(244, 17);
-            this.DQBestBox.TabIndex = 8;
-            this.DQBestBox.Text = "Use best lineup until it can no longer solve DQ";
-            this.DQBestBox.UseVisualStyleBackColor = true;
-            // 
-            // saveChestSettingsButton
-            // 
-            this.saveChestSettingsButton.Location = new System.Drawing.Point(165, 32);
-            this.saveChestSettingsButton.Name = "saveChestSettingsButton";
-            this.saveChestSettingsButton.Size = new System.Drawing.Size(80, 25);
-            this.saveChestSettingsButton.TabIndex = 89;
-            this.saveChestSettingsButton.Text = "Save Setting";
-            this.saveChestSettingsButton.UseVisualStyleBackColor = true;
-            this.saveChestSettingsButton.Click += new System.EventHandler(this.saveChestSettingsButton_Click);
-            // 
-            // label61
-            // 
-            this.label61.AutoSize = true;
-            this.label61.Location = new System.Drawing.Point(5, 10);
-            this.label61.Name = "label61";
-            this.label61.Size = new System.Drawing.Size(69, 13);
-            this.label61.TabIndex = 101;
-            this.label61.Text = "Current boss:";
-            // 
-            // currentBossLabel
-            // 
-            this.currentBossLabel.AutoSize = true;
-            this.currentBossLabel.Location = new System.Drawing.Point(72, 10);
-            this.currentBossLabel.Name = "currentBossLabel";
-            this.currentBossLabel.Size = new System.Drawing.Size(18, 13);
-            this.currentBossLabel.TabIndex = 102;
-            this.currentBossLabel.Text = "-/-";
             // 
             // Form1
             // 
@@ -2163,6 +2616,14 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
+            this.tabPage7.ResumeLayout(false);
+            this.tabPage7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.auctionHero3PriceCount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.auctionHero2PriceCount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.auctionHero1PriceCount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.auctionHero3LevelCount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.auctionHero2LevelCount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.auctionHero1LevelCount)).EndInit();
             this.tabPage6.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -2329,12 +2790,50 @@
         private System.Windows.Forms.ComboBox DQLineup1;
         private System.Windows.Forms.Label label58;
         private System.Windows.Forms.Label label59;
-        private System.Windows.Forms.Button saveDQSettingsButton;
         private System.Windows.Forms.Button savePvPSettingsButton;
         private System.Windows.Forms.CheckBox DQBestBox;
         private System.Windows.Forms.Button saveChestSettingsButton;
         private System.Windows.Forms.Label label61;
         private System.Windows.Forms.Label currentBossLabel;
+        private System.Windows.Forms.Label label62;
+        private System.Windows.Forms.TabPage tabPage7;
+        private System.Windows.Forms.Label label65;
+        private System.Windows.Forms.Label label64;
+        private System.Windows.Forms.Label label63;
+        private System.Windows.Forms.Label label70;
+        private System.Windows.Forms.Label label69;
+        private System.Windows.Forms.Label label68;
+        private System.Windows.Forms.Label label67;
+        private System.Windows.Forms.Label label66;
+        private System.Windows.Forms.Label label81;
+        private System.Windows.Forms.Label label82;
+        private System.Windows.Forms.Label label77;
+        private System.Windows.Forms.Label label78;
+        private System.Windows.Forms.Label label72;
+        private System.Windows.Forms.Label label71;
+        internal System.Windows.Forms.NumericUpDown auctionHero3PriceCount;
+        internal System.Windows.Forms.NumericUpDown auctionHero2PriceCount;
+        internal System.Windows.Forms.NumericUpDown auctionHero1PriceCount;
+        internal System.Windows.Forms.NumericUpDown auctionHero3LevelCount;
+        internal System.Windows.Forms.NumericUpDown auctionHero2LevelCount;
+        internal System.Windows.Forms.NumericUpDown auctionHero1LevelCount;
+        internal System.Windows.Forms.CheckBox auctionHero3Box;
+        internal System.Windows.Forms.CheckBox auctionHero2Box;
+        internal System.Windows.Forms.CheckBox auctionHero1Box;
+        internal System.Windows.Forms.ComboBox auctionHero3Combo;
+        internal System.Windows.Forms.ComboBox auctionHero2Combo;
+        internal System.Windows.Forms.ComboBox auctionHero1Combo;
+        internal System.Windows.Forms.Label auctionHero3BidderLabel;
+        internal System.Windows.Forms.Label auctionHero3CostLabel;
+        internal System.Windows.Forms.Label auctionHero2BidderLabel;
+        internal System.Windows.Forms.Label auctionHero2CostLabel;
+        internal System.Windows.Forms.Label auctionHero1BidderLabel;
+        internal System.Windows.Forms.Label auctionHero1CostLabel;
+        private System.Windows.Forms.Label AHCountdownLabel;
+        private System.Windows.Forms.Label label84;
+        private System.Windows.Forms.Button saveAHSettingsButton;
+        private System.Windows.Forms.Label label73;
+        private System.Windows.Forms.Button saveDQSettingsButton;
     }
 }
 

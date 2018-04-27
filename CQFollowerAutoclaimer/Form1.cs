@@ -20,26 +20,28 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Runtime.InteropServices;
 using System.Net;
-
+using System.Reflection;
 namespace CQFollowerAutoclaimer
 {
     public partial class Form1 : Form
     {
-        static AppSettings appSettings = new AppSettings();
+        static internal AppSettings appSettings = new AppSettings();
         public const string SettingsFilename = "Settings.json";
-        static int currentDQ;
-        static string calcOut;
-        string token;
-        string KongregateId;
+
+        internal string token;
+        internal string KongregateId;
+        PFStuff pf;
+        AuctionHouse auctionHouse;
         int claimCount = 0;
         static Label[] timeLabels;
         static int chestsToOpen;
         static int attacksToPerform;
         static int DQFailedAttempts;
         long initialFollowers;
-        List<List<ComboBox>> WBlineups;
-        PFStuff pf;
-        string WBLogString = "";
+        static int currentDQ;
+        static string calcOut;
+        static string calcErrorOut;
+
         DateTime epoch = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
         DateTime start = DateTime.Now;
         DateTime nextClaim;
@@ -48,7 +50,10 @@ namespace CQFollowerAutoclaimer
         DateTime nextFreeChest;
         DateTime nextWBRefresh;
 
+        string WBLogString = "";
         static WBLog wbl;
+        List<List<ComboBox>> WBlineups;
+        List<ComboBox> auctionComboBoxes;
 
         System.Timers.Timer tmr = new System.Timers.Timer();
         System.Timers.Timer countdownsTimer = new System.Timers.Timer();
@@ -64,36 +69,12 @@ namespace CQFollowerAutoclaimer
         List<CheckBox> enableBoxes;
         List<NumericUpDown> wbSettingsCounts;
 
-        string[] rewardNames = new string[] {"20 Disasters(not rewarded in game)", "50 Disasters(not rewarded in game)", "200 Disasters(not rewarded in game)", 
-            "1H Energy Boost(not rewarded in game)", "4H Energy Boost(not rewarded in game)", "12H Energy Boost(not rewarded in game)", 
-            "Common Followers", "Rare Followers", "Legendary Followers",
-            "20 UM", "50 UM", "200 UM"};
 
-         string[] names = { "flynn", "leaf", "sparks", "leprechaun", "bavah", "boor", "bylar", "adagda", "hattori", "hirate", "takeda", "hosokawa", "moak", "arigr", "dorth", 
-            "rua", "arshen", "aatzar", "apontus",  "bubbles",  "dagda",  "ganah", "toth",  "sexysanta", "santaclaus", "reindeer", "christmaself", "lordofchaos", "ageror", 
-            "ageum", "atr0n1x", "aauri", "arei", "aathos", "aalpha", "rigr", "hallinskidi", "hama", "alvitr", "koldis", "sigrun", "neptunius", "lordkirk", "thert", "shygu", 
-            "ladyodelith", "dullahan", "jackoknight", "werewolf", "gurth", "koth", "zeth", "atzar", "xarth", "oymos", "gaiabyte", "aoyuki", "spyke", "zaytus", "petry", 
-            "chroma", "pontus", "erebus", "ourea", "groth", "brynhildr", "veildur", "geror", "aural", "rudean", "undine", "ignitor", "forestdruid", "geum", "aeris", 
-            "aquortis", "tronix", "taurus", "kairy", "james", "nicte", "auri", "faefyr", "ailen", "rei", "geron", "jet", "athos", "nimue", "carl", "alpha", "shaman", 
-            "hunter", "bewat", "pyromancer", "rokka", "valor", "nebra", "tiny", "ladyoftwilight", "", 
-            "A1", "E1", "F1", "W1", "A2", "E2", "F2", "W2", "A3", "E3", "F3", "W3", "A4", "E4", "F4", "W4", "A5", "E5", "F5", "W5", "A6", "E6", "F6", "W6", 
-            "A7", "E7", "F7", "W7", "A8", "E8", "F8", "W8", "A9", "E9", "F9", "W9", "A10", "E10", "F10", "W10", "A11", "E11", "F11", "W11", "A12", "E12", "F12", "W12", 
-            "A13", "E13", "F13", "W13", "A14", "E14", "F14", "W14", "A15", "E15", "F15", "W15", "A16","E16","F16","W16","A17","E17","F17","W17","A18","E18","F18","W18",
-            "A19","E19","F19","W19","A20","E20","F20","W20","A21","E21","F21","W21", "A22","E22","F22","W22","A23","E23","F23","W23","A24","E24","F24","W24",
-            "A25","E25","F25","W25","A26","E26","F26","W26","A27","E27","F27","W27","A28","E28","F28","W28","A29","E29","F29","W29","A30","E30","F30","W30",};
-
-        int heroesInGame;
-        string[] heroNames = new string[] { "NULL", "NULL", "Ladyoftwilight", "Tiny", "Nebra", "Valor", "Rokka", "Pyromancer", "Bewat", "Hunter", "Shaman", "Alpha", "Carl", 
-            "Nimue", "Athos", "Jet", "Geron", "Rei", "Ailen", "Faefyr", "Auri", "Nicte", "James", "Kairy", "Taurus", "Tronix", "Aquortis", "Aeris", "Geum", "Forestdruid", 
-            "Ignitor", "Undine", "Rudean", "Aural", "Geror", "Veildur", "Brynhildr", "Groth", "Ourea", "Erebus", "Pontus", "Chroma", "Petry", "Zaytus", "Spyke", "Aoyuki",
-            "Gaiabyte", "Oymos", "Xarth", "Atzar", "Zeth", "Koth", "Gurth", "Werewolf", "Jackoknight", "Dullahan", "Ladyodelith", "Shygu", "Thert", "Lordkirk", "Neptunius", 
-            "Sigrun", "Koldis", "Alvitr", "Hama", "Hallinskidi", "Rigr", "Aalpha", "Aathos", "Arei", "Aauri", "Atr0n1x", "Ageum", "Ageror", "Lordofchaos", "Christmaself", 
-            "Reindeer", "Santaclaus", "Sexysanta", "Toth", "Ganah", "Dagda", "Bubbles", "Apontus", "Aatzar", "Arshen", "Rua", "Dorth", "Arigr", "Moak", "Hosokawa", "Takeda", 
-            "Hirate", "Hattori", "Adagda", "Bylar", "Boor", "Bavah", "Leprechaun", };
 
         public Form1()
         {
             InitializeComponent();
+            auctionHouse = new AuctionHouse(this);           
             timeLabels = new Label[] { claimtime1, claimtime2, claimtime3, claimtime4, claimtime5, claimtime6, claimtime7, claimtime8, claimtime9 };
             enableBoxes = new List<CheckBox> { DQCalcBox, freeChestBox, autoPvPCheckbox, autoWBCheckbox };
             wbSettingsCounts = new List<NumericUpDown> { 
@@ -107,25 +88,29 @@ namespace CQFollowerAutoclaimer
                     new List<ComboBox> {MOAKHA1, MOAKHA2, MOAKHA3, MOAKHA4, MOAKHA5, MOAKHA6},
                     new List<ComboBox> {DQLineup1, DQLineup2, DQLineup3, DQLineup4, DQLineup5, DQLineup6}
                 };
+            auctionComboBoxes = new List<ComboBox> {
+                auctionHero1Combo, auctionHero2Combo, auctionHero3Combo,
+            };
             AutoCompleteStringCollection acsc = new AutoCompleteStringCollection();
-            //var namesSorted = names.ToList().Sort();
-            //var namesSorted = Array.Sort(names, (x, y) => String.Compare(x, y));
             foreach (List<ComboBox> l in WBlineups)
             {
                 foreach (ComboBox c in l)
                 {
-                    foreach (string n in names.ToList().OrderBy(s=> s))
+                    foreach (string n in Constants.names.ToList().OrderBy(s => s))
                     {
                         c.Items.Add(n);
                     }
 
                 }
             }
-            heroesInGame = Array.IndexOf(names, "ladyoftwilight") + 2;
-            init2();
+
+            //heroesInGame = Array.IndexOf(names, "ladyoftwilight") + 2;
+            init();
+
             if (pf != null)
             {
-                PFStuff.getWBData("189");
+
+                //PFStuff.getWBData("189");
                 PFStuff.getUsername(KongregateId);
                 startTimers();
                 countdownsTimer.Interval = 1000;
@@ -139,12 +124,11 @@ namespace CQFollowerAutoclaimer
                 WBTimer.Start();
                 nextWBRefresh = DateTime.Now.AddMilliseconds(WBTimer.Interval);
             }
-
         }
 
 
-
-        private void init2()
+        #region START
+        private void init()
         {
             if (!File.Exists("Newtonsoft.Json.dll"))
             {
@@ -158,8 +142,10 @@ namespace CQFollowerAutoclaimer
                 autoPvPCheckbox.Checked = appSettings.autoPvPEnabled ?? false;
                 autoWBCheckbox.Checked = appSettings.autoWBEnabled ?? false;
                 DQCalcBox.Checked = appSettings.autoDQEnabled ?? false;
-                freeChestBox.Checked = appSettings.autoChestEnabled ?? false;
+                DQSoundBox.Checked = appSettings.DQSoundEnabled ?? true;
                 DQBestBox.Checked = appSettings.autoBestDQEnabled ?? false;
+                freeChestBox.Checked = appSettings.autoChestEnabled ?? false;
+                chestToOpenCount.Value = appSettings.chestsToOpen ?? 0;                
                 playersBelowCount.Value = appSettings.pvpLowerLimit ?? 4;
                 playersAboveCount.Value = appSettings.pvpUpperLimit ?? 5;
                 if (appSettings.WBsettings != null)
@@ -226,61 +212,6 @@ namespace CQFollowerAutoclaimer
                 pf = new PFStuff(token, KongregateId);
             }
         }
-
-
-
-        #region START
-
-        private void init()
-        {
-            string boxes = "";
-            if (!File.Exists("Newtonsoft.Json.dll"))
-            {
-                MessageBox.Show("Newtonsoft file not found. Please download it from this project's github");
-            }
-            if (File.Exists("MacroSettings.txt"))
-            {
-                System.IO.StreamReader sr = new System.IO.StreamReader("MacroSettings.txt");
-                getSetting(sr.ReadLine());
-                token = getSetting(sr.ReadLine());
-                KongregateId = getSetting(sr.ReadLine());
-                sr.ReadLine(); sr.ReadLine();
-                boxes = getSetting(sr.ReadLine());
-                sr.Close();
-
-                if (token == "1111111111111111111111111111111111111111111111111111111111111111" || KongregateId == "000000")
-                {
-                    token = KongregateId = null;
-                }
-
-            }
-            else
-            {
-                token = null;
-                KongregateId = null;
-                DialogResult dr = MessageBox.Show("MacroSettings file not found. Do you want help with creating one?", "Settings Question",
-                    MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
-                if (dr == DialogResult.Yes)
-                {
-                    MacroSettingsHelper msh = new MacroSettingsHelper(appSettings);
-                    msh.Show();
-                    msh.BringToFront();
-                }
-            }
-            if (token != null && KongregateId != null)
-            {
-                pf = new PFStuff(token, KongregateId);
-            }
-            if (!String.IsNullOrEmpty(boxes))
-            {
-                string[] states = boxes.Split(',');
-                for (int i = 0; i < enableBoxes.Count; i++)
-                {
-                    enableBoxes[i].Checked = states[i] == "1" ? true : false;
-                }
-            }
-        }
-
         private void login()
         {
             Thread mt;
@@ -373,6 +304,12 @@ namespace CQFollowerAutoclaimer
             FreeChestTimer.Elapsed += FreeChestTimer_Elapsed;
             FreeChestTimer.Start();
 
+            getWebsiteData();
+            foreach (ComboBox c in auctionComboBoxes)
+            {
+                c.Items.AddRange(auctionHouse.getAvailableHeroes());
+            }
+            auctionHouse.loadSettings();
         }
 
 
@@ -399,6 +336,7 @@ namespace CQFollowerAutoclaimer
             if (nextWBRefresh != null)
             {
                 WBCountdownLabel.SynchronizedInvoke(() => WBCountdownLabel.Text = (nextWBRefresh < DateTime.Now ? "-" : "") + (nextWBRefresh - DateTime.Now).ToString("hh\\:mm\\:ss"));
+                AHCountdownLabel.SynchronizedInvoke(() => AHCountdownLabel.Text = (nextWBRefresh < DateTime.Now ? "-" : "") + (nextWBRefresh - DateTime.Now).ToString("hh\\:mm\\:ss"));
             }
 
         }
@@ -420,6 +358,15 @@ namespace CQFollowerAutoclaimer
             mt = new Thread(pf.getCurrencies);
             mt.Start();
             mt.Join();
+            if (PFStuff.freeChestAvailable && freeChestBox.Checked)
+            {
+                PFStuff.chestMode = "normal";
+                openChest();
+            }
+            nextFreeChest = DateTime.Now.AddSeconds(PFStuff.freeChestRecharge);
+            FreeChestTimeLabel.SynchronizedInvoke(() => FreeChestTimeLabel.Text = nextFreeChest.ToString());
+            FreeChestTimer.Interval = PFStuff.freeChestAvailable == true ? 6000 : PFStuff.freeChestRecharge * 1000;
+
             NormalChestLabel.SynchronizedInvoke(() => NormalChestLabel.Text = PFStuff.normalChests.ToString());
             HeroChestLabel.SynchronizedInvoke(() => HeroChestLabel.Text = PFStuff.heroChests.ToString());
         }
@@ -468,14 +415,7 @@ namespace CQFollowerAutoclaimer
                 login();
             }
             getCurr();
-            if (PFStuff.freeChestAvailable && freeChestBox.Checked)
-            {
-                PFStuff.chestMode = "normal";
-                openChest();
-            }
-            nextFreeChest = DateTime.Now.AddSeconds(PFStuff.freeChestRecharge);
-            FreeChestTimeLabel.SynchronizedInvoke(() => FreeChestTimeLabel.Text = nextFreeChest.ToString());
-            FreeChestTimer.Interval = PFStuff.freeChestAvailable == true ? 6000 : PFStuff.freeChestRecharge * 1000;
+           
         }
 
 
@@ -550,7 +490,7 @@ namespace CQFollowerAutoclaimer
             mt.Start();
             mt.Join();
             string rew = "Got ";
-            rew += PFStuff.chestResult < 0 ? heroNames[-PFStuff.chestResult] : rewardNames[PFStuff.chestResult];
+            rew += PFStuff.chestResult < 0 ? Constants.heroNames[-PFStuff.chestResult] : Constants.rewardNames[PFStuff.chestResult];
             ChestLog.SynchronizedInvoke(() => ChestLog.AppendText(rew + "\n"));
         }
 
@@ -641,8 +581,8 @@ namespace CQFollowerAutoclaimer
             {
                 WBlineups[2][i].SynchronizedInvoke(() => s = WBlineups[2][i].Text);
                 DQl.Add(s);
-            }          
-            
+            }
+
             if (DQl.Any(x => x != ""))
             {
                 PFStuff.DQlineup = getLineup(4, 0);
@@ -683,6 +623,7 @@ namespace CQFollowerAutoclaimer
             else if (PFStuff.DQResult)
             {
                 DQFailedAttempts = 0;
+                DQLevelLabel.SynchronizedInvoke(() => DQLevelLabel.Text = PFStuff.DQLevel);
                 if (currentDQ == int.Parse(PFStuff.DQLevel))
                 {
                     DQFightTimer.Stop();
@@ -750,12 +691,12 @@ namespace CQFollowerAutoclaimer
                 proc.StartInfo.CreateNoWindow = true;
                 proc.StartInfo.UseShellExecute = false;
 
-                //proc.ErrorDataReceived += proc_DataReceived;
+                proc.ErrorDataReceived += proc_ErrorDataReceived;
                 proc.OutputDataReceived += proc_DataReceived;
                 proc.Exited += proc_Exited;
                 proc.Start();
 
-                //proc.BeginErrorReadLine();
+                proc.BeginErrorReadLine();
                 proc.BeginOutputReadLine();
 
                 proc.WaitForExit();
@@ -763,6 +704,14 @@ namespace CQFollowerAutoclaimer
             else
             {
                 MessageBox.Show("CQMacroCreator.exe or CosmosQuest.exe file not found");
+            }
+        }
+
+        void proc_ErrorDataReceived(object sender, DataReceivedEventArgs e)
+        {
+            if (e.Data != null)
+            {
+                calcErrorOut += e.Data + "\n";
             }
         }
 
@@ -775,27 +724,34 @@ namespace CQFollowerAutoclaimer
             DQTimer.Interval = (nextDQTime < DateTime.Now && DQCalcBox.Checked) ? 4000 : Math.Max(4000, (nextDQTime - DateTime.Now).TotalMilliseconds);
             DQLevelLabel.SynchronizedInvoke(() => DQLevelLabel.Text = PFStuff.DQLevel);
             DQTimeLabel.SynchronizedInvoke(() => DQTimeLabel.Text = nextDQTime.ToString());
-            DQTimer.Start();            
-
+            DQTimer.Start();
+            if (!string.IsNullOrEmpty(calcErrorOut))
+            {
+                using (StreamWriter sw = new StreamWriter("CQMCErrors.txt"))
+                {
+                    sw.WriteLine(DateTime.Now);                    
+                    sw.WriteLine(calcErrorOut);
+                }
+            }
             List<string> DQl = new List<string>();
             string s = "";
             for (int i = 0; i < WBlineups[2].Count; i++)
             {
                 WBlineups[2][i].SynchronizedInvoke(() => s = WBlineups[2][i].Text);
                 DQl.Add(s);
-            }          
+            }
 
             if (DQl.All(x => x == "") && calcOut != "")
             {
                 JObject solution = JObject.Parse(calcOut);
-                var mon = solution["validSolution"]["solution"]["monsters"];                
+                var mon = solution["validSolution"]["solution"]["monsters"];
                 List<string> DQLineup = new List<string>();
 
                 for (int i = 0; i < mon.Count(); i++)
                 {
-                    DQLineup.Add(names[int.Parse(mon[i]["id"].ToString()) + heroesInGame]);
-                    WBlineups[2][5 - i].SynchronizedInvoke(() => WBlineups[2][5 - i].Text = names[int.Parse(mon[i]["id"].ToString()) + heroesInGame]);
-                }                   
+                    DQLineup.Add(Constants.names[int.Parse(mon[i]["id"].ToString()) + Constants.heroesInGame]);
+                    WBlineups[2][5 - i].SynchronizedInvoke(() => WBlineups[2][5 - i].Text = Constants.names[int.Parse(mon[i]["id"].ToString()) + Constants.heroesInGame]);
+                }
                 appSettings = AppSettings.loadSettings();
                 appSettings.defaultDQLineup = DQLineup;
                 appSettings.saveSettings();
@@ -877,6 +833,44 @@ namespace CQFollowerAutoclaimer
             MacroSettingsHelper msh = new MacroSettingsHelper(appSettings);
             msh.Show();
         }
+
+        private void automaterGithubButton_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/Wiedmolol/CQAutomater");
+        }
+
+        private void macroCreatorGithubButton_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/Wiedmolol/CQMacroCreator");
+        }
+
+        private void saveDQSettingsButton_Click(object sender, EventArgs e)
+        {
+            appSettings = AppSettings.loadSettings();
+            appSettings.DQSoundEnabled = DQSoundBox.Checked;
+            appSettings.autoDQEnabled = DQCalcBox.Checked;
+            appSettings.autoBestDQEnabled = DQBestBox.Checked;
+            var DQLinuep = WBlineups[2].Select(x => x.Text).ToList();
+            appSettings.defaultDQLineup = DQLinuep;
+            appSettings.saveSettings();
+        }
+
+        private void savePvPSettingsButton_Click(object sender, EventArgs e)
+        {
+            appSettings = AppSettings.loadSettings();
+            appSettings.autoPvPEnabled = autoPvPCheckbox.Checked;
+            appSettings.pvpLowerLimit = (int)playersBelowCount.Value;
+            appSettings.pvpUpperLimit = (int)playersAboveCount.Value;
+            appSettings.saveSettings();
+        }
+
+        private void saveChestSettingsButton_Click(object sender, EventArgs e)
+        {
+            appSettings = AppSettings.loadSettings();
+            appSettings.autoChestEnabled = freeChestBox.Checked;
+            appSettings.chestsToOpen = (int)chestToOpenCount.Value;
+            appSettings.saveSettings();
+        }
         #endregion
 
         #region WB
@@ -896,7 +890,7 @@ namespace CQFollowerAutoclaimer
                     {
                         string s = "";
                         cb.SynchronizedInvoke(() => s = cb.Text);
-                        temp.Add(Array.IndexOf(names, s) - heroesInGame);
+                        temp.Add(Array.IndexOf(Constants.names, s) - Constants.heroesInGame);
                     }
                     lineup = temp.ToArray();
                     break;
@@ -909,7 +903,7 @@ namespace CQFollowerAutoclaimer
                     {
                         string s = "";
                         cb.SynchronizedInvoke(() => s = cb.Text);
-                        temp.Add(Array.IndexOf(names, s) - heroesInGame);
+                        temp.Add(Array.IndexOf(Constants.names, s) - Constants.heroesInGame);
                     }
                     lineup = temp.ToArray();
                     break;
@@ -918,7 +912,7 @@ namespace CQFollowerAutoclaimer
                     {
                         string s = "";
                         cb.SynchronizedInvoke(() => s = cb.Text);
-                        temp.Add(Array.IndexOf(names, s) - heroesInGame);
+                        temp.Add(Array.IndexOf(Constants.names, s) - Constants.heroesInGame);
                     }
                     lineup = temp.ToArray();
                     break;
@@ -934,21 +928,30 @@ namespace CQFollowerAutoclaimer
         {
             switch (longName)
             {
-                case("LORD OF CHAOS"):
+                case ("LORD OF CHAOS"):
                     return "LoC";
-                case("MOTHER OF ALL KODAMAS"):
+                case ("MOTHER OF ALL KODAMAS"):
                     return "MOAK";
                 default:
                     return "Unknowm";
             }
         }
 
+        public void getWebsiteData()
+        {
+            PFStuff.getWebsiteData(KongregateId);
+            currentBossLabel.SynchronizedInvoke(() => currentBossLabel.Text = shortBossName(PFStuff.WBName)
+                + (PFStuff.wbMode == 0 ? " NH" : " HA") + ", Attacks left: " + PFStuff.attacksLeft);
+            auctionHouse.loadAuctions(false);
+            
+            WBTimer.Interval = Math.Min(Math.Max(PFStuff.attacksLeft * 5000, 20000), auctionHouse.getAuctionInterval());
+            nextWBRefresh = DateTime.Now.AddMilliseconds(WBTimer.Interval);
+        }
+
         void WBTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            nextWBRefresh = DateTime.Now.AddMilliseconds(WBTimer.Interval);
-            PFStuff.getWebsiteData(KongregateId);
-            currentBossLabel.SynchronizedInvoke(() => currentBossLabel.Text = shortBossName(PFStuff.WBName) 
-                + (PFStuff.wbMode == 0 ? " NH" : " HA") + ", Attacks left: " + PFStuff.attacksLeft);
+            
+            getWebsiteData();
             //currentBossLabel.Text = shortBossName(PFStuff.WBName) + (PFStuff.wbMode == 0 ? " NH" : " HA");
             if (autoWBCheckbox.Checked)
             {
@@ -1025,10 +1028,10 @@ namespace CQFollowerAutoclaimer
 
         void fightWB()
         {
-            WBLogString += DateTime.Now.ToString() + " " + PFStuff.WBName + (PFStuff.wbMode == 1 ? " Heroes Allowed" : " No Heroes") + " fought with";
+            WBLogString += DateTime.Now.ToString() + "\n\t" + PFStuff.WBName + (PFStuff.wbMode == 1 ? " Heroes Allowed" : " No Heroes") + " fought with:";
             foreach (int i in PFStuff.WBlineup)
             {
-                WBLogString += " " + names[i + heroesInGame];
+                WBLogString += " " + Constants.names[i + Constants.heroesInGame];
             }
             WBLogString += "\n";
             if (wbl != null)
@@ -1092,46 +1095,10 @@ namespace CQFollowerAutoclaimer
         }
         #endregion
 
-
-
-        private void automaterGithubButton_Click(object sender, EventArgs e)
+        private void saveAHSettingsButton_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("https://github.com/Wiedmolol/CQAutomater");
+            auctionHouse.saveSettings();
         }
-
-        private void macroCreatorGithubButton_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://github.com/Wiedmolol/CQMacroCreator");
-        }
-
-        private void saveDQSettingsButton_Click(object sender, EventArgs e)
-        {
-            appSettings = AppSettings.loadSettings();
-            appSettings.DQSoundEnabled = DQSoundBox.Checked;
-            appSettings.autoDQEnabled = DQCalcBox.Checked;
-            appSettings.autoBestDQEnabled = DQBestBox.Checked;
-            var DQLinuep = WBlineups[2].Select(x => x.Text).ToList();
-            appSettings.defaultDQLineup = DQLinuep;
-            appSettings.saveSettings();
-        }
-
-        private void savePvPSettingsButton_Click(object sender, EventArgs e)
-        {
-            appSettings = AppSettings.loadSettings();
-            appSettings.autoPvPEnabled = autoPvPCheckbox.Checked;
-            appSettings.pvpLowerLimit = (int)playersBelowCount.Value;
-            appSettings.pvpUpperLimit = (int)playersAboveCount.Value;
-            appSettings.saveSettings();
-        }
-
-        private void saveChestSettingsButton_Click(object sender, EventArgs e)
-        {
-            appSettings = AppSettings.loadSettings();
-            appSettings.autoChestEnabled = freeChestBox.Checked;
-            appSettings.saveSettings();
-        }
-
-
 
 
 

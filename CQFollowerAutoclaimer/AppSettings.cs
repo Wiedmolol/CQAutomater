@@ -7,6 +7,13 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 namespace CQFollowerAutoclaimer
 {
+    public struct AuctionBids
+    {
+        public bool? biddingEnabled;
+        public string name;
+        public int? maxLevel;
+        public int? maxBid;
+    }
     public class AppSettings
     {
         public string KongregateId { get; set; }
@@ -17,15 +24,19 @@ namespace CQFollowerAutoclaimer
         public List<string> LoCLineup { get; set; }
         public List<string> MOAKLineup { get; set; }
         public List<string> defaultDQLineup { get; set; }
+        public List<string> calcEnabledHeroes { get; set; }
         public bool? DQSoundEnabled { get; set; }
         public bool? autoBestDQEnabled { get; set; }
         public bool? autoDQEnabled { get; set; }
         public bool? autoPvPEnabled { get; set; }
         public bool? autoChestEnabled { get; set; }
+        public int? chestsToOpen { get; set; }
         public bool? autoWBEnabled { get; set; }
         public int? pvpLowerLimit { get; set; }
         public int? pvpUpperLimit { get; set; }
         public List<int> WBsettings { get; set; }
+        public List<AuctionBids> bids { get; set; }
+
 
         public static AppSettings loadSettings()
         {

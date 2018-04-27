@@ -18,7 +18,8 @@ namespace CQFollowerAutoclaimer
             "Load heroes from defaultHeroes file",
             "Load heroes from server",
             "Load heroes and DQ from server",
-            "Load heroes, DQ and quest states from server"
+            "Load heroes, DQ and quest states from server",
+            "Heroes&&DQ from server, enable heroes from settings"
         };
 
         public MacroSettingsHelper(AppSettings a)

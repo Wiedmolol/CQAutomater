@@ -85,6 +85,8 @@ namespace CQFollowerAutoclaimer
                 MOAKHARequirementCount, MOAKHAAttacksCount, superMOAKHAReqCount, superMOAKHAAtkCount,
                 MOAKNHRequirementCount, MOAKNHAttacksCount, superMOAKNHReqCount, superMOAKNHAtkCount
             };
+            toolTip1.SetToolTip(safeModeWB, "Asks for confirmation before attacking. Won't ask again for the same boss");
+            safeModeWB.Enabled = false;
             WBlineups = new List<List<ComboBox>> {
                     new List<ComboBox> {LOCHA1, LOCHA2, LOCHA3, LOCHA4, LOCHA5, LOCHA6},
                     new List<ComboBox> {MOAKHA1, MOAKHA2, MOAKHA3, MOAKHA4, MOAKHA5, MOAKHA6},
@@ -118,7 +120,7 @@ namespace CQFollowerAutoclaimer
                 logoutTimer.Interval = 24 * 3600 * 1000;
                 logoutTimer.Elapsed += logoutTimer_Elapsed;
                 logoutTimer.Start();
-                WBTimer.Interval = 1000 * 60 * 5; //5 minutes
+                WBTimer.Interval = 1000 * 60 * 1; //1 minute
                 WBTimer.Elapsed += WBTimer_Elapsed;
                 WBTimer.Start();
                 nextWBRefresh = DateTime.Now.AddMilliseconds(WBTimer.Interval);
@@ -154,6 +156,7 @@ namespace CQFollowerAutoclaimer
                 DQSoundBox.Checked = appSettings.DQSoundEnabled ?? true;
                 DQBestBox.Checked = appSettings.autoBestDQEnabled ?? false;
                 freeChestBox.Checked = appSettings.autoChestEnabled ?? false;
+                safeModeWB.Checked = appSettings.safeModeWBEnabled ?? false;
                 chestToOpenCount.Value = appSettings.chestsToOpen ?? 0;                
                 playersBelowCount.Value = appSettings.pvpLowerLimit ?? 4;
                 playersAboveCount.Value = appSettings.pvpUpperLimit ?? 5;
@@ -1012,11 +1015,32 @@ namespace CQFollowerAutoclaimer
 
                     if (PFStuff.wbAttacksAvailable >= requirement - r)
                     {
-                        PFStuff.WBlineup = lineup;
-                        attacksToPerform = (int)attacksToDo;
-                        WBAttackTimer.Interval = 10000; //10s
-                        WBAttackTimer.Elapsed += WBAttackTimer_Elapsed;
-                        WBAttackTimer.Start();
+                        DialogResult dr = DialogResult.No;
+                        if (safeModeWB.Checked)
+                        {
+                            if (PFStuff.WBchanged)
+                            {
+                                string lineupNames = "";
+                                foreach (int id in lineup)
+                                {
+                                    lineupNames += " " + Constants.names[id + Constants.heroesInGame];
+                                }
+                                dr = MessageBox.Show("Automater wants to attack " + attacksToDo + " times with: " + lineupNames +". Continue?" , "WB Attack Confirmation",
+                                MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                            }
+                        }
+                        else
+                        {
+                            dr = DialogResult.Yes;
+                        }
+                        if (dr == DialogResult.Yes)
+                        {
+                            PFStuff.WBlineup = lineup;
+                            attacksToPerform = (int)attacksToDo;
+                            WBAttackTimer.Interval = 10000; //10s
+                            WBAttackTimer.Elapsed += WBAttackTimer_Elapsed;
+                            WBAttackTimer.Start();
+                        }
                     }
                 }
             }
@@ -1064,21 +1088,25 @@ namespace CQFollowerAutoclaimer
                     if (dr == DialogResult.Yes)
                     {
                         WBIndicator.BackColor = Color.Green;
+                        safeModeWB.Enabled = true;
                     }
                     else
                     {
                         autoWBCheckbox.Checked = false;
                         WBIndicator.BackColor = Color.Red;
+                        safeModeWB.Enabled = false;
                     }
                 }
                 else
                 {
                     WBIndicator.BackColor = Color.Green;
+                    safeModeWB.Enabled = true;
                 }
             }
             else
             {
                 WBIndicator.BackColor = Color.Red;
+                safeModeWB.Enabled = false;
             }
         }
         private void saveWBDataButton_Click(object sender, EventArgs e)
@@ -1087,6 +1115,8 @@ namespace CQFollowerAutoclaimer
             var LOC = WBlineups[0].Select(x => x.Text);
             var MOAK = WBlineups[1].Select(x => x.Text);
             appSettings = AppSettings.loadSettings();
+            appSettings.safeModeWBEnabled = safeModeWB.Checked;
+            appSettings.autoWBEnabled = autoWBCheckbox.Checked;
             appSettings.WBsettings = values.ToList();
             appSettings.LoCLineup = LOC.ToList();
             appSettings.MOAKLineup = MOAK.ToList();

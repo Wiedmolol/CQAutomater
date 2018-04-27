@@ -19,6 +19,7 @@ namespace CQFollowerAutoclaimer
     {
         string token;
         static string kongID;
+        static int requestsSent = 0;
         static bool _running = true;
         static public bool logres;
         static public string miracleTimes;
@@ -47,7 +48,7 @@ namespace CQFollowerAutoclaimer
         static public int wbDamageDealt;
         static public int wbMode;
         static public int wbAttacksAvailable;
-        static public int WB_ID;
+        static public int WB_ID=1;
         static public string WBName;
         static public int attacksLeft;
 
@@ -245,6 +246,10 @@ namespace CQFollowerAutoclaimer
             string content2 = new StreamReader(response2.GetResponseStream()).ReadToEnd();
             string a = Regex.Match(content2, "(?<=<a href.*>).*?(?=</a>)").ToString();
             WBchanged = (WB_ID != int.Parse(a)) ? true : false;
+            if (requestsSent++ == 1)
+            {
+                WBchanged = true;
+            }
             WB_ID = int.Parse(a);
         }
 

@@ -25,8 +25,8 @@ namespace CQFollowerAutoclaimer
         public MacroSettingsHelper(AppSettings a)
         {
             InitializeComponent();
-            textBox1.Text = a.token ?? "n";
-            textBox2.Text = a.KongregateId ?? "n";
+            textBox1.Text = a.token ?? "";
+            textBox2.Text = a.KongregateId ?? "";
             if (a.defaultLowerLimit != null)
             {
                 if (a.defaultLowerLimit.Contains("%"))

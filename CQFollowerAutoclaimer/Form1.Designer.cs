@@ -232,6 +232,8 @@
             this.WBIndicator = new System.Windows.Forms.Label();
             this.label73 = new System.Windows.Forms.Label();
             this.saveDQSettingsButton = new System.Windows.Forms.Button();
+            this.safeModeWB = new System.Windows.Forms.CheckBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.contextMenuStrip1.SuspendLayout();
             this.tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.superMOAKNHAtkCount)).BeginInit();
@@ -343,6 +345,7 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.safeModeWB);
             this.tabPage5.Controls.Add(this.currentBossLabel);
             this.tabPage5.Controls.Add(this.label61);
             this.tabPage5.Controls.Add(this.label55);
@@ -2566,6 +2569,16 @@
             this.saveDQSettingsButton.UseVisualStyleBackColor = true;
             this.saveDQSettingsButton.Click += new System.EventHandler(this.saveDQSettingsButton_Click);
             // 
+            // safeModeWB
+            // 
+            this.safeModeWB.AutoSize = true;
+            this.safeModeWB.Location = new System.Drawing.Point(120, 37);
+            this.safeModeWB.Name = "safeModeWB";
+            this.safeModeWB.Size = new System.Drawing.Size(77, 17);
+            this.safeModeWB.TabIndex = 103;
+            this.safeModeWB.Text = "Safe mode";
+            this.safeModeWB.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2834,6 +2847,8 @@
         private System.Windows.Forms.Button saveAHSettingsButton;
         private System.Windows.Forms.Label label73;
         private System.Windows.Forms.Button saveDQSettingsButton;
+        private System.Windows.Forms.CheckBox safeModeWB;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
 

@@ -74,6 +74,8 @@ namespace CQFollowerAutoclaimer
         public Form1()
         {
             InitializeComponent();
+            AppDomain currentDomain = AppDomain.CurrentDomain;
+            currentDomain.UnhandledException += currentDomain_UnhandledException;
             auctionHouse = new AuctionHouse(this);           
             timeLabels = new Label[] { claimtime1, claimtime2, claimtime3, claimtime4, claimtime5, claimtime6, claimtime7, claimtime8, claimtime9 };
             enableBoxes = new List<CheckBox> { DQCalcBox, freeChestBox, autoPvPCheckbox, autoWBCheckbox };
@@ -123,6 +125,15 @@ namespace CQFollowerAutoclaimer
                 WBTimer.Elapsed += WBTimer_Elapsed;
                 WBTimer.Start();
                 nextWBRefresh = DateTime.Now.AddMilliseconds(WBTimer.Interval);
+            }
+        }
+
+        void currentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            Exception ue = (Exception)e.ExceptionObject;
+            using (StreamWriter sw = new StreamWriter("ExceptionLog.txt"))
+            {
+                sw.Write(ue);
             }
         }
 

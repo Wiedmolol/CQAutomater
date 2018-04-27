@@ -1,12 +1,14 @@
 # CQAutomater
 
-CQAutomater is a tool that runs in the background and automatically claims your miracles as soon as they are ready. It can also open the daily free chest and start battles with random person when your hourly battle is ready.
+CQAutomater is a tool that runs in the background and automatically claims your miracles as soon as they are ready. It can also open the daily free chest, start battles with random person when your hourly battle is ready, automatically send a predefined lineup to beat DQ or run the calc to solve it and finally fight World Bosses.
 
-I also plan to add simple system that automatically attacks World Bosses and automatic-DQ(solves DQ if you have my CQMacroCreator and a calc from Diceycle or one of its forks).
 
 # v 0.7
 #### General:
 Fixed DQSoundEnabled setting, added setting for chest opener chest amount. 
+
+#### Auto-WB:
+Added "safe mode". When safe mode is enabled the app will ask you for confirmation when it wants to attack the boss. It will tell you how many times it wants to attack it and with what lineup. It won't ask for the same boss more than once.
 
 #### Auto-AH:
 For now it's only party implemented. It can refresh current auction data but it won't make any bids. 

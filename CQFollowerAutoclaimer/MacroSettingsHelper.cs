@@ -25,36 +25,42 @@ namespace CQFollowerAutoclaimer
         public MacroSettingsHelper(AppSettings a)
         {
             InitializeComponent();
-            textBox1.Text = a.token ?? "";
-            textBox2.Text = a.KongregateId ?? "";
-            if (a.defaultLowerLimit.Contains("%"))
+            textBox1.Text = a.token ?? "n";
+            textBox2.Text = a.KongregateId ?? "n";
+            if (a.defaultLowerLimit != null)
             {
-                lowerPercRadio.Checked = true;
-                lowerPercCount.Value = decimal.Parse(a.defaultLowerLimit.Split('%')[0]);
+                if (a.defaultLowerLimit.Contains("%"))
+                {
+                    lowerPercRadio.Checked = true;
+                    lowerPercCount.Value = decimal.Parse(a.defaultLowerLimit.Split('%')[0]);
+                }
+                else if (a.defaultLowerLimit == "-1")
+                {
+                    lowerNoRadio.Checked = true;
+                }
+                else
+                {
+                    lowerFlatRadio.Checked = true;
+                    lowerFlatCount.Value = decimal.Parse(a.defaultLowerLimit);
+                }
             }
-            else if (a.defaultLowerLimit == "-1")
+            if (a.defaultUpperLimit != null)
             {
-                lowerNoRadio.Checked = true;
-            }
-            else
-            {
-                lowerFlatRadio.Checked = true;
-                lowerFlatCount.Value = decimal.Parse(a.defaultLowerLimit);
-            }
-            if (a.defaultUpperLimit.Contains("%"))
-            {
+                if (a.defaultUpperLimit.Contains("%"))
+                {
 
-                upperPercRadio.Checked = true;
-                upperPercCount.Value = decimal.Parse(a.defaultUpperLimit.Split('%')[0]);
-            }
-            else if (a.defaultUpperLimit == "-1")
-            {
-                upperNoRadio.Checked = true;
-            }
-            else
-            {
-                upperFlatRadio.Checked = true;
-                upperFlatCount.Value = decimal.Parse(a.defaultUpperLimit);
+                    upperPercRadio.Checked = true;
+                    upperPercCount.Value = decimal.Parse(a.defaultUpperLimit.Split('%')[0]);
+                }
+                else if (a.defaultUpperLimit == "-1")
+                {
+                    upperNoRadio.Checked = true;
+                }
+                else
+                {
+                    upperFlatRadio.Checked = true;
+                    upperFlatCount.Value = decimal.Parse(a.defaultUpperLimit);
+                }
             }
             defaultActionCount.Value = a.actionOnStart ?? 0;
             autoChestBox.Checked = a.autoChestEnabled ?? false;
@@ -149,54 +155,6 @@ namespace CQFollowerAutoclaimer
             }
 
             a.saveSettings();
-            //System.IO.StreamWriter sw = new System.IO.StreamWriter("MacroSettings.txt");
-            //sw.WriteLine(defaultActionCount.Value.ToString());
-            //if (textBox1.Text.Length == 0)
-            //{
-            //    sw.WriteLine("1111111111111111111111111111111111111111111111111111111111111111");
-            //}
-            //else
-            //{
-            //    sw.WriteLine(textBox1.Text);
-            //}
-
-            //if (textBox2.Text.Length == 0)
-            //{
-            //    sw.WriteLine("0000000");
-            //}
-            //else
-            //{
-            //    sw.WriteLine(textBox2.Text);
-            //}
-
-
-            //if (lowerFlatRadio.Checked)
-            //{
-            //    sw.WriteLine(lowerFlatCount.Value.ToString());
-            //}
-            //else if (lowerPercRadio.Checked)
-            //{
-            //    sw.WriteLine(lowerPercCount.Value.ToString() + "%");
-            //}
-            //else
-            //{
-            //    sw.WriteLine("-1");
-            //}
-
-            //if (upperFlatRadio.Checked)
-            //{
-            //    sw.WriteLine(upperFlatCount.Value.ToString());
-            //}
-            //else if (upperPercRadio.Checked)
-            //{
-            //    sw.WriteLine(upperPercCount.Value.ToString() + "%");
-            //}
-            //else
-            //{
-            //    sw.WriteLine("-1");
-            //}
-            //sw.WriteLine((autoDQBox.Checked ? 1 : 0) + "," + (autoChestBox.Checked ? 1 : 0) + "," + (autoPVPBox.Checked ? 1 : 0) + "," + (autoWBBox.Checked ? 1 : 0));
-            //sw.Close();
             MessageBox.Show("Settings saved to file. Restart the application to use the new settings.");
         }
 

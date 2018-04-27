@@ -106,13 +106,10 @@ namespace CQFollowerAutoclaimer
                 }
             }
 
-            //heroesInGame = Array.IndexOf(names, "ladyoftwilight") + 2;
             init();
 
             if (pf != null)
             {
-
-                //PFStuff.getWBData("189");
                 PFStuff.getUsername(KongregateId);
                 startTimers();
                 countdownsTimer.Interval = 1000;
@@ -131,9 +128,10 @@ namespace CQFollowerAutoclaimer
         void currentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             Exception ue = (Exception)e.ExceptionObject;
-            using (StreamWriter sw = new StreamWriter("ExceptionLog.txt"))
+            using (StreamWriter sw = new StreamWriter("ExceptionLog.txt", true))
             {
-                sw.Write(ue);
+                sw.WriteLine(DateTime.Now);
+                sw.WriteLine(ue);
             }
         }
 

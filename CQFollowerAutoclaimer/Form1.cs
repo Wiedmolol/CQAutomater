@@ -41,6 +41,7 @@ namespace CQFollowerAutoclaimer
         static int currentDQ;
         static string calcOut;
         static string calcErrorOut;
+        static bool notAskedYet = true;
 
         DateTime epoch = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
         DateTime start = DateTime.Now;
@@ -1012,13 +1013,14 @@ namespace CQFollowerAutoclaimer
                     if (attacksToDo <= 0)
                         return;
                     getData();
-
+                    if (PFStuff.WBchanged)
+                        notAskedYet = true;
                     if (PFStuff.wbAttacksAvailable >= requirement - r)
                     {
                         DialogResult dr = DialogResult.No;
                         if (safeModeWB.Checked)
                         {
-                            if (PFStuff.WBchanged)
+                            if (notAskedYet)
                             {
                                 string lineupNames = "";
                                 foreach (int id in lineup)
@@ -1027,6 +1029,7 @@ namespace CQFollowerAutoclaimer
                                 }
                                 dr = MessageBox.Show("Automater wants to attack " + attacksToDo + " times with: " + lineupNames +". Continue?" , "WB Attack Confirmation",
                                 MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                                notAskedYet = false;
                             }
                         }
                         else

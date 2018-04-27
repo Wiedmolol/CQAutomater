@@ -4,6 +4,13 @@ CQAutomater is a tool that runs in the background and automatically claims your 
 
 I also plan to add simple system that automatically attacks World Bosses and automatic-DQ(solves DQ if you have my CQMacroCreator and a calc from Diceycle or one of its forks).
 
+# v 0.7
+#### General:
+Fixed DQSoundEnabled setting, added setting for chest opener chest amount. 
+
+#### Auto-AH:
+For now it's only party implemented. It can refresh current auction data but it won't make any bids. 
+
 # v 0.6
 #### General: 
 Changed settings file from simple .txt to .json; New settings file will be automatically created from old MacroSettings.txt file after you run new version for the first time or you can create one from scratch using the "Settings Creator Helper". Creator Helper can be run with a button in "Other" tab. Program will also ask you if you want to run it, if you don't have any settings file present in your folder. Old "MacroSettings.txt" file can be removed after Settings.json file is created.

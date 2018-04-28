@@ -98,18 +98,21 @@ namespace CQFollowerAutoclaimer
         public void loadSettings()
         {
             AppSettings ap = AppSettings.loadSettings();
-            main.auctionHero1Combo.Text = ap.bids[0].name ?? "";
-            main.auctionHero1Box.Checked = ap.bids[0].biddingEnabled ?? false;
-            main.auctionHero1PriceCount.Value = ap.bids[0].maxBid ?? 0;
-            main.auctionHero1LevelCount.Value = ap.bids[0].maxLevel ?? 0;
-            main.auctionHero2Combo.Text = ap.bids[1].name ?? "";
-            main.auctionHero2Box.Checked = ap.bids[1].biddingEnabled ?? false;
-            main.auctionHero2PriceCount.Value = ap.bids[1].maxBid ?? 0;
-            main.auctionHero2LevelCount.Value = ap.bids[1].maxLevel ?? 0;
-            main.auctionHero3Combo.Text = ap.bids[2].name ?? "";
-            main.auctionHero3Box.Checked = ap.bids[2].biddingEnabled ?? false;
-            main.auctionHero3PriceCount.Value = ap.bids[2].maxBid ?? 0;
-            main.auctionHero3LevelCount.Value = ap.bids[2].maxLevel ?? 0;
+            if (ap.bids != null)
+            {
+                main.auctionHero1Combo.Text = ap.bids[0].name ?? "";
+                main.auctionHero1Box.Checked = ap.bids[0].biddingEnabled ?? false;
+                main.auctionHero1PriceCount.Value = ap.bids[0].maxBid ?? 0;
+                main.auctionHero1LevelCount.Value = ap.bids[0].maxLevel ?? 0;
+                main.auctionHero2Combo.Text = ap.bids[1].name ?? "";
+                main.auctionHero2Box.Checked = ap.bids[1].biddingEnabled ?? false;
+                main.auctionHero2PriceCount.Value = ap.bids[1].maxBid ?? 0;
+                main.auctionHero2LevelCount.Value = ap.bids[1].maxLevel ?? 0;
+                main.auctionHero3Combo.Text = ap.bids[2].name ?? "";
+                main.auctionHero3Box.Checked = ap.bids[2].biddingEnabled ?? false;
+                main.auctionHero3PriceCount.Value = ap.bids[2].maxBid ?? 0;
+                main.auctionHero3LevelCount.Value = ap.bids[2].maxLevel ?? 0;
+            }
         }
 
         public void saveSettings()

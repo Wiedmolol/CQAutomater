@@ -77,7 +77,7 @@ namespace CQFollowerAutoclaimer
             InitializeComponent();
             AppDomain currentDomain = AppDomain.CurrentDomain;
             currentDomain.UnhandledException += currentDomain_UnhandledException;
-            auctionHouse = new AuctionHouse(this);           
+                       
             timeLabels = new Label[] { claimtime1, claimtime2, claimtime3, claimtime4, claimtime5, claimtime6, claimtime7, claimtime8, claimtime9 };
             enableBoxes = new List<CheckBox> { DQCalcBox, freeChestBox, autoPvPCheckbox, autoWBCheckbox };
             wbSettingsCounts = new List<NumericUpDown> { 
@@ -110,7 +110,7 @@ namespace CQFollowerAutoclaimer
             }
 
             init();
-
+            auctionHouse = new AuctionHouse(this);
             if (pf != null)
             {
                 PFStuff.getUsername(KongregateId);

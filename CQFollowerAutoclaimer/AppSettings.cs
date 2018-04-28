@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.IO;
 namespace CQFollowerAutoclaimer
 {
     public struct AuctionBids
@@ -41,10 +42,17 @@ namespace CQFollowerAutoclaimer
 
         public static AppSettings loadSettings()
         {
-            System.IO.StreamReader sr = new System.IO.StreamReader(Form1.SettingsFilename);
-            AppSettings a = JsonConvert.DeserializeObject<AppSettings>(sr.ReadToEnd());
-            sr.Close();
-            return a;
+            if (File.Exists(Form1.SettingsFilename))
+            {
+                System.IO.StreamReader sr = new System.IO.StreamReader(Form1.SettingsFilename);
+                AppSettings a = JsonConvert.DeserializeObject<AppSettings>(sr.ReadToEnd());
+                sr.Close();
+                return a;
+            }
+            else
+            {
+                return new AppSettings();
+            }
         }
 
         public void saveSettings()

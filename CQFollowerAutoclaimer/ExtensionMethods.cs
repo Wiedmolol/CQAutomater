@@ -25,6 +25,13 @@ namespace CQFollowerAutoclaimer
             sync.Invoke(action, new object[] { });
         }
 
+        public static T Pop<T>(this List<T> l)
+        {
+            var temp = l[0];
+            l.RemoveAt(0);
+            return temp;
+        }
+
         public static string getText(this Control c)
         {
             if (c.InvokeRequired)
@@ -35,6 +42,19 @@ namespace CQFollowerAutoclaimer
             {
                 string varText = c.Text;
                 return varText;
+            }
+        }
+
+        public static int getValue(this NumericUpDown c)
+        {
+            if (c.InvokeRequired)
+            {
+                return (int)c.Invoke(new Func<int>(() => getValue(c)));
+            }
+            else
+            {
+                int val = (int)c.Value;
+                return val;
             }
         }
 

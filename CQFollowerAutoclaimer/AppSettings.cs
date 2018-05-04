@@ -38,7 +38,9 @@ namespace CQFollowerAutoclaimer
         public int? pvpUpperLimit { get; set; }
         public List<int> WBsettings { get; set; }
         public List<AuctionBids> bids { get; set; }
-
+        public bool? autoLevelEnabled { get; set; }
+        public int[] bankedCurrencies { get; set; }
+        public string[] herosToLevel { get; set; }
 
         public static AppSettings loadSettings()
         {

@@ -20,64 +20,52 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Runtime.InteropServices;
 using System.Net;
-using System.Reflection;
+
+
 namespace CQFollowerAutoclaimer
 {
     public partial class Form1 : Form
     {
-        static internal AppSettings appSettings = new AppSettings();
         public const string SettingsFilename = "Settings.json";
 
         internal string token;
         internal string KongregateId;
-        PFStuff pf;
-        AuctionHouse auctionHouse;
+
+        internal PFStuff pf;
+        internal AppSettings appSettings = new AppSettings();
+        internal AuctionHouse auctionHouse;
+        internal AutoLevel autoLevel;
+        internal AutoChests autoChests;
+        internal AutoDQ autoDQ;
+        internal AutoPvP autopvp;
+        internal AutoWB autoWB;
+        internal TaskQueue taskQueue = new TaskQueue();
+
         int claimCount = 0;
         static Label[] timeLabels;
-        static int chestsToOpen;
-        static int attacksToPerform;
-        static int DQFailedAttempts;
         long initialFollowers;
-        static int currentDQ;
-        static string calcOut;
-        static string calcErrorOut;
-        static bool notAskedYet = true;
 
-        DateTime epoch = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+        static DateTime epoch = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
         DateTime start = DateTime.Now;
         DateTime nextClaim;
-        DateTime nextDQTime;
-        DateTime nextPVP;
-        DateTime nextFreeChest;
-        DateTime nextWBRefresh;
 
-        string WBLogString = "";
-        static WBLog wbl;
-        List<List<ComboBox>> WBlineups;
+        internal static WBLog wbl;
+        internal List<List<ComboBox>> WBlineups;
         List<ComboBox> auctionComboBoxes;
-
+        List<Label> auctionCountdowns;
         System.Timers.Timer tmr = new System.Timers.Timer();
         System.Timers.Timer countdownsTimer = new System.Timers.Timer();
-        System.Timers.Timer logoutTimer = new System.Timers.Timer();
-        System.Timers.Timer DQTimer = new System.Timers.Timer();
-        System.Timers.Timer DQFightTimer = new System.Timers.Timer();
-        System.Timers.Timer PVPTimer = new System.Timers.Timer();
-        System.Timers.Timer FreeChestTimer = new System.Timers.Timer();
-        System.Timers.Timer chestTimer = new System.Timers.Timer();
-        System.Timers.Timer WBTimer = new System.Timers.Timer();
-        System.Timers.Timer WBAttackTimer = new System.Timers.Timer();
+        System.Timers.Timer logoutTimer = new System.Timers.Timer();  
 
         List<CheckBox> enableBoxes;
-        List<NumericUpDown> wbSettingsCounts;
-
-
+        internal List<NumericUpDown> wbSettingsCounts;
 
         public Form1()
         {
             InitializeComponent();
             AppDomain currentDomain = AppDomain.CurrentDomain;
             currentDomain.UnhandledException += currentDomain_UnhandledException;
-                       
+
             timeLabels = new Label[] { claimtime1, claimtime2, claimtime3, claimtime4, claimtime5, claimtime6, claimtime7, claimtime8, claimtime9 };
             enableBoxes = new List<CheckBox> { DQCalcBox, freeChestBox, autoPvPCheckbox, autoWBCheckbox };
             wbSettingsCounts = new List<NumericUpDown> { 
@@ -86,6 +74,7 @@ namespace CQFollowerAutoclaimer
                 MOAKHARequirementCount, MOAKHAAttacksCount, superMOAKHAReqCount, superMOAKHAAtkCount,
                 MOAKNHRequirementCount, MOAKNHAttacksCount, superMOAKNHReqCount, superMOAKNHAtkCount
             };
+            auctionCountdowns = new List<Label> { ahCountdown1, ahCountdown2, ahCountdown3 };
             toolTip1.SetToolTip(safeModeWB, "Asks for confirmation before attacking. Won't ask again for the same boss");
             safeModeWB.Enabled = false;
             WBlineups = new List<List<ComboBox>> {
@@ -105,14 +94,19 @@ namespace CQFollowerAutoclaimer
                     {
                         c.Items.Add(n);
                     }
-
                 }
             }
 
             init();
-            auctionHouse = new AuctionHouse(this);
+
             if (pf != null)
             {
+                auctionHouse = new AuctionHouse(this);
+                autoLevel = new AutoLevel(this);
+                autoChests = new AutoChests(this);
+                autoDQ = new AutoDQ(this);
+                autopvp = new AutoPvP(this);
+                autoWB = new AutoWB(this);
                 PFStuff.getUsername(KongregateId);
                 startTimers();
                 countdownsTimer.Interval = 1000;
@@ -121,10 +115,6 @@ namespace CQFollowerAutoclaimer
                 logoutTimer.Interval = 24 * 3600 * 1000;
                 logoutTimer.Elapsed += logoutTimer_Elapsed;
                 logoutTimer.Start();
-                WBTimer.Interval = 1000 * 60 * 1; //1 minute
-                WBTimer.Elapsed += WBTimer_Elapsed;
-                WBTimer.Start();
-                nextWBRefresh = DateTime.Now.AddMilliseconds(WBTimer.Interval);
             }
         }
 
@@ -150,46 +140,7 @@ namespace CQFollowerAutoclaimer
             {
                 appSettings = AppSettings.loadSettings();
                 token = appSettings.token;
-                KongregateId = appSettings.KongregateId;
-                autoPvPCheckbox.Checked = appSettings.autoPvPEnabled ?? false;
-                autoWBCheckbox.Checked = appSettings.autoWBEnabled ?? false;
-                DQCalcBox.Checked = appSettings.autoDQEnabled ?? false;
-                DQSoundBox.Checked = appSettings.DQSoundEnabled ?? true;
-                DQBestBox.Checked = appSettings.autoBestDQEnabled ?? false;
-                freeChestBox.Checked = appSettings.autoChestEnabled ?? false;
-                safeModeWB.Checked = appSettings.safeModeWBEnabled ?? false;
-                chestToOpenCount.Value = appSettings.chestsToOpen ?? 0;                
-                playersBelowCount.Value = appSettings.pvpLowerLimit ?? 4;
-                playersAboveCount.Value = appSettings.pvpUpperLimit ?? 5;
-                if (appSettings.WBsettings != null)
-                {
-                    for (int i = 0; i < appSettings.WBsettings.Count; i++)
-                    {
-                        wbSettingsCounts[i].Value = appSettings.WBsettings[i];
-                    }
-                }
-                if (appSettings.LoCLineup != null)
-                {
-                    for (int i = 0; i < appSettings.LoCLineup.Count; i++)
-                    {
-                        WBlineups[0][i].Text = appSettings.LoCLineup[i];
-                    }
-                }
-                if (appSettings.MOAKLineup != null)
-                {
-                    for (int i = 0; i < appSettings.MOAKLineup.Count; i++)
-                    {
-                        WBlineups[1][i].Text = appSettings.MOAKLineup[i];
-                    }
-                }
-                if (appSettings.defaultDQLineup != null)
-                {
-                    for (int i = 0; i < appSettings.defaultDQLineup.Count; i++)
-                    {
-                        WBlineups[2][i].Text = appSettings.defaultDQLineup[i];
-                    }
-                }
-
+                KongregateId = appSettings.KongregateId;               
             }
             else if (File.Exists("MacroSettings.txt"))
             {
@@ -225,17 +176,10 @@ namespace CQFollowerAutoclaimer
                 pf = new PFStuff(token, KongregateId);
             }
         }
-        private void login()
+
+        internal async Task<bool> login()
         {
-            Thread mt;
-            mt = new Thread(pf.LoginKong);
-            mt.Start();
-            mt.Join();
-            if (PFStuff.logres)
-            {
-                Console.Write("Successfully logged in\n");
-            }
-            else
+            if (!await pf.LoginKong())
             {
                 DialogResult dr = MessageBox.Show("Failed to log in.\nYour kong ID: " + KongregateId + "\nYour auth ticket: " + token +
                     "\nLenght of token should be 64, yours is: " + token.Length + "\nDo you want help with creating MacroSettings file?",
@@ -246,7 +190,9 @@ namespace CQFollowerAutoclaimer
                     msh.Show();
                     msh.BringToFront();
                 }
+                return false;
             }
+            return true;
         }
 
         void logoutTimer_Elapsed(object sender, ElapsedEventArgs e)
@@ -254,18 +200,19 @@ namespace CQFollowerAutoclaimer
             PlayFabClientAPI.Logout();
         }
 
-        public void startTimers()
+        public async void startTimers()
         {
             DateTime[] times = new DateTime[] { DateTime.Now };
             if (!PlayFab.PlayFabClientAPI.IsClientLoggedIn())
             {
-                login();
+                if (!await login())
+                    return;
             }
-            if (!PFStuff.logres)
-            {
-                return;
-            }
-            getData();
+            await getData();
+            autoWB.loadWBSettings();
+            autoLevel.loadALSettings();
+            autopvp.loadPVPSettings();
+
             times = getTimes(PFStuff.miracleTimes);
             int i = 0;
             foreach (Label l in timeLabels)
@@ -273,14 +220,13 @@ namespace CQFollowerAutoclaimer
                 l.SynchronizedInvoke(() => l.Text = times[i++].ToString());
             }
             nextClaim = times.Min();
-            nextclaimtime.SynchronizedInvoke(() => nextclaimtime.Text = times.Min().ToString());
-            initialFollowers = Int64.Parse(PFStuff.initialFollowers);
+            nextclaimtime.setText(times.Min().ToString());
+            initialFollowers = Int64.Parse(PFStuff.followers);
             tmr.Interval = Math.Max(3000, (times.Min() - DateTime.Now).TotalMilliseconds);
             tmr.Elapsed += OnTmrElapsed;
             tmr.Start();
-            nextDQTime = getTime(PFStuff.DQTime);
+            
             DQLevelLabel.Text = PFStuff.DQLevel;
-            DQTimeLabel.Text = nextDQTime.ToString();
             if (Int32.Parse(PFStuff.DQLevel) < 2)
             {
                 if (DQSoundBox.Checked)
@@ -292,32 +238,25 @@ namespace CQFollowerAutoclaimer
                 }
                 if (DQCalcBox.Checked)
                 {
-                    RunCalc();
+                    autoDQ.RunCalc();
                 }
             }
             else
             {
                 DateTime DQRunTime = getTime(PFStuff.DQTime);
-                //DQTimer.Interval = Math.Max(3000, (DQRunTime - DateTime.Now).TotalMilliseconds);
-                DQTimer.Interval = (nextDQTime < DateTime.Now && DQCalcBox.Checked) ? 4000 : Math.Max(4000, (nextDQTime - DateTime.Now).TotalMilliseconds);
-                DQTimer.Elapsed += DQTimer_Elapsed;
-                DQTimer.Start();
+                autoDQ.DQTimer.Interval = (autoDQ.nextDQTime < DateTime.Now && DQCalcBox.Checked) ? 8000 : Math.Max(8000, (autoDQ.nextDQTime - DateTime.Now).TotalMilliseconds);
+                autoDQ.DQTimer.Start();
             }
-
-            nextPVP = getTime(PFStuff.PVPTime);
-            PvPTimeLabel.SynchronizedInvoke(() => PvPTimeLabel.Text = nextPVP.ToString());
-            PVPTimer.Interval = Math.Max(3000, (nextPVP - DateTime.Now).TotalMilliseconds);
-            PVPTimer.Elapsed += PVPTimer_Elapsed;
-            PVPTimer.Start();
-
-            getCurr();
-            nextFreeChest = DateTime.Now.AddSeconds(PFStuff.freeChestRecharge);
-            FreeChestTimeLabel.SynchronizedInvoke(() => FreeChestTimeLabel.Text = nextFreeChest.ToString());
-            FreeChestTimer.Interval = PFStuff.freeChestRecharge * 1000;
-            FreeChestTimer.Elapsed += FreeChestTimer_Elapsed;
-            FreeChestTimer.Start();
-
-            getWebsiteData();
+            autopvp.nextPVP = getTime(PFStuff.PVPTime);
+            PvPTimeLabel.setText(autopvp.nextPVP.ToString());
+            autopvp.PVPTimer.Interval = Math.Max(3000, (autopvp.nextPVP - DateTime.Now).TotalMilliseconds);
+            autopvp.PVPTimer.Start();
+            await getCurr();
+            autoChests.nextFreeChest = DateTime.Now.AddSeconds(PFStuff.freeChestRecharge);
+            FreeChestTimeLabel.setText(autoChests.nextFreeChest.ToString());
+            autoChests.FreeChestTimer.Interval = PFStuff.freeChestRecharge * 1000;
+            autoChests.FreeChestTimer.Start();
+            autoWB.getWebsiteData();
             foreach (ComboBox c in auctionComboBoxes)
             {
                 c.Items.AddRange(auctionHouse.getAvailableHeroes());
@@ -328,28 +267,39 @@ namespace CQFollowerAutoclaimer
 
         void countdownsTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            time.SynchronizedInvoke(() => time.Text = (DateTime.Now - start).ToString("dd\\.hh\\:mm\\:ss"));
+            time.setText((DateTime.Now - start).ToString("dd\\.hh\\:mm\\:ss"));
             if (nextClaim != null)
             {
-                countdown.SynchronizedInvoke(() => countdown.Text = (nextClaim - DateTime.Now).ToString("mm\\:ss"));
+                countdown.setText((nextClaim - DateTime.Now).ToString("mm\\:ss"));
                 notifyIcon1.Text = "CQ Autoclaimer\nNext claim in " + countdown.Text;
             }
-            if (nextDQTime != null)
+            if (autoDQ.nextDQTime != null)
             {
-                DQCountdownLabel.SynchronizedInvoke(() => DQCountdownLabel.Text = (nextDQTime < DateTime.Now ? "-" : "") + (nextDQTime - DateTime.Now).ToString("hh\\:mm\\:ss"));
+                DQCountdownLabel.setText((autoDQ.nextDQTime < DateTime.Now ? "-" : "") + (autoDQ.nextDQTime - DateTime.Now).ToString("hh\\:mm\\:ss"));
             }
-            if (nextFreeChest != null)
+            if (autoChests.nextFreeChest != null)
             {
-                FreeChestCountdownLabel.SynchronizedInvoke(() => FreeChestCountdownLabel.Text = (nextFreeChest < DateTime.Now ? "-" : "") + (nextFreeChest - DateTime.Now).ToString("hh\\:mm\\:ss"));
+                FreeChestCountdownLabel.setText((autoChests.nextFreeChest < DateTime.Now ? "-" : "") + (autoChests.nextFreeChest - DateTime.Now).ToString("hh\\:mm\\:ss"));
             }
-            if (nextPVP != null)
+            if (autopvp.nextPVP != null)
             {
-                PvPCountdownLabel.SynchronizedInvoke(() => PvPCountdownLabel.Text = (nextPVP < DateTime.Now ? "-" : "") + (nextPVP - DateTime.Now).ToString("hh\\:mm\\:ss"));
+                PvPCountdownLabel.setText((autopvp.nextPVP < DateTime.Now ? "-" : "") + (autopvp.nextPVP - DateTime.Now).ToString("hh\\:mm\\:ss"));
             }
-            if (nextWBRefresh != null)
+            if (autoWB.nextWBRefresh != null)
             {
-                WBCountdownLabel.SynchronizedInvoke(() => WBCountdownLabel.Text = (nextWBRefresh < DateTime.Now ? "-" : "") + (nextWBRefresh - DateTime.Now).ToString("hh\\:mm\\:ss"));
-                AHCountdownLabel.SynchronizedInvoke(() => AHCountdownLabel.Text = (nextWBRefresh < DateTime.Now ? "-" : "") + (nextWBRefresh - DateTime.Now).ToString("hh\\:mm\\:ss"));
+                WBCountdownLabel.setText((autoWB.nextWBRefresh < DateTime.Now ? "-" : "") + (autoWB.nextWBRefresh - DateTime.Now).ToString("hh\\:mm\\:ss"));                
+                AHCountdownLabel.setText((autoWB.nextWBRefresh < DateTime.Now ? "-" : "") + (autoWB.nextWBRefresh - DateTime.Now).ToString("hh\\:mm\\:ss"));
+            }
+            if (autoLevel.nextLevelCheck != null)
+            {
+                ALCountdownLabel.setText((autoLevel.nextLevelCheck < DateTime.Now ? "-" : "") + (autoLevel.nextLevelCheck - DateTime.Now).ToString("hh\\:mm\\:ss"));                
+            }
+            for (int i = 0; i < 3; i++)
+            {
+                if (auctionHouse.auctionDates[i] != null)
+                {
+                    auctionCountdowns[i].setText((auctionHouse.auctionDates[i] - DateTime.Now).ToString("hh\\:mm\\:ss"));
+                }
             }
 
         }
@@ -357,32 +307,49 @@ namespace CQFollowerAutoclaimer
         #endregion
 
         #region DATA RETRIEVE
-        private void getData()
+
+        internal async Task getData()
         {
+            await pf.GetGameData2();
+            autoDQ.nextDQTime = getTime(PFStuff.DQTime);
+            autoDQ.DQTimer.Interval = (autoDQ.nextDQTime < DateTime.Now && DQCalcBox.Checked) ? 4000 : Math.Max(4000, (autoDQ.nextDQTime - DateTime.Now).TotalMilliseconds);
+            DQLevelLabel.SynchronizedInvoke(() => DQLevelLabel.Text = PFStuff.DQLevel);
+            DQTimeLabel.SynchronizedInvoke(() => DQTimeLabel.Text = autoDQ.nextDQTime.ToString());
+        }
+        internal void getData3()
+        {
+            //return await pf.GetGameData();
+
             Thread mt;
             mt = new Thread(pf.GetGameData);
             mt.Start();
             mt.Join();
+            autoDQ.nextDQTime = getTime(PFStuff.DQTime);
+            autoDQ.DQTimer.Interval = (autoDQ.nextDQTime < DateTime.Now && DQCalcBox.Checked) ? 4000 : Math.Max(4000, (autoDQ.nextDQTime - DateTime.Now).TotalMilliseconds);
+            DQLevelLabel.SynchronizedInvoke(() => DQLevelLabel.Text = PFStuff.DQLevel);
+            DQTimeLabel.SynchronizedInvoke(() => DQTimeLabel.Text = autoDQ.nextDQTime.ToString());
         }
 
-        private void getCurr()
+        internal async Task<bool> getCurr()
         {
-            Thread mt;
-            mt = new Thread(pf.getCurrencies);
-            mt.Start();
-            mt.Join();
+            bool b = false;
+            while(!(b = await pf.getCurrencies2())) {}
+
             if (PFStuff.freeChestAvailable && freeChestBox.Checked)
             {
-                PFStuff.chestMode = "normal";
-                openChest();
+                taskQueue.Enqueue(() => pf.sendOpen("normal"), "chest");
             }
-            nextFreeChest = DateTime.Now.AddSeconds(PFStuff.freeChestRecharge);
-            FreeChestTimeLabel.SynchronizedInvoke(() => FreeChestTimeLabel.Text = nextFreeChest.ToString());
-            FreeChestTimer.Interval = PFStuff.freeChestAvailable == true ? 6000 : PFStuff.freeChestRecharge * 1000;
+            autoChests.nextFreeChest = DateTime.Now.AddSeconds(PFStuff.freeChestRecharge);
 
-            NormalChestLabel.SynchronizedInvoke(() => NormalChestLabel.Text = PFStuff.normalChests.ToString());
-            HeroChestLabel.SynchronizedInvoke(() => HeroChestLabel.Text = PFStuff.heroChests.ToString());
+            FreeChestTimeLabel.setText(autoChests.nextFreeChest.ToString());            
+            NormalChestLabel.setText(PFStuff.normalChests.ToString());
+            HeroChestLabel.setText(PFStuff.heroChests.ToString());
+
+            autoChests.FreeChestTimer.Interval = PFStuff.freeChestAvailable == true ? 6000 : Math.Max(4000, PFStuff.freeChestRecharge * 1000);
+            return b;
         }
+
+
 
         private string getSetting(string s)
         {
@@ -399,7 +366,8 @@ namespace CQFollowerAutoclaimer
                 return s.Trim();
             }
         }
-        public DateTime getTime(string t)
+
+        static public DateTime getTime(string t)
         {
             DateTime time = epoch.AddMilliseconds(Convert.ToInt64(t)).ToLocalTime();
             return time;
@@ -421,72 +389,48 @@ namespace CQFollowerAutoclaimer
         #endregion
 
         #region CHESTS
-        void FreeChestTimer_Elapsed(object sender, ElapsedEventArgs e)
+        async void FreeChestTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
             if (!PlayFab.PlayFabClientAPI.IsClientLoggedIn())
             {
-                login();
+                await login();
             }
-            getCurr();
-           
+            await getCurr();
         }
-
 
         private void openNormalButton_Click(object sender, EventArgs e)
         {
-            PFStuff.chestMode = "normal";
-            chestsToOpen = (int)chestToOpenCount.Value;
-            openNormalButton.Enabled = false;
-            openHeroButton.Enabled = false;
-            chestTimer.Interval = 4000;
-            chestTimer.Elapsed += chestTimer_Elapsed;
-            chestTimer.Start();
+            openNormalButton.SynchronizedInvoke(() => openNormalButton.Enabled = false);
+            openHeroButton.SynchronizedInvoke(() => openHeroButton.Enabled = false);
+            for (int i = 0; i < chestToOpenCount.Value; i++)
+            {
+                taskQueue.Enqueue(() => autoChests.openChest("normal"), "chest");
+            }
         }
 
         private void openHeroButton_Click(object sender, EventArgs e)
         {
-            PFStuff.chestMode = "hero";
-            chestsToOpen = (int)chestToOpenCount.Value;
-            openNormalButton.Enabled = false;
-            openHeroButton.Enabled = false;
-            chestTimer.Interval = 4000;
-            chestTimer.Elapsed += chestTimer_Elapsed;
-            chestTimer.Start();
-        }
-
-        void chestTimer_Elapsed(object sender, ElapsedEventArgs e)
-        {
-            if (chestsToOpen == 0)
+            openNormalButton.SynchronizedInvoke(() => openNormalButton.Enabled = false);
+            openHeroButton.SynchronizedInvoke(() => openHeroButton.Enabled = false);
+            for (int i = 0; i < chestToOpenCount.Value; i++)
             {
-                openNormalButton.SynchronizedInvoke(() => openNormalButton.Enabled = true);
-                openHeroButton.SynchronizedInvoke(() => openHeroButton.Enabled = true);
-                chestTimer.Stop();
-            }
-            else
-            {
-                openChest();
-                chestsToOpen--;
+                taskQueue.Enqueue(() => autoChests.openChest("hero"), "chest");
             }
         }
-        private void refreshChestsButton_Click(object sender, EventArgs e)
+
+        private async void refreshChestsButton_Click(object sender, EventArgs e)
         {
-            getCurr();
+            await getCurr();
         }
 
-
-        private void freeChestBox_CheckedChanged(object sender, EventArgs e)
+        private async void freeChestBox_CheckedChanged(object sender, EventArgs e)
         {
             if (freeChestBox.Checked)
             {
                 chestIndicator.BackColor = Color.Green;
                 if ((DateTime.Now - start).TotalSeconds > 3)
                 {
-                    getCurr();
-                    if (PFStuff.freeChestAvailable)
-                    {
-                        PFStuff.chestMode = "normal";
-                        openChest();
-                    }
+                    await getCurr();
                 }
             }
             else
@@ -496,62 +440,22 @@ namespace CQFollowerAutoclaimer
         }
 
 
-        void openChest()
-        {
-            Thread mt;
-            mt = new Thread(pf.sendOpen);
-            mt.Start();
-            mt.Join();
-            string rew = "Got ";
-            rew += PFStuff.chestResult < 0 ? Constants.heroNames[-PFStuff.chestResult] : Constants.rewardNames[PFStuff.chestResult];
-            ChestLog.SynchronizedInvoke(() => ChestLog.AppendText(rew + "\n"));
-        }
 
         #endregion
 
         #region PVP
-        void PVPTimer_Elapsed(object sender, ElapsedEventArgs e)
-        {
-            if (autoPvPCheckbox.Checked)
-            {
-                if (!PlayFab.PlayFabClientAPI.IsClientLoggedIn())
-                {
-                    login();
-                }
-                Thread mt;
-                PFStuff.LeaderboardRange = Math.Max(3, 2 * (int)Math.Max(playersAboveCount.Value, playersBelowCount.Value + 1));
-                mt = new Thread(pf.getLeaderboard);
-                mt.Start();
-                mt.Join();
-                Random r = new Random();
-                do
-                {
-                    PFStuff.PVPEnemyIndex = r.Next(0, PFStuff.nearbyPlayersIDs.Length);
-                } while (PFStuff.PVPEnemyIndex == PFStuff.userIndex ||
-                        PFStuff.PVPEnemyIndex > PFStuff.userIndex + (int)playersBelowCount.Value ||
-                        PFStuff.PVPEnemyIndex < PFStuff.userIndex - (int)playersAboveCount.Value);
 
-                mt = new Thread(pf.sendPVPFight);
-                mt.Start();
-                mt.Join();
-                nextPVP = getTime(PFStuff.PVPTime);
-                PVPTimer.Interval = Math.Max(5000, (nextPVP - DateTime.Now).TotalMilliseconds);
-                PvPLog.SynchronizedInvoke(() => PvPLog.AppendText(PFStuff.battleResult));
-                PvPTimeLabel.SynchronizedInvoke(() => PvPTimeLabel.Text = nextPVP.ToString());
-            }
-        }
-
-        private void autoPvPCheckbox_CheckedChanged(object sender, EventArgs e)
+        private async void autoPvPCheckbox_CheckedChanged(object sender, EventArgs e)
         {
             if (autoPvPCheckbox.Checked)
             {
                 PVPIndicator.BackColor = Color.Green;
                 if ((DateTime.Now - start).TotalSeconds > 3)
                 {
-                    getData();
-                    nextPVP = getTime(PFStuff.PVPTime);
-                    PvPTimeLabel.SynchronizedInvoke(() => PvPTimeLabel.Text = nextPVP.ToString());
-                    PVPTimer.Interval = Math.Max(8000, (nextPVP - DateTime.Now).TotalMilliseconds);
+                    await getData();
+                    autopvp.nextPVP = getTime(PFStuff.PVPTime);
+                    PvPTimeLabel.setText(autopvp.nextPVP.ToString());
+                    autopvp.PVPTimer.Interval = Math.Max(8000, (autopvp.nextPVP - DateTime.Now).TotalMilliseconds);
                 }
             }
             else
@@ -562,107 +466,10 @@ namespace CQFollowerAutoclaimer
         #endregion
 
         #region DQ
-        void DQTimer_Elapsed(object sender, ElapsedEventArgs e)
+        
+        private async void DQRefreshButton_Click(object sender, EventArgs e)
         {
-            if (DQSoundBox.Checked)
-            {
-                using (var soundPlayer = new SoundPlayer(@"c:\Windows\Media\Windows Notify.wav"))
-                {
-                    soundPlayer.Play();
-                }
-            }
-            if (DQCalcBox.Checked || DQBestBox.Checked)
-            {
-                fightDQWithPresetLineup();
-                //RunCalc();
-            }
-            else
-            {
-                getData();
-                nextDQTime = getTime(PFStuff.DQTime);
-                DQTimer.Interval = (nextDQTime < DateTime.Now && DQCalcBox.Checked) ? 4000 : Math.Max(4000, (nextDQTime - DateTime.Now).TotalMilliseconds);
-                DQLevelLabel.SynchronizedInvoke(() => DQLevelLabel.Text = PFStuff.DQLevel);
-                DQTimeLabel.SynchronizedInvoke(() => DQTimeLabel.Text = nextDQTime.ToString());
-            }
-        }
-
-        void fightDQWithPresetLineup()
-        {
-            List<string> DQl = new List<string>();
-            string s = "";
-            for (int i = 0; i < WBlineups[2].Count; i++)
-            {
-                WBlineups[2][i].SynchronizedInvoke(() => s = WBlineups[2][i].Text);
-                DQl.Add(s);
-            }
-
-            if (DQl.Any(x => x != ""))
-            {
-                PFStuff.DQlineup = getLineup(4, 0);
-                currentDQ = int.Parse(PFStuff.DQLevel);
-                calcStatus.SynchronizedInvoke(() => calcStatus.Text = "Using best lineup.");
-                DQFightTimer.Interval = 5000;
-                DQFightTimer.Elapsed += DQFightTimer_Elapsed;
-                DQFightTimer.Start();
-            }
-            else if (DQCalcBox.Checked)
-            {
-                RunCalc();
-            }
-            else
-            {
-                calcStatus.SynchronizedInvoke(() => calcStatus.Text = "Done");
-            }
-        }
-
-        void DQFightTimer_Elapsed(object sender, ElapsedEventArgs e)
-        {
-            if (!PlayFab.PlayFabClientAPI.IsClientLoggedIn())
-            {
-                login();
-            }
-            Thread mt;
-            mt = new Thread(pf.sendDQSolution);
-            mt.Start();
-            mt.Join();
-            if (DQFailedAttempts >= 3)
-            {
-                DQFightTimer.Stop();
-                bool b = false;
-                DQCalcBox.SynchronizedInvoke(() => b = DQCalcBox.Checked);
-                if (b)
-                    RunCalc();
-            }
-            else if (PFStuff.DQResult)
-            {
-                DQFailedAttempts = 0;
-                DQLevelLabel.SynchronizedInvoke(() => DQLevelLabel.Text = PFStuff.DQLevel);
-                if (currentDQ == int.Parse(PFStuff.DQLevel))
-                {
-                    DQFightTimer.Stop();
-                    bool b = false;
-                    DQCalcBox.SynchronizedInvoke(() => b = DQCalcBox.Checked);
-                    if (b)
-                        RunCalc();
-                }
-                else
-                {
-                    currentDQ = int.Parse(PFStuff.DQLevel);
-                }
-            }
-            else
-            {
-                DQFailedAttempts++;
-            }
-        }
-
-        private void DQRefreshButton_Click(object sender, EventArgs e)
-        {
-            getData();
-            nextDQTime = getTime(PFStuff.DQTime);
-            DQTimer.Interval = (nextDQTime < DateTime.Now && DQCalcBox.Checked) ? 4000 : Math.Max(4000, (nextDQTime - DateTime.Now).TotalMilliseconds);
-            DQLevelLabel.SynchronizedInvoke(() => DQLevelLabel.Text = PFStuff.DQLevel);
-            DQTimeLabel.SynchronizedInvoke(() => DQTimeLabel.Text = nextDQTime.ToString());
+            await getData();
         }
 
         private void DQCalcBox_CheckedChanged(object sender, EventArgs e)
@@ -674,128 +481,47 @@ namespace CQFollowerAutoclaimer
             }
             else
             {
-                DQIndicator.BackColor = Color.Red;
+                if (DQBestBox.Checked)
+                {
+                    DQIndicator.BackColor = Color.Yellow;
+                }
+                else
+                {
+                    DQIndicator.BackColor = Color.Red;
+                }
             }
             if (DQCalcBox.Checked && (DateTime.Now - start).TotalSeconds > 3)
             {
                 DialogResult dr = MessageBox.Show("Do you want to run the auto-solve now?", "Calc Question", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
                 if (dr == DialogResult.Yes)
                 {
-                    fightDQWithPresetLineup();
+                    autoDQ.fightDQWithPresetLineup();
                 }
             }
-        }
-
-
-        void RunCalc()
-        {
-            if (File.Exists("CQMacroCreator.exe") && File.Exists("CosmosQuest.exe"))
-            {
-                DQTimer.Stop();
-                calcStatus.SynchronizedInvoke(() => calcStatus.Text = "Calc is running");
-                calcOut = "";
-                var proc = new Process();
-                proc.StartInfo.FileName = "CQMacroCreator";
-                proc.StartInfo.Arguments = "quick";
-
-                proc.StartInfo.RedirectStandardOutput = true;
-                proc.StartInfo.RedirectStandardError = true;
-                proc.EnableRaisingEvents = true;
-                proc.StartInfo.CreateNoWindow = true;
-                proc.StartInfo.UseShellExecute = false;
-
-                proc.ErrorDataReceived += proc_ErrorDataReceived;
-                proc.OutputDataReceived += proc_DataReceived;
-                proc.Exited += proc_Exited;
-                proc.Start();
-
-                proc.BeginErrorReadLine();
-                proc.BeginOutputReadLine();
-
-                proc.WaitForExit();
-            }
-            else
-            {
-                MessageBox.Show("CQMacroCreator.exe or CosmosQuest.exe file not found");
-            }
-        }
-
-        void proc_ErrorDataReceived(object sender, DataReceivedEventArgs e)
-        {
-            if (e.Data != null)
-            {
-                calcErrorOut += e.Data + "\n";
-            }
-        }
-
-        void proc_Exited(object sender, EventArgs e)
-        {
-            getData();
-            calcStatus.SynchronizedInvoke(() => calcStatus.Text = "Calc finished");
-            nextDQTime = getTime(PFStuff.DQTime);
-            //DQTimer.Interval = Math.Max(3000, (nextDQTime - DateTime.Now).TotalMilliseconds);
-            DQTimer.Interval = (nextDQTime < DateTime.Now && DQCalcBox.Checked) ? 4000 : Math.Max(4000, (nextDQTime - DateTime.Now).TotalMilliseconds);
-            DQLevelLabel.SynchronizedInvoke(() => DQLevelLabel.Text = PFStuff.DQLevel);
-            DQTimeLabel.SynchronizedInvoke(() => DQTimeLabel.Text = nextDQTime.ToString());
-            DQTimer.Start();
-            if (!string.IsNullOrEmpty(calcErrorOut))
-            {
-                using (StreamWriter sw = new StreamWriter("CQMCErrors.txt"))
-                {
-                    sw.WriteLine(DateTime.Now);                    
-                    sw.WriteLine(calcErrorOut);
-                }
-            }
-            List<string> DQl = new List<string>();
-            string s = "";
-            for (int i = 0; i < WBlineups[2].Count; i++)
-            {
-                WBlineups[2][i].SynchronizedInvoke(() => s = WBlineups[2][i].Text);
-                DQl.Add(s);
-            }
-
-            if (DQl.All(x => x == "") && calcOut != "")
-            {
-                JObject solution = JObject.Parse(calcOut);
-                var mon = solution["validSolution"]["solution"]["monsters"];
-                List<string> DQLineup = new List<string>();
-
-                for (int i = 0; i < mon.Count(); i++)
-                {
-                    DQLineup.Add(Constants.names[int.Parse(mon[i]["id"].ToString()) + Constants.heroesInGame]);
-                    WBlineups[2][5 - i].SynchronizedInvoke(() => WBlineups[2][5 - i].Text = Constants.names[int.Parse(mon[i]["id"].ToString()) + Constants.heroesInGame]);
-                }
-                appSettings = AppSettings.loadSettings();
-                appSettings.defaultDQLineup = DQLineup;
-                appSettings.saveSettings();
-            }
-        }
-
-        void proc_DataReceived(object sender, DataReceivedEventArgs e)
-        {
-            if (e.Data != null)
-            {
-                calcOut += e.Data + "\n";
-            }
-        }
-
+        }       
+              
         private void runCalcButton_Click(object sender, EventArgs e)
         {
-            fightDQWithPresetLineup();
+            autoDQ.fightDQWithPresetLineup();
         }
         #endregion
-
+        
         #region MIRACLES
-        private void OnTmrElapsed(Object source, System.Timers.ElapsedEventArgs e)
+        async private void OnTmrElapsed(Object source, System.Timers.ElapsedEventArgs e)
         {
             if (!PlayFab.PlayFabClientAPI.IsClientLoggedIn())
             {
-                login();
+                await login();
             }
-            Thread mt;
-            mt = new Thread(pf.sendClaimAll);
-            mt.Start();
-            mt.Join();
+            taskQueue.Enqueue(() => claimMiracles(), "miracle");
+        }
+        public async Task<bool> claimMiracles()
+        {
+            if (!PlayFab.PlayFabClientAPI.IsClientLoggedIn())
+            {
+                await login();
+            }
+            bool b = await pf.sendClaimAll();
             DateTime[] times;
             times = getTimes(PFStuff.miracleTimes);
             int i = 0;
@@ -806,8 +532,9 @@ namespace CQFollowerAutoclaimer
             nextClaim = times.Min();
             nextclaimtime.SynchronizedInvoke(() => nextclaimtime.Text = times.Min().ToString());
             claimAmount.SynchronizedInvoke(() => claimAmount.Text = (++claimCount).ToString());
-            followersClaimed.SynchronizedInvoke(() => followersClaimed.Text = (Int64.Parse(PFStuff.initialFollowers) - initialFollowers).ToString());
+            followersClaimed.SynchronizedInvoke(() => followersClaimed.Text = (Int64.Parse(PFStuff.followers) - initialFollowers).ToString());
             tmr.Interval = Math.Max(1000, (times.Min() - DateTime.Now).TotalMilliseconds);
+            return b;
         }
 
         #endregion
@@ -888,7 +615,7 @@ namespace CQFollowerAutoclaimer
 
         #region WB
 
-        int[] getLineup(int ID, uint followers)
+        internal int[] getLineup(int ID, uint followers)
         {
             int[] lineup;
             List<int> temp = new List<int>();
@@ -937,172 +664,29 @@ namespace CQFollowerAutoclaimer
             return lineup;
         }
 
-        string shortBossName(string longName)
-        {
-            switch (longName)
-            {
-                case ("LORD OF CHAOS"):
-                    return "LoC";
-                case ("MOTHER OF ALL KODAMAS"):
-                    return "MOAK";
-                default:
-                    return "Unknowm";
-            }
-        }
-
-        public void getWebsiteData()
-        {
-            PFStuff.getWebsiteData(KongregateId);
-            currentBossLabel.SynchronizedInvoke(() => currentBossLabel.Text = shortBossName(PFStuff.WBName)
-                + (PFStuff.wbMode == 0 ? " NH" : " HA") + ", Attacks left: " + PFStuff.attacksLeft);
-            auctionHouse.loadAuctions(false);
-            
-            WBTimer.Interval = Math.Min(Math.Max(PFStuff.attacksLeft * 5000, 20000), auctionHouse.getAuctionInterval());
-            nextWBRefresh = DateTime.Now.AddMilliseconds(WBTimer.Interval);
-        }
-
-        void WBTimer_Elapsed(object sender, ElapsedEventArgs e)
-        {
-            
-            getWebsiteData();
-            //currentBossLabel.Text = shortBossName(PFStuff.WBName) + (PFStuff.wbMode == 0 ? " NH" : " HA");
-            if (autoWBCheckbox.Checked)
-            {
-                decimal attacksToDo = 0;
-                decimal requirement = 99;
-                int[] lineup = new int[2];
-                int r = PFStuff.getWBData((PFStuff.WB_ID).ToString());
-                if (r == -1)
-                {
-                    MessageBox.Show("You haven't enabled your username on website. Auto-WB won't work without enabled username.");
-                }
-                else
-                {
-                    if (PFStuff.WBName == "LORD OF CHAOS" && PFStuff.wbMode == 0) //loc no heroes
-                    {
-                        attacksToDo = LOCNHAttacksCount.Value;
-                        requirement = LOCNHRequirementCount.Value;
-                        lineup = getLineup(0, uint.Parse(PFStuff.initialFollowers));
-                    }
-                    else if (PFStuff.WBName == "LORD OF CHAOS" && PFStuff.wbMode == 1) //loc heroes allowed
-                    {
-                        attacksToDo = LOCHAAttacksCount.Value;
-                        requirement = LOCHARequirementCount.Value;
-                        lineup = getLineup(1, uint.Parse(PFStuff.initialFollowers));
-                    }
-                    else if (PFStuff.WBName == "MOTHER OF ALL KODAMAS" && PFStuff.wbMode == 0) //moak no heroes
-                    {
-                        attacksToDo = MOAKNHAttacksCount.Value;
-                        requirement = MOAKNHRequirementCount.Value;
-                        lineup = getLineup(2, uint.Parse(PFStuff.initialFollowers));
-                    }
-                    else if (PFStuff.WBName == "MOTHER OF ALL KODAMAS" && PFStuff.wbMode == 1) //moak heroes allowed
-                    {
-                        attacksToDo = MOAKHAAttacksCount.Value;
-                        requirement = MOAKHARequirementCount.Value;
-                        lineup = getLineup(3, uint.Parse(PFStuff.initialFollowers));
-                    }
-
-                    if (lineup.Contains(-1))
-                    {
-                        MessageBox.Show("You have empty slots in your lineup. You must use all 6 slots in your lineup. Auto-WB disabled.");
-                        autoWBCheckbox.Checked = false;
-                        return;
-                    }
-                    attacksToDo -= r;
-                    if (attacksToDo <= 0)
-                        return;
-                    getData();
-                    if (PFStuff.WBchanged)
-                        notAskedYet = true;
-                    if (PFStuff.wbAttacksAvailable >= requirement - r)
-                    {
-                        DialogResult dr = DialogResult.No;
-                        if (safeModeWB.Checked)
-                        {
-                            if (notAskedYet)
-                            {
-                                string lineupNames = "";
-                                foreach (int id in lineup)
-                                {
-                                    lineupNames += " " + Constants.names[id + Constants.heroesInGame];
-                                }
-                                dr = MessageBox.Show("Automater wants to attack " + attacksToDo + " times with: " + lineupNames +". Continue?" , "WB Attack Confirmation",
-                                MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
-                                notAskedYet = false;
-                            }
-                        }
-                        else
-                        {
-                            dr = DialogResult.Yes;
-                        }
-                        if (dr == DialogResult.Yes)
-                        {
-                            PFStuff.WBlineup = lineup;
-                            attacksToPerform = (int)attacksToDo;
-                            WBAttackTimer.Interval = 10000; //10s
-                            WBAttackTimer.Elapsed += WBAttackTimer_Elapsed;
-                            WBAttackTimer.Start();
-                        }
-                    }
-                }
-            }
-        }
-
-        void WBAttackTimer_Elapsed(object sender, ElapsedEventArgs e)
-        {
-            if (attacksToPerform == 0)
-            {
-                WBAttackTimer.Stop();
-            }
-            else
-            {
-                fightWB();
-                attacksToPerform--;
-            }
-        }
-
-        void fightWB()
-        {
-            WBLogString += DateTime.Now.ToString() + "\n\t" + PFStuff.WBName + (PFStuff.wbMode == 1 ? " Heroes Allowed" : " No Heroes") + " fought with:";
-            foreach (int i in PFStuff.WBlineup)
-            {
-                WBLogString += " " + Constants.names[i + Constants.heroesInGame];
-            }
-            WBLogString += "\n";
-            if (wbl != null)
-            {
-                wbl.richTextBox1.Text = WBLogString;
-            }
-            Thread mt;
-            mt = new Thread(pf.sendWBFight);
-            mt.Start();
-            mt.Join();
-        }
-
         private void autoWBCheckbox_CheckedChanged(object sender, EventArgs e)
         {
             if (autoWBCheckbox.Checked)
             {
-                if ((DateTime.Now - start).TotalSeconds > 3)
+                if ((DateTime.Now - start).TotalSeconds > 10)
                 {
-                    DialogResult dr = MessageBox.Show("Warning: auto-WB will work correctly only if you enabled your username on webiste. Are you sure you enabled your username?", "WB Name Question",
+                    DialogResult dr = MessageBox.Show("Warning: auto-WB will work correctly only if you enabled your username on website. Are you sure you've enabled your username?", "WB Name Question",
                         MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
                     if (dr == DialogResult.Yes)
                     {
-                        WBIndicator.BackColor = Color.Green;
+                        WBIndicator.BackColor = safeModeWB.Checked ? Color.Yellow : Color.Green;
                         safeModeWB.Enabled = true;
                     }
                     else
                     {
                         autoWBCheckbox.Checked = false;
                         WBIndicator.BackColor = Color.Red;
-                        safeModeWB.Enabled = false;
+                        //safeModeWB.Enabled = false;
                     }
                 }
                 else
                 {
-                    WBIndicator.BackColor = Color.Green;
+                    WBIndicator.BackColor = safeModeWB.Checked ? Color.Yellow : Color.Green;
                     safeModeWB.Enabled = true;
                 }
             }
@@ -1131,10 +715,11 @@ namespace CQFollowerAutoclaimer
         {
             if (wbl == null)
             {
-                wbl = new WBLog(ref WBLogString);
+                wbl = new WBLog(ref autoWB.WBLogString);
             }
             wbl.Show();
         }
+
         #endregion
 
         private void saveAHSettingsButton_Click(object sender, EventArgs e)
@@ -1142,9 +727,96 @@ namespace CQFollowerAutoclaimer
             auctionHouse.saveSettings();
         }
 
+        private async void auctionHero1Combo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            await auctionHouse.getAuctionInterval();
+        }
 
+        private void auctionHero1Box_CheckedChanged(object sender, EventArgs e)
+        {
+            if (auctionHero1Box.Checked)
+            {
+                ah1Indicator.BackColor = Color.Green;
+            }
+            else
+            {
+                ah1Indicator.BackColor = Color.Red;
+            }
+        }
 
+        private void auctionHero2Box_CheckedChanged(object sender, EventArgs e)
+        {
+            if (auctionHero2Box.Checked)
+            {
+                ah2Indicator.BackColor = Color.Green;
+            }
+            else
+            {
+                ah2Indicator.BackColor = Color.Red;
+            }
+        }
 
+        private void auctionHero3Box_CheckedChanged(object sender, EventArgs e)
+        {
+            if (auctionHero3Box.Checked)
+            {
+                ah3Indicator.BackColor = Color.Green;
+            }
+            else
+            {
+                ah3Indicator.BackColor = Color.Red;
+            }
+        }
 
+        private void DQBestBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (DQCalcBox.Checked)
+            {
+                DQIndicator.BackColor = Color.Green;
+            }
+            else if (DQBestBox.Checked)
+            {
+                DQIndicator.BackColor = Color.Yellow;
+            }
+            else
+            {
+                DQIndicator.BackColor = Color.Red;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            autoLevel.saveALSettings();
+        }
+
+        private void autoLevelCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            if(autoLevelCheckbox.Checked)
+            {
+                ALIndicator.BackColor = Color.Green;
+                autoLevel.levelTimer.Interval = 60 * 1000;
+                autoLevel.nextLevelCheck = DateTime.Now.AddMilliseconds(autoLevel.levelTimer.Interval);
+            }
+            else
+            {
+                ALIndicator.BackColor = Color.Red;
+            }
+        }
+
+        private void safeModeWB_CheckedChanged(object sender, EventArgs e)
+        {
+            if (safeModeWB.Checked && autoWBCheckbox.Checked)
+            {
+                WBIndicator.BackColor = Color.Orange;
+            }
+            else if (autoWBCheckbox.Checked)
+            {
+                WBIndicator.BackColor = Color.Green;
+            }
+            else
+            {
+                WBIndicator.BackColor = Color.Red;
+            }
+        }
     }
 }

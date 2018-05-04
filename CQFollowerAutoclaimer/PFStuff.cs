@@ -267,6 +267,9 @@ namespace CQFollowerAutoclaimer
             {
                 freeChestRecharge = currenciesTask.Result.VirtualCurrencyRechargeTimes["BK"].SecondsToRecharge;
                 normalChests = int.Parse(currenciesTask.Result.VirtualCurrency["PK"].ToString());
+                pranaGems = int.Parse(currenciesTask.Result.VirtualCurrency["PG"].ToString());
+                cosmicCoins = int.Parse(currenciesTask.Result.VirtualCurrency["CC"].ToString());
+                ascensionSpheres = int.Parse(currenciesTask.Result.VirtualCurrency["AS"].ToString());
                 heroChests = int.Parse(currenciesTask.Result.VirtualCurrency["KU"].ToString()) / 10;
                 freeChestAvailable = currenciesTask.Result.VirtualCurrency["BK"].ToString() == "1" ? true : false;
                 return true;
@@ -274,42 +277,7 @@ namespace CQFollowerAutoclaimer
             return false;
         }
 
-        public void getCurrencies()
-        {
-            var request = new GetUserInventoryRequest();
-            var currenciesTask = PlayFabClientAPI.GetUserInventoryAsync(request);
-            bool _running = true;
-            do
-            {
-                while (_running)
-                {
-                    if (currenciesTask.IsCompleted)
-                    {
-                        var apiError = currenciesTask.Result.Error;
-                        var apiResult = currenciesTask.Result.Result;
-
-                        if (apiError != null)
-                        {
-                            return;
-                        }
-                        else if (apiResult != null)
-                        {
-                            freeChestRecharge = apiResult.VirtualCurrencyRechargeTimes["BK"].SecondsToRecharge;
-                            normalChests = int.Parse(apiResult.VirtualCurrency["PK"].ToString());
-                            pranaGems = int.Parse(apiResult.VirtualCurrency["PG"].ToString());
-                            cosmicCoins = int.Parse(apiResult.VirtualCurrency["CC"].ToString());
-                            ascensionSpheres = int.Parse(apiResult.VirtualCurrency["AS"].ToString());
-                            heroChests = int.Parse(apiResult.VirtualCurrency["KU"].ToString()) / 10;
-                            freeChestAvailable = apiResult.VirtualCurrency["BK"].ToString() == "1" ? true : false;
-                            return;
-                        }
-                        _running = false;
-                    }
-                    Thread.Sleep(1);
-                }
-            } while (currenciesTask.Status != TaskStatus.RanToCompletion);
-            return;
-        }
+      
 
         internal static void getUsername(string id)
         {
@@ -513,7 +481,7 @@ namespace CQFollowerAutoclaimer
                         break;
                 }
                 battleResult += " vs " + json["data"]["city"]["log"][0]["enemy"].ToString() + ", ELO " + int.Parse(json["data"]["city"]["log"][0]["rankd"].ToString()).ToString("+0;-#") +
-                    ", Followers +" + json["data"]["city"]["log"][0]["earn"].ToString() + "\n";
+                    ", Star Dust +" + json["data"]["city"]["log"][0]["earn"].ToString() + "\n";
                 return true;
             }
         }

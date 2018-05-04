@@ -2,6 +2,17 @@
 
 CQAutomater is a tool that runs in the background and automatically claims your miracles as soon as they are ready. It can also open the daily free chest, start battles with random person when your hourly battle is ready, automatically send a predefined lineup to beat DQ or run the calc to solve it and finally fight World Bosses.
 
+# v 0.9
+#### General:
+Implemented Task Queue - now game requests will be added to queue to prevent request spam;
+
+Added bugs so I can fix them later. :D
+
+#### Auto-AH:
+Fully implemented.
+
+#### Auto-Level
+Every 4h, after DQ and after WB dies an autoleveler will run if you enable it. It will automatically level chosen heroes with prana/CC/AS. You can also convert AS to prana. 
 
 # v 0.7
 #### General:

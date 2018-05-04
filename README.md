@@ -5,6 +5,7 @@ CQAutomater is a tool that runs in the background and automatically claims your 
 # v 0.9
 #### General:
 Implemented Task Queue - now game requests will be added to queue to prevent request spam;
+Added bugs so I can fix them later. :D
 
 #### Auto-AH:
 Fully implemented.

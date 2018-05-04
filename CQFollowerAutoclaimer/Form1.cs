@@ -195,9 +195,13 @@ namespace CQFollowerAutoclaimer
             return true;
         }
 
-        void logoutTimer_Elapsed(object sender, ElapsedEventArgs e)
+        async void logoutTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
             PlayFabClientAPI.Logout();
+            if (!PlayFab.PlayFabClientAPI.IsClientLoggedIn())
+            {
+                await login();
+            }
         }
 
         public async void startTimers()
@@ -310,6 +314,10 @@ namespace CQFollowerAutoclaimer
 
         internal async Task getData()
         {
+            if (!PlayFab.PlayFabClientAPI.IsClientLoggedIn())
+            {
+                await login();
+            }
             await pf.GetGameData2();
             autoDQ.nextDQTime = getTime(PFStuff.DQTime);
             autoDQ.DQTimer.Interval = (autoDQ.nextDQTime < DateTime.Now && DQCalcBox.Checked) ? 4000 : Math.Max(4000, (autoDQ.nextDQTime - DateTime.Now).TotalMilliseconds);

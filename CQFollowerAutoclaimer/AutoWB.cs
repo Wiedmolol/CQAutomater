@@ -64,7 +64,15 @@ namespace CQFollowerAutoclaimer
                 int[] lineup = new int[2];
                 int r = PFStuff.getWBData((PFStuff.WB_ID).ToString());
                 main.userWBInfo.setText("Your current damage: " + PFStuff.wbDamageDealt + " with " + r + " attacks");
-                if (r == -1)
+                if (r == -2)
+                {
+                    using (StreamWriter sw = new StreamWriter("ActionLog.txt", true))
+                    {
+                        sw.WriteLine(DateTime.Now + "\n\tError when downloading the data");
+                    }
+                   
+                }
+                else if (r == -1)
                 {
                     MessageBox.Show("You haven't enabled your username on website. Auto-WB won't work without enabled username.");
                 }
@@ -134,7 +142,7 @@ namespace CQFollowerAutoclaimer
                         }
                         if (dr == DialogResult.Yes)
                         {
-                            for (int i = 0; i < attacksToDo; i++)
+                            for (int i = 0; i < Math.Min(attacksToDo, attacksAvailable); i++)
                             {
                                 main.taskQueue.Enqueue(() => fightWB(lineup), "WB");
                             }
@@ -169,7 +177,7 @@ namespace CQFollowerAutoclaimer
             }
             using (StreamWriter sw = new StreamWriter("ActionLog.txt", true))
             {
-                sw.Write(s);
+                sw.WriteLine(s);
             }
             return b;
         }

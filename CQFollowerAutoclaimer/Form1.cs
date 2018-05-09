@@ -343,6 +343,7 @@ namespace CQFollowerAutoclaimer
             bool b = false;
             while(!(b = await pf.getCurrencies2())) {}
 
+
             if (PFStuff.freeChestAvailable && freeChestBox.Checked)
             {
                 taskQueue.Enqueue(() => pf.sendOpen("normal"), "chest");

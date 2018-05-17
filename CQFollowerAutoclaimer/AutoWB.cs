@@ -30,7 +30,7 @@ namespace CQFollowerAutoclaimer
         {
             main.autoWBCheckbox.Checked = main.appSettings.autoWBEnabled ?? false;
             main.safeModeWB.Checked = main.appSettings.safeModeWBEnabled ?? false;
-
+            main.waitAutoLevelBox.Checked = main.appSettings.waitAutoLevel ?? false;
             if (main.appSettings.WBsettings != null)
             {
                 for (int i = 0; i < main.appSettings.WBsettings.Count; i++)
@@ -189,7 +189,8 @@ namespace CQFollowerAutoclaimer
                         notAskedYet = true;
                         main.autoLevel.levelTimer.Interval = 4 * 60 * 1000;
                         main.autoLevel.nextLevelCheck = DateTime.Now.AddMilliseconds(main.autoLevel.levelTimer.Interval);
-                        return;
+                        if(main.waitAutoLevelBox.Checked)
+                            return;
                     }
                     int attacksAvailable = PFStuff.wbAttacksAvailable + ((PFStuff.wbAttacksAvailable == 7 && PFStuff.wbAttackNext < DateTime.Now) ? 1 : 0);
                     if (attacksAvailable >= requirement - r && attacksToDo < (PFStuff.attacksLeft - 5))

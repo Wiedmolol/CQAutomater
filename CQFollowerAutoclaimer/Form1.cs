@@ -723,6 +723,7 @@ namespace CQFollowerAutoclaimer
             appSettings.LoCLineup = LOC.ToList();
             appSettings.MOAKLineup = MOAK.ToList();
             appSettings.KrytonLineup = Kryton.ToList();
+            appSettings.waitAutoLevel = waitAutoLevelBox.Checked;
             appSettings.saveSettings();
         }
 

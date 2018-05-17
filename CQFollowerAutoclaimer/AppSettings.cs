@@ -43,6 +43,7 @@ namespace CQFollowerAutoclaimer
         public int[] bankedCurrencies { get; set; }
         public string[] herosToLevel { get; set; }
         public int[] levelLimits { get; set; }
+        public bool? waitAutoLevel { get; set; }
 
         public static AppSettings loadSettings()
         {

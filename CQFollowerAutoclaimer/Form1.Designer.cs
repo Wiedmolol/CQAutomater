@@ -304,6 +304,7 @@
             this.label111 = new System.Windows.Forms.Label();
             this.spheresLevelCount = new System.Windows.Forms.NumericUpDown();
             this.label112 = new System.Windows.Forms.Label();
+            this.waitAutoLevelBox = new System.Windows.Forms.CheckBox();
             this.contextMenuStrip1.SuspendLayout();
             this.tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.superMOAKNHAtkCount)).BeginInit();
@@ -431,6 +432,7 @@
             // tabPage5
             // 
             this.tabPage5.AutoScroll = true;
+            this.tabPage5.Controls.Add(this.waitAutoLevelBox);
             this.tabPage5.Controls.Add(this.label103);
             this.tabPage5.Controls.Add(this.label104);
             this.tabPage5.Controls.Add(this.label105);
@@ -532,7 +534,7 @@
             // safeModeWB
             // 
             this.safeModeWB.AutoSize = true;
-            this.safeModeWB.Location = new System.Drawing.Point(120, 65);
+            this.safeModeWB.Location = new System.Drawing.Point(112, 47);
             this.safeModeWB.Name = "safeModeWB";
             this.safeModeWB.Size = new System.Drawing.Size(77, 17);
             this.safeModeWB.TabIndex = 103;
@@ -876,7 +878,7 @@
             // autoWBCheckbox
             // 
             this.autoWBCheckbox.AutoSize = true;
-            this.autoWBCheckbox.Location = new System.Drawing.Point(9, 65);
+            this.autoWBCheckbox.Location = new System.Drawing.Point(7, 47);
             this.autoWBCheckbox.Name = "autoWBCheckbox";
             this.autoWBCheckbox.Size = new System.Drawing.Size(105, 17);
             this.autoWBCheckbox.TabIndex = 47;
@@ -3501,6 +3503,16 @@
             this.label112.TabIndex = 128;
             this.label112.Text = "up to level:";
             // 
+            // waitAutoLevelBox
+            // 
+            this.waitAutoLevelBox.AutoSize = true;
+            this.waitAutoLevelBox.Location = new System.Drawing.Point(7, 64);
+            this.waitAutoLevelBox.Name = "waitAutoLevelBox";
+            this.waitAutoLevelBox.Size = new System.Drawing.Size(202, 17);
+            this.waitAutoLevelBox.TabIndex = 128;
+            this.waitAutoLevelBox.Text = "Wait for autoLevel after WB changes";
+            this.waitAutoLevelBox.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3861,6 +3873,7 @@
         private System.Windows.Forms.Label label110;
         internal System.Windows.Forms.NumericUpDown spheresLevelCount;
         private System.Windows.Forms.Label label112;
+        internal System.Windows.Forms.CheckBox waitAutoLevelBox;
     }
 }
 

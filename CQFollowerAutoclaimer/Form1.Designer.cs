@@ -270,6 +270,40 @@
             this.ah2Indicator = new System.Windows.Forms.Label();
             this.ah3Indicator = new System.Windows.Forms.Label();
             this.ALIndicator = new System.Windows.Forms.Label();
+            this.label96 = new System.Windows.Forms.Label();
+            this.label98 = new System.Windows.Forms.Label();
+            this.label99 = new System.Windows.Forms.Label();
+            this.label100 = new System.Windows.Forms.Label();
+            this.SuperKrytonNHAttacksCount = new System.Windows.Forms.NumericUpDown();
+            this.SuperKrytonNHReqCount = new System.Windows.Forms.NumericUpDown();
+            this.SuperKrytonHAAttacksCount = new System.Windows.Forms.NumericUpDown();
+            this.SuperKrytonHAReqCount = new System.Windows.Forms.NumericUpDown();
+            this.KrytonNHAttacksCount = new System.Windows.Forms.NumericUpDown();
+            this.KrytonNHReqCount = new System.Windows.Forms.NumericUpDown();
+            this.label101 = new System.Windows.Forms.Label();
+            this.KrytonHAAttacksCount = new System.Windows.Forms.NumericUpDown();
+            this.KrytonHAReqCount = new System.Windows.Forms.NumericUpDown();
+            this.label102 = new System.Windows.Forms.Label();
+            this.label103 = new System.Windows.Forms.Label();
+            this.label104 = new System.Windows.Forms.Label();
+            this.label105 = new System.Windows.Forms.Label();
+            this.KrytonHA6 = new System.Windows.Forms.ComboBox();
+            this.KrytonHA5 = new System.Windows.Forms.ComboBox();
+            this.KrytonHA4 = new System.Windows.Forms.ComboBox();
+            this.KrytonHA3 = new System.Windows.Forms.ComboBox();
+            this.KrytonHA2 = new System.Windows.Forms.ComboBox();
+            this.KrytonHA1 = new System.Windows.Forms.ComboBox();
+            this.label106 = new System.Windows.Forms.Label();
+            this.label107 = new System.Windows.Forms.Label();
+            this.label108 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label109 = new System.Windows.Forms.Label();
+            this.coinsLevelCount = new System.Windows.Forms.NumericUpDown();
+            this.label110 = new System.Windows.Forms.Label();
+            this.pranaLevelCount = new System.Windows.Forms.NumericUpDown();
+            this.label111 = new System.Windows.Forms.Label();
+            this.spheresLevelCount = new System.Windows.Forms.NumericUpDown();
+            this.label112 = new System.Windows.Forms.Label();
             this.contextMenuStrip1.SuspendLayout();
             this.tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.superMOAKNHAtkCount)).BeginInit();
@@ -310,6 +344,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.coinsBankCount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pranaBankCount)).BeginInit();
             this.tabPage6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SuperKrytonNHAttacksCount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SuperKrytonNHReqCount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SuperKrytonHAAttacksCount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SuperKrytonHAReqCount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.KrytonNHAttacksCount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.KrytonNHReqCount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.KrytonHAAttacksCount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.KrytonHAReqCount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.coinsLevelCount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pranaLevelCount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spheresLevelCount)).BeginInit();
             this.SuspendLayout();
             // 
             // notifyIcon1
@@ -344,11 +389,11 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(396, 9);
+            this.label22.Location = new System.Drawing.Point(410, 9);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(28, 13);
+            this.label22.Size = new System.Drawing.Size(37, 13);
             this.label22.TabIndex = 32;
-            this.label22.Text = "v0.9";
+            this.label22.Text = "v0.9.4";
             // 
             // DQIndicator
             // 
@@ -385,6 +430,30 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.AutoScroll = true;
+            this.tabPage5.Controls.Add(this.label103);
+            this.tabPage5.Controls.Add(this.label104);
+            this.tabPage5.Controls.Add(this.label105);
+            this.tabPage5.Controls.Add(this.KrytonHA6);
+            this.tabPage5.Controls.Add(this.KrytonHA5);
+            this.tabPage5.Controls.Add(this.KrytonHA4);
+            this.tabPage5.Controls.Add(this.KrytonHA3);
+            this.tabPage5.Controls.Add(this.KrytonHA2);
+            this.tabPage5.Controls.Add(this.KrytonHA1);
+            this.tabPage5.Controls.Add(this.label96);
+            this.tabPage5.Controls.Add(this.label98);
+            this.tabPage5.Controls.Add(this.label99);
+            this.tabPage5.Controls.Add(this.label100);
+            this.tabPage5.Controls.Add(this.SuperKrytonNHAttacksCount);
+            this.tabPage5.Controls.Add(this.SuperKrytonNHReqCount);
+            this.tabPage5.Controls.Add(this.SuperKrytonHAAttacksCount);
+            this.tabPage5.Controls.Add(this.SuperKrytonHAReqCount);
+            this.tabPage5.Controls.Add(this.KrytonNHAttacksCount);
+            this.tabPage5.Controls.Add(this.KrytonNHReqCount);
+            this.tabPage5.Controls.Add(this.label101);
+            this.tabPage5.Controls.Add(this.KrytonHAAttacksCount);
+            this.tabPage5.Controls.Add(this.KrytonHAReqCount);
+            this.tabPage5.Controls.Add(this.label102);
             this.tabPage5.Controls.Add(this.userWBInfo);
             this.tabPage5.Controls.Add(this.safeModeWB);
             this.tabPage5.Controls.Add(this.currentBossLabel);
@@ -446,7 +515,7 @@
             this.tabPage5.Controls.Add(this.label25);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(418, 439);
+            this.tabPage5.Size = new System.Drawing.Size(442, 430);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "WB";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -492,7 +561,7 @@
             // label55
             // 
             this.label55.AutoSize = true;
-            this.label55.Location = new System.Drawing.Point(1, 383);
+            this.label55.Location = new System.Drawing.Point(1, 532);
             this.label55.Name = "label55";
             this.label55.Size = new System.Drawing.Size(388, 13);
             this.label55.TabIndex = 100;
@@ -541,7 +610,7 @@
             // label48
             // 
             this.label48.AutoSize = true;
-            this.label48.Location = new System.Drawing.Point(343, 339);
+            this.label48.Location = new System.Drawing.Point(369, 439);
             this.label48.Name = "label48";
             this.label48.Size = new System.Drawing.Size(39, 13);
             this.label48.TabIndex = 80;
@@ -550,7 +619,7 @@
             // label47
             // 
             this.label47.AutoSize = true;
-            this.label47.Location = new System.Drawing.Point(5, 339);
+            this.label47.Location = new System.Drawing.Point(5, 439);
             this.label47.Name = "label47";
             this.label47.Size = new System.Drawing.Size(38, 13);
             this.label47.TabIndex = 79;
@@ -560,7 +629,7 @@
             // 
             this.label44.AutoSize = true;
             this.label44.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label44.Location = new System.Drawing.Point(99, 336);
+            this.label44.Location = new System.Drawing.Point(99, 436);
             this.label44.Name = "label44";
             this.label44.Size = new System.Drawing.Size(192, 13);
             this.label44.TabIndex = 78;
@@ -570,7 +639,7 @@
             // 
             this.label43.AutoSize = true;
             this.label43.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label43.Location = new System.Drawing.Point(123, 286);
+            this.label43.Location = new System.Drawing.Point(123, 386);
             this.label43.Name = "label43";
             this.label43.Size = new System.Drawing.Size(145, 13);
             this.label43.TabIndex = 77;
@@ -632,10 +701,9 @@
             // 
             // superMOAKNHAtkCount
             // 
-            this.superMOAKNHAtkCount.Enabled = false;
             this.superMOAKNHAtkCount.Location = new System.Drawing.Point(374, 259);
             this.superMOAKNHAtkCount.Maximum = new decimal(new int[] {
-            8,
+            2,
             0,
             0,
             0});
@@ -645,7 +713,6 @@
             // 
             // superMOAKNHReqCount
             // 
-            this.superMOAKNHReqCount.Enabled = false;
             this.superMOAKNHReqCount.Location = new System.Drawing.Point(300, 259);
             this.superMOAKNHReqCount.Maximum = new decimal(new int[] {
             8,
@@ -668,10 +735,9 @@
             // 
             // superMOAKHAAtkCount
             // 
-            this.superMOAKHAAtkCount.Enabled = false;
             this.superMOAKHAAtkCount.Location = new System.Drawing.Point(374, 209);
             this.superMOAKHAAtkCount.Maximum = new decimal(new int[] {
-            8,
+            2,
             0,
             0,
             0});
@@ -681,7 +747,6 @@
             // 
             // superMOAKHAReqCount
             // 
-            this.superMOAKHAReqCount.Enabled = false;
             this.superMOAKHAReqCount.Location = new System.Drawing.Point(300, 209);
             this.superMOAKHAReqCount.Maximum = new decimal(new int[] {
             8,
@@ -704,10 +769,9 @@
             // 
             // superLOCNHAtkCount
             // 
-            this.superLOCNHAtkCount.Enabled = false;
             this.superLOCNHAtkCount.Location = new System.Drawing.Point(374, 160);
             this.superLOCNHAtkCount.Maximum = new decimal(new int[] {
-            8,
+            2,
             0,
             0,
             0});
@@ -717,7 +781,6 @@
             // 
             // superLOCNHReqCount
             // 
-            this.superLOCNHReqCount.Enabled = false;
             this.superLOCNHReqCount.Location = new System.Drawing.Point(300, 160);
             this.superLOCNHReqCount.Maximum = new decimal(new int[] {
             8,
@@ -740,10 +803,9 @@
             // 
             // superLOCHAAtkCount
             // 
-            this.superLOCHAAtkCount.Enabled = false;
             this.superLOCHAAtkCount.Location = new System.Drawing.Point(374, 111);
             this.superLOCHAAtkCount.Maximum = new decimal(new int[] {
-            8,
+            2,
             0,
             0,
             0});
@@ -753,7 +815,6 @@
             // 
             // superLOCHAReqCount
             // 
-            this.superLOCHAReqCount.Enabled = false;
             this.superLOCHAReqCount.Location = new System.Drawing.Point(300, 111);
             this.superLOCHAReqCount.Maximum = new decimal(new int[] {
             8,
@@ -794,7 +855,7 @@
             // 
             // WBLogButton
             // 
-            this.WBLogButton.Location = new System.Drawing.Point(300, 405);
+            this.WBLogButton.Location = new System.Drawing.Point(301, 550);
             this.WBLogButton.Name = "WBLogButton";
             this.WBLogButton.Size = new System.Drawing.Size(113, 28);
             this.WBLogButton.TabIndex = 49;
@@ -804,7 +865,7 @@
             // 
             // saveWBDataButton
             // 
-            this.saveWBDataButton.Location = new System.Drawing.Point(124, 405);
+            this.saveWBDataButton.Location = new System.Drawing.Point(124, 550);
             this.saveWBDataButton.Name = "saveWBDataButton";
             this.saveWBDataButton.Size = new System.Drawing.Size(170, 28);
             this.saveWBDataButton.TabIndex = 48;
@@ -873,7 +934,7 @@
             this.MOAKHA6.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.MOAKHA6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.MOAKHA6.FormattingEnabled = true;
-            this.MOAKHA6.Location = new System.Drawing.Point(348, 355);
+            this.MOAKHA6.Location = new System.Drawing.Point(348, 456);
             this.MOAKHA6.Name = "MOAKHA6";
             this.MOAKHA6.Size = new System.Drawing.Size(66, 21);
             this.MOAKHA6.TabIndex = 39;
@@ -884,7 +945,7 @@
             this.MOAKHA5.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.MOAKHA5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.MOAKHA5.FormattingEnabled = true;
-            this.MOAKHA5.Location = new System.Drawing.Point(280, 356);
+            this.MOAKHA5.Location = new System.Drawing.Point(280, 456);
             this.MOAKHA5.Name = "MOAKHA5";
             this.MOAKHA5.Size = new System.Drawing.Size(66, 21);
             this.MOAKHA5.TabIndex = 38;
@@ -895,7 +956,7 @@
             this.MOAKHA4.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.MOAKHA4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.MOAKHA4.FormattingEnabled = true;
-            this.MOAKHA4.Location = new System.Drawing.Point(211, 356);
+            this.MOAKHA4.Location = new System.Drawing.Point(211, 456);
             this.MOAKHA4.Name = "MOAKHA4";
             this.MOAKHA4.Size = new System.Drawing.Size(66, 21);
             this.MOAKHA4.TabIndex = 37;
@@ -906,7 +967,7 @@
             this.MOAKHA3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.MOAKHA3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.MOAKHA3.FormattingEnabled = true;
-            this.MOAKHA3.Location = new System.Drawing.Point(142, 356);
+            this.MOAKHA3.Location = new System.Drawing.Point(142, 456);
             this.MOAKHA3.Name = "MOAKHA3";
             this.MOAKHA3.Size = new System.Drawing.Size(66, 21);
             this.MOAKHA3.TabIndex = 36;
@@ -917,7 +978,7 @@
             this.MOAKHA2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.MOAKHA2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.MOAKHA2.FormattingEnabled = true;
-            this.MOAKHA2.Location = new System.Drawing.Point(73, 356);
+            this.MOAKHA2.Location = new System.Drawing.Point(73, 456);
             this.MOAKHA2.Name = "MOAKHA2";
             this.MOAKHA2.Size = new System.Drawing.Size(66, 21);
             this.MOAKHA2.TabIndex = 35;
@@ -928,7 +989,7 @@
             this.MOAKHA1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.MOAKHA1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.MOAKHA1.FormattingEnabled = true;
-            this.MOAKHA1.Location = new System.Drawing.Point(4, 356);
+            this.MOAKHA1.Location = new System.Drawing.Point(4, 456);
             this.MOAKHA1.Name = "MOAKHA1";
             this.MOAKHA1.Size = new System.Drawing.Size(66, 21);
             this.MOAKHA1.TabIndex = 34;
@@ -983,7 +1044,7 @@
             this.LOCHA6.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.LOCHA6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.LOCHA6.FormattingEnabled = true;
-            this.LOCHA6.Location = new System.Drawing.Point(349, 306);
+            this.LOCHA6.Location = new System.Drawing.Point(349, 406);
             this.LOCHA6.Name = "LOCHA6";
             this.LOCHA6.Size = new System.Drawing.Size(66, 21);
             this.LOCHA6.TabIndex = 24;
@@ -994,7 +1055,7 @@
             this.LOCHA5.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.LOCHA5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.LOCHA5.FormattingEnabled = true;
-            this.LOCHA5.Location = new System.Drawing.Point(280, 306);
+            this.LOCHA5.Location = new System.Drawing.Point(280, 406);
             this.LOCHA5.Name = "LOCHA5";
             this.LOCHA5.Size = new System.Drawing.Size(66, 21);
             this.LOCHA5.TabIndex = 23;
@@ -1005,7 +1066,7 @@
             this.LOCHA4.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.LOCHA4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.LOCHA4.FormattingEnabled = true;
-            this.LOCHA4.Location = new System.Drawing.Point(211, 306);
+            this.LOCHA4.Location = new System.Drawing.Point(211, 406);
             this.LOCHA4.Name = "LOCHA4";
             this.LOCHA4.Size = new System.Drawing.Size(66, 21);
             this.LOCHA4.TabIndex = 22;
@@ -1016,7 +1077,7 @@
             this.LOCHA3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.LOCHA3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.LOCHA3.FormattingEnabled = true;
-            this.LOCHA3.Location = new System.Drawing.Point(142, 306);
+            this.LOCHA3.Location = new System.Drawing.Point(142, 406);
             this.LOCHA3.Name = "LOCHA3";
             this.LOCHA3.Size = new System.Drawing.Size(66, 21);
             this.LOCHA3.TabIndex = 21;
@@ -1027,7 +1088,7 @@
             this.LOCHA2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.LOCHA2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.LOCHA2.FormattingEnabled = true;
-            this.LOCHA2.Location = new System.Drawing.Point(73, 306);
+            this.LOCHA2.Location = new System.Drawing.Point(73, 406);
             this.LOCHA2.Name = "LOCHA2";
             this.LOCHA2.Size = new System.Drawing.Size(66, 21);
             this.LOCHA2.TabIndex = 20;
@@ -1038,7 +1099,7 @@
             this.LOCHA1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.LOCHA1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.LOCHA1.FormattingEnabled = true;
-            this.LOCHA1.Location = new System.Drawing.Point(4, 306);
+            this.LOCHA1.Location = new System.Drawing.Point(4, 406);
             this.LOCHA1.Name = "LOCHA1";
             this.LOCHA1.Size = new System.Drawing.Size(66, 21);
             this.LOCHA1.TabIndex = 19;
@@ -1080,7 +1141,7 @@
             // label39
             // 
             this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(348, 290);
+            this.label39.Location = new System.Drawing.Point(369, 390);
             this.label39.Name = "label39";
             this.label39.Size = new System.Drawing.Size(39, 13);
             this.label39.TabIndex = 9;
@@ -1089,7 +1150,7 @@
             // label38
             // 
             this.label38.AutoSize = true;
-            this.label38.Location = new System.Drawing.Point(5, 290);
+            this.label38.Location = new System.Drawing.Point(5, 390);
             this.label38.Name = "label38";
             this.label38.Size = new System.Drawing.Size(38, 13);
             this.label38.TabIndex = 8;
@@ -1166,14 +1227,14 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(418, 439);
+            this.tabPage4.Size = new System.Drawing.Size(442, 430);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "PvP";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // savePvPSettingsButton
             // 
-            this.savePvPSettingsButton.Location = new System.Drawing.Point(151, 232);
+            this.savePvPSettingsButton.Location = new System.Drawing.Point(163, 232);
             this.savePvPSettingsButton.Name = "savePvPSettingsButton";
             this.savePvPSettingsButton.Size = new System.Drawing.Size(117, 25);
             this.savePvPSettingsButton.TabIndex = 89;
@@ -1205,7 +1266,7 @@
             // 
             this.PvPLog.Location = new System.Drawing.Point(3, 263);
             this.PvPLog.Name = "PvPLog";
-            this.PvPLog.Size = new System.Drawing.Size(409, 168);
+            this.PvPLog.Size = new System.Drawing.Size(433, 168);
             this.PvPLog.TabIndex = 18;
             this.PvPLog.Text = "";
             // 
@@ -1317,14 +1378,14 @@
             this.tabPage3.Controls.Add(this.label23);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(418, 439);
+            this.tabPage3.Size = new System.Drawing.Size(442, 430);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Chests";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // saveChestSettingsButton
             // 
-            this.saveChestSettingsButton.Location = new System.Drawing.Point(154, 232);
+            this.saveChestSettingsButton.Location = new System.Drawing.Point(166, 232);
             this.saveChestSettingsButton.Name = "saveChestSettingsButton";
             this.saveChestSettingsButton.Size = new System.Drawing.Size(110, 25);
             this.saveChestSettingsButton.TabIndex = 89;
@@ -1453,7 +1514,7 @@
             // 
             this.ChestLog.Location = new System.Drawing.Point(3, 263);
             this.ChestLog.Name = "ChestLog";
-            this.ChestLog.Size = new System.Drawing.Size(411, 169);
+            this.ChestLog.Size = new System.Drawing.Size(434, 169);
             this.ChestLog.TabIndex = 19;
             this.ChestLog.Text = "";
             // 
@@ -1516,6 +1577,11 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.label109);
+            this.tabPage2.Controls.Add(this.button2);
+            this.tabPage2.Controls.Add(this.label108);
+            this.tabPage2.Controls.Add(this.label107);
+            this.tabPage2.Controls.Add(this.label106);
             this.tabPage2.Controls.Add(this.saveDQSettingsButton);
             this.tabPage2.Controls.Add(this.label62);
             this.tabPage2.Controls.Add(this.label60);
@@ -1542,7 +1608,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(418, 439);
+            this.tabPage2.Size = new System.Drawing.Size(442, 430);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "DQ";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1560,7 +1626,7 @@
             // label62
             // 
             this.label62.AutoSize = true;
-            this.label62.Location = new System.Drawing.Point(8, 287);
+            this.label62.Location = new System.Drawing.Point(8, 346);
             this.label62.Name = "label62";
             this.label62.Size = new System.Drawing.Size(40, 13);
             this.label62.TabIndex = 89;
@@ -1570,7 +1636,7 @@
             // 
             this.label60.AutoSize = true;
             this.label60.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label60.Location = new System.Drawing.Point(53, 234);
+            this.label60.Location = new System.Drawing.Point(53, 293);
             this.label60.Name = "label60";
             this.label60.Size = new System.Drawing.Size(313, 26);
             this.label60.TabIndex = 87;
@@ -1581,7 +1647,7 @@
             // 
             this.label57.AutoSize = true;
             this.label57.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label57.Location = new System.Drawing.Point(146, 188);
+            this.label57.Location = new System.Drawing.Point(153, 247);
             this.label57.Name = "label57";
             this.label57.Size = new System.Drawing.Size(99, 13);
             this.label57.TabIndex = 86;
@@ -1593,9 +1659,9 @@
             this.DQLineup6.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.DQLineup6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.DQLineup6.FormattingEnabled = true;
-            this.DQLineup6.Location = new System.Drawing.Point(348, 210);
+            this.DQLineup6.Location = new System.Drawing.Point(368, 269);
             this.DQLineup6.Name = "DQLineup6";
-            this.DQLineup6.Size = new System.Drawing.Size(66, 21);
+            this.DQLineup6.Size = new System.Drawing.Size(70, 21);
             this.DQLineup6.TabIndex = 85;
             // 
             // DQLineup5
@@ -1604,9 +1670,9 @@
             this.DQLineup5.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.DQLineup5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.DQLineup5.FormattingEnabled = true;
-            this.DQLineup5.Location = new System.Drawing.Point(279, 210);
+            this.DQLineup5.Location = new System.Drawing.Point(295, 269);
             this.DQLineup5.Name = "DQLineup5";
-            this.DQLineup5.Size = new System.Drawing.Size(66, 21);
+            this.DQLineup5.Size = new System.Drawing.Size(70, 21);
             this.DQLineup5.TabIndex = 84;
             // 
             // DQLineup4
@@ -1615,9 +1681,9 @@
             this.DQLineup4.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.DQLineup4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.DQLineup4.FormattingEnabled = true;
-            this.DQLineup4.Location = new System.Drawing.Point(210, 210);
+            this.DQLineup4.Location = new System.Drawing.Point(222, 269);
             this.DQLineup4.Name = "DQLineup4";
-            this.DQLineup4.Size = new System.Drawing.Size(66, 21);
+            this.DQLineup4.Size = new System.Drawing.Size(70, 21);
             this.DQLineup4.TabIndex = 83;
             // 
             // DQLineup3
@@ -1626,9 +1692,9 @@
             this.DQLineup3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.DQLineup3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.DQLineup3.FormattingEnabled = true;
-            this.DQLineup3.Location = new System.Drawing.Point(141, 210);
+            this.DQLineup3.Location = new System.Drawing.Point(149, 269);
             this.DQLineup3.Name = "DQLineup3";
-            this.DQLineup3.Size = new System.Drawing.Size(66, 21);
+            this.DQLineup3.Size = new System.Drawing.Size(70, 21);
             this.DQLineup3.TabIndex = 82;
             // 
             // DQLineup2
@@ -1637,9 +1703,9 @@
             this.DQLineup2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.DQLineup2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.DQLineup2.FormattingEnabled = true;
-            this.DQLineup2.Location = new System.Drawing.Point(72, 210);
+            this.DQLineup2.Location = new System.Drawing.Point(76, 269);
             this.DQLineup2.Name = "DQLineup2";
-            this.DQLineup2.Size = new System.Drawing.Size(66, 21);
+            this.DQLineup2.Size = new System.Drawing.Size(70, 21);
             this.DQLineup2.TabIndex = 81;
             // 
             // DQLineup1
@@ -1648,15 +1714,15 @@
             this.DQLineup1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.DQLineup1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.DQLineup1.FormattingEnabled = true;
-            this.DQLineup1.Location = new System.Drawing.Point(3, 210);
+            this.DQLineup1.Location = new System.Drawing.Point(3, 269);
             this.DQLineup1.Name = "DQLineup1";
-            this.DQLineup1.Size = new System.Drawing.Size(66, 21);
+            this.DQLineup1.Size = new System.Drawing.Size(70, 21);
             this.DQLineup1.TabIndex = 80;
             // 
             // label58
             // 
             this.label58.AutoSize = true;
-            this.label58.Location = new System.Drawing.Point(373, 194);
+            this.label58.Location = new System.Drawing.Point(373, 253);
             this.label58.Name = "label58";
             this.label58.Size = new System.Drawing.Size(39, 13);
             this.label58.TabIndex = 79;
@@ -1665,7 +1731,7 @@
             // label59
             // 
             this.label59.AutoSize = true;
-            this.label59.Location = new System.Drawing.Point(6, 194);
+            this.label59.Location = new System.Drawing.Point(6, 253);
             this.label59.Name = "label59";
             this.label59.Size = new System.Drawing.Size(38, 13);
             this.label59.TabIndex = 78;
@@ -1673,7 +1739,7 @@
             // 
             // runCalcButton
             // 
-            this.runCalcButton.Location = new System.Drawing.Point(330, 106);
+            this.runCalcButton.Location = new System.Drawing.Point(354, 106);
             this.runCalcButton.Name = "runCalcButton";
             this.runCalcButton.Size = new System.Drawing.Size(82, 25);
             this.runCalcButton.TabIndex = 12;
@@ -1697,7 +1763,7 @@
             // 
             this.calcStatus.AutoSize = true;
             this.calcStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.calcStatus.Location = new System.Drawing.Point(53, 285);
+            this.calcStatus.Location = new System.Drawing.Point(53, 344);
             this.calcStatus.Name = "calcStatus";
             this.calcStatus.Size = new System.Drawing.Size(55, 15);
             this.calcStatus.TabIndex = 10;
@@ -1710,7 +1776,7 @@
             this.groupBox1.Controls.Add(this.DQSoundBox);
             this.groupBox1.Location = new System.Drawing.Point(5, 69);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(319, 86);
+            this.groupBox1.Size = new System.Drawing.Size(343, 86);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Actions performed on timer end";
@@ -1751,7 +1817,7 @@
             // 
             // DQRefreshButton
             // 
-            this.DQRefreshButton.Location = new System.Drawing.Point(330, 75);
+            this.DQRefreshButton.Location = new System.Drawing.Point(354, 75);
             this.DQRefreshButton.Name = "DQRefreshButton";
             this.DQRefreshButton.Size = new System.Drawing.Size(82, 25);
             this.DQRefreshButton.TabIndex = 9;
@@ -1849,7 +1915,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(418, 439);
+            this.tabPage1.Size = new System.Drawing.Size(442, 430);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Followers";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -2177,7 +2243,7 @@
             this.tabControl1.Location = new System.Drawing.Point(6, 9);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(426, 465);
+            this.tabControl1.Size = new System.Drawing.Size(450, 456);
             this.tabControl1.TabIndex = 31;
             // 
             // tabPage7
@@ -2228,7 +2294,7 @@
             this.tabPage7.Location = new System.Drawing.Point(4, 22);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(418, 439);
+            this.tabPage7.Size = new System.Drawing.Size(442, 430);
             this.tabPage7.TabIndex = 6;
             this.tabPage7.Text = "AH";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -2660,6 +2726,12 @@
             // 
             // tabPage8
             // 
+            this.tabPage8.Controls.Add(this.spheresLevelCount);
+            this.tabPage8.Controls.Add(this.label112);
+            this.tabPage8.Controls.Add(this.pranaLevelCount);
+            this.tabPage8.Controls.Add(this.label111);
+            this.tabPage8.Controls.Add(this.coinsLevelCount);
+            this.tabPage8.Controls.Add(this.label110);
             this.tabPage8.Controls.Add(this.ALCountdownLabel);
             this.tabPage8.Controls.Add(this.label97);
             this.tabPage8.Controls.Add(this.label95);
@@ -2686,7 +2758,7 @@
             this.tabPage8.Location = new System.Drawing.Point(4, 22);
             this.tabPage8.Name = "tabPage8";
             this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage8.Size = new System.Drawing.Size(418, 439);
+            this.tabPage8.Size = new System.Drawing.Size(442, 430);
             this.tabPage8.TabIndex = 7;
             this.tabPage8.Text = "Level";
             this.tabPage8.UseVisualStyleBackColor = true;
@@ -2743,7 +2815,7 @@
             // label91
             // 
             this.label91.AutoSize = true;
-            this.label91.Location = new System.Drawing.Point(155, 194);
+            this.label91.Location = new System.Drawing.Point(157, 194);
             this.label91.Name = "label91";
             this.label91.Size = new System.Drawing.Size(168, 13);
             this.label91.TabIndex = 118;
@@ -2751,7 +2823,7 @@
             // 
             // spheresBankCount
             // 
-            this.spheresBankCount.Location = new System.Drawing.Point(90, 192);
+            this.spheresBankCount.Location = new System.Drawing.Point(92, 192);
             this.spheresBankCount.Maximum = new decimal(new int[] {
             9999,
             0,
@@ -2764,7 +2836,7 @@
             // label92
             // 
             this.label92.AutoSize = true;
-            this.label92.Location = new System.Drawing.Point(53, 194);
+            this.label92.Location = new System.Drawing.Point(55, 194);
             this.label92.Name = "label92";
             this.label92.Size = new System.Drawing.Size(31, 13);
             this.label92.TabIndex = 116;
@@ -2776,7 +2848,7 @@
             this.spheresHeroCombo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.spheresHeroCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.spheresHeroCombo.FormattingEnabled = true;
-            this.spheresHeroCombo.Location = new System.Drawing.Point(200, 171);
+            this.spheresHeroCombo.Location = new System.Drawing.Point(194, 171);
             this.spheresHeroCombo.Name = "spheresHeroCombo";
             this.spheresHeroCombo.Size = new System.Drawing.Size(114, 21);
             this.spheresHeroCombo.TabIndex = 115;
@@ -2784,7 +2856,7 @@
             // label93
             // 
             this.label93.AutoSize = true;
-            this.label93.Location = new System.Drawing.Point(30, 174);
+            this.label93.Location = new System.Drawing.Point(24, 174);
             this.label93.Name = "label93";
             this.label93.Size = new System.Drawing.Size(166, 13);
             this.label93.TabIndex = 114;
@@ -2794,7 +2866,7 @@
             // 
             this.label94.AutoSize = true;
             this.label94.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label94.Location = new System.Drawing.Point(6, 155);
+            this.label94.Location = new System.Drawing.Point(8, 155);
             this.label94.Name = "label94";
             this.label94.Size = new System.Drawing.Size(142, 16);
             this.label94.TabIndex = 113;
@@ -2803,7 +2875,7 @@
             // label87
             // 
             this.label87.AutoSize = true;
-            this.label87.Location = new System.Drawing.Point(155, 132);
+            this.label87.Location = new System.Drawing.Point(157, 132);
             this.label87.Name = "label87";
             this.label87.Size = new System.Drawing.Size(140, 13);
             this.label87.TabIndex = 112;
@@ -2811,7 +2883,7 @@
             // 
             // coinsBankCount
             // 
-            this.coinsBankCount.Location = new System.Drawing.Point(90, 130);
+            this.coinsBankCount.Location = new System.Drawing.Point(92, 130);
             this.coinsBankCount.Maximum = new decimal(new int[] {
             9999,
             0,
@@ -2824,7 +2896,7 @@
             // label88
             // 
             this.label88.AutoSize = true;
-            this.label88.Location = new System.Drawing.Point(53, 132);
+            this.label88.Location = new System.Drawing.Point(55, 132);
             this.label88.Name = "label88";
             this.label88.Size = new System.Drawing.Size(31, 13);
             this.label88.TabIndex = 110;
@@ -2836,7 +2908,7 @@
             this.coinsHeroCombo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.coinsHeroCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.coinsHeroCombo.FormattingEnabled = true;
-            this.coinsHeroCombo.Location = new System.Drawing.Point(200, 108);
+            this.coinsHeroCombo.Location = new System.Drawing.Point(194, 108);
             this.coinsHeroCombo.Name = "coinsHeroCombo";
             this.coinsHeroCombo.Size = new System.Drawing.Size(114, 21);
             this.coinsHeroCombo.TabIndex = 109;
@@ -2844,7 +2916,7 @@
             // label89
             // 
             this.label89.AutoSize = true;
-            this.label89.Location = new System.Drawing.Point(30, 111);
+            this.label89.Location = new System.Drawing.Point(24, 111);
             this.label89.Name = "label89";
             this.label89.Size = new System.Drawing.Size(138, 13);
             this.label89.TabIndex = 108;
@@ -2854,7 +2926,7 @@
             // 
             this.label90.AutoSize = true;
             this.label90.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label90.Location = new System.Drawing.Point(6, 92);
+            this.label90.Location = new System.Drawing.Point(8, 92);
             this.label90.Name = "label90";
             this.label90.Size = new System.Drawing.Size(102, 16);
             this.label90.TabIndex = 107;
@@ -2863,7 +2935,7 @@
             // label86
             // 
             this.label86.AutoSize = true;
-            this.label86.Location = new System.Drawing.Point(155, 71);
+            this.label86.Location = new System.Drawing.Point(157, 71);
             this.label86.Name = "label86";
             this.label86.Size = new System.Drawing.Size(105, 13);
             this.label86.TabIndex = 106;
@@ -2871,7 +2943,7 @@
             // 
             // pranaBankCount
             // 
-            this.pranaBankCount.Location = new System.Drawing.Point(90, 69);
+            this.pranaBankCount.Location = new System.Drawing.Point(92, 69);
             this.pranaBankCount.Maximum = new decimal(new int[] {
             9999,
             0,
@@ -2884,7 +2956,7 @@
             // label85
             // 
             this.label85.AutoSize = true;
-            this.label85.Location = new System.Drawing.Point(53, 71);
+            this.label85.Location = new System.Drawing.Point(55, 71);
             this.label85.Name = "label85";
             this.label85.Size = new System.Drawing.Size(31, 13);
             this.label85.TabIndex = 104;
@@ -2896,7 +2968,7 @@
             this.pranaHeroCombo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.pranaHeroCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.pranaHeroCombo.FormattingEnabled = true;
-            this.pranaHeroCombo.Location = new System.Drawing.Point(200, 47);
+            this.pranaHeroCombo.Location = new System.Drawing.Point(194, 47);
             this.pranaHeroCombo.Name = "pranaHeroCombo";
             this.pranaHeroCombo.Size = new System.Drawing.Size(114, 21);
             this.pranaHeroCombo.TabIndex = 103;
@@ -2904,7 +2976,7 @@
             // label80
             // 
             this.label80.AutoSize = true;
-            this.label80.Location = new System.Drawing.Point(30, 50);
+            this.label80.Location = new System.Drawing.Point(24, 50);
             this.label80.Name = "label80";
             this.label80.Size = new System.Drawing.Size(133, 13);
             this.label80.TabIndex = 102;
@@ -2914,7 +2986,7 @@
             // 
             this.label76.AutoSize = true;
             this.label76.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label76.Location = new System.Drawing.Point(6, 31);
+            this.label76.Location = new System.Drawing.Point(8, 31);
             this.label76.Name = "label76";
             this.label76.Size = new System.Drawing.Size(93, 16);
             this.label76.TabIndex = 1;
@@ -2929,14 +3001,14 @@
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage6.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.tabPage6.Size = new System.Drawing.Size(418, 439);
+            this.tabPage6.Size = new System.Drawing.Size(442, 430);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Other";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
             // macroCreatorGithubButton
             // 
-            this.macroCreatorGithubButton.Location = new System.Drawing.Point(149, 112);
+            this.macroCreatorGithubButton.Location = new System.Drawing.Point(161, 112);
             this.macroCreatorGithubButton.Name = "macroCreatorGithubButton";
             this.macroCreatorGithubButton.Size = new System.Drawing.Size(121, 47);
             this.macroCreatorGithubButton.TabIndex = 2;
@@ -2946,7 +3018,7 @@
             // 
             // automaterGithubButton
             // 
-            this.automaterGithubButton.Location = new System.Drawing.Point(149, 59);
+            this.automaterGithubButton.Location = new System.Drawing.Point(161, 59);
             this.automaterGithubButton.Name = "automaterGithubButton";
             this.automaterGithubButton.Size = new System.Drawing.Size(121, 47);
             this.automaterGithubButton.TabIndex = 1;
@@ -2956,7 +3028,7 @@
             // 
             // openMSHButton
             // 
-            this.openMSHButton.Location = new System.Drawing.Point(149, 6);
+            this.openMSHButton.Location = new System.Drawing.Point(161, 6);
             this.openMSHButton.Name = "openMSHButton";
             this.openMSHButton.Size = new System.Drawing.Size(121, 47);
             this.openMSHButton.TabIndex = 0;
@@ -3019,11 +3091,421 @@
             this.ALIndicator.TabIndex = 39;
             this.ALIndicator.Text = "          ";
             // 
+            // label96
+            // 
+            this.label96.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label96.Location = new System.Drawing.Point(4, 381);
+            this.label96.Name = "label96";
+            this.label96.Size = new System.Drawing.Size(405, 1);
+            this.label96.TabIndex = 118;
+            // 
+            // label98
+            // 
+            this.label98.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label98.Location = new System.Drawing.Point(4, 331);
+            this.label98.Name = "label98";
+            this.label98.Size = new System.Drawing.Size(405, 1);
+            this.label98.TabIndex = 117;
+            // 
+            // label99
+            // 
+            this.label99.AutoSize = true;
+            this.label99.Location = new System.Drawing.Point(220, 360);
+            this.label99.Name = "label99";
+            this.label99.Size = new System.Drawing.Size(73, 13);
+            this.label99.TabIndex = 116;
+            this.label99.Text = "Super variant:";
+            // 
+            // label100
+            // 
+            this.label100.AutoSize = true;
+            this.label100.Location = new System.Drawing.Point(220, 310);
+            this.label100.Name = "label100";
+            this.label100.Size = new System.Drawing.Size(73, 13);
+            this.label100.TabIndex = 115;
+            this.label100.Text = "Super variant:";
+            // 
+            // SuperKrytonNHAttacksCount
+            // 
+            this.SuperKrytonNHAttacksCount.Location = new System.Drawing.Point(373, 358);
+            this.SuperKrytonNHAttacksCount.Maximum = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.SuperKrytonNHAttacksCount.Name = "SuperKrytonNHAttacksCount";
+            this.SuperKrytonNHAttacksCount.Size = new System.Drawing.Size(35, 20);
+            this.SuperKrytonNHAttacksCount.TabIndex = 114;
+            // 
+            // SuperKrytonNHReqCount
+            // 
+            this.SuperKrytonNHReqCount.Location = new System.Drawing.Point(299, 358);
+            this.SuperKrytonNHReqCount.Maximum = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
+            this.SuperKrytonNHReqCount.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.SuperKrytonNHReqCount.Name = "SuperKrytonNHReqCount";
+            this.SuperKrytonNHReqCount.Size = new System.Drawing.Size(40, 20);
+            this.SuperKrytonNHReqCount.TabIndex = 113;
+            this.SuperKrytonNHReqCount.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            // 
+            // SuperKrytonHAAttacksCount
+            // 
+            this.SuperKrytonHAAttacksCount.Location = new System.Drawing.Point(373, 308);
+            this.SuperKrytonHAAttacksCount.Maximum = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.SuperKrytonHAAttacksCount.Name = "SuperKrytonHAAttacksCount";
+            this.SuperKrytonHAAttacksCount.Size = new System.Drawing.Size(35, 20);
+            this.SuperKrytonHAAttacksCount.TabIndex = 112;
+            // 
+            // SuperKrytonHAReqCount
+            // 
+            this.SuperKrytonHAReqCount.Location = new System.Drawing.Point(299, 308);
+            this.SuperKrytonHAReqCount.Maximum = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
+            this.SuperKrytonHAReqCount.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.SuperKrytonHAReqCount.Name = "SuperKrytonHAReqCount";
+            this.SuperKrytonHAReqCount.Size = new System.Drawing.Size(40, 20);
+            this.SuperKrytonHAReqCount.TabIndex = 111;
+            this.SuperKrytonHAReqCount.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            // 
+            // KrytonNHAttacksCount
+            // 
+            this.KrytonNHAttacksCount.Location = new System.Drawing.Point(373, 335);
+            this.KrytonNHAttacksCount.Maximum = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
+            this.KrytonNHAttacksCount.Name = "KrytonNHAttacksCount";
+            this.KrytonNHAttacksCount.Size = new System.Drawing.Size(35, 20);
+            this.KrytonNHAttacksCount.TabIndex = 110;
+            // 
+            // KrytonNHReqCount
+            // 
+            this.KrytonNHReqCount.Location = new System.Drawing.Point(299, 335);
+            this.KrytonNHReqCount.Maximum = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
+            this.KrytonNHReqCount.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.KrytonNHReqCount.Name = "KrytonNHReqCount";
+            this.KrytonNHReqCount.Size = new System.Drawing.Size(40, 20);
+            this.KrytonNHReqCount.TabIndex = 109;
+            this.KrytonNHReqCount.Value = new decimal(new int[] {
+            7,
+            0,
+            0,
+            0});
+            // 
+            // label101
+            // 
+            this.label101.AutoSize = true;
+            this.label101.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label101.Location = new System.Drawing.Point(4, 335);
+            this.label101.Name = "label101";
+            this.label101.Size = new System.Drawing.Size(81, 16);
+            this.label101.TabIndex = 108;
+            this.label101.Text = "Kryton, NH";
+            // 
+            // KrytonHAAttacksCount
+            // 
+            this.KrytonHAAttacksCount.Location = new System.Drawing.Point(373, 285);
+            this.KrytonHAAttacksCount.Maximum = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
+            this.KrytonHAAttacksCount.Name = "KrytonHAAttacksCount";
+            this.KrytonHAAttacksCount.Size = new System.Drawing.Size(35, 20);
+            this.KrytonHAAttacksCount.TabIndex = 107;
+            // 
+            // KrytonHAReqCount
+            // 
+            this.KrytonHAReqCount.Location = new System.Drawing.Point(299, 285);
+            this.KrytonHAReqCount.Maximum = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
+            this.KrytonHAReqCount.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.KrytonHAReqCount.Name = "KrytonHAReqCount";
+            this.KrytonHAReqCount.Size = new System.Drawing.Size(40, 20);
+            this.KrytonHAReqCount.TabIndex = 106;
+            this.KrytonHAReqCount.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            // 
+            // label102
+            // 
+            this.label102.AutoSize = true;
+            this.label102.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label102.Location = new System.Drawing.Point(2, 285);
+            this.label102.Name = "label102";
+            this.label102.Size = new System.Drawing.Size(80, 16);
+            this.label102.TabIndex = 105;
+            this.label102.Text = "Kryton, HA";
+            // 
+            // label103
+            // 
+            this.label103.AutoSize = true;
+            this.label103.Location = new System.Drawing.Point(369, 487);
+            this.label103.Name = "label103";
+            this.label103.Size = new System.Drawing.Size(39, 13);
+            this.label103.TabIndex = 127;
+            this.label103.Text = "Last ->";
+            // 
+            // label104
+            // 
+            this.label104.AutoSize = true;
+            this.label104.Location = new System.Drawing.Point(5, 487);
+            this.label104.Name = "label104";
+            this.label104.Size = new System.Drawing.Size(38, 13);
+            this.label104.TabIndex = 126;
+            this.label104.Text = "<- First";
+            // 
+            // label105
+            // 
+            this.label105.AutoSize = true;
+            this.label105.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label105.Location = new System.Drawing.Point(152, 485);
+            this.label105.Name = "label105";
+            this.label105.Size = new System.Drawing.Size(102, 13);
+            this.label105.TabIndex = 125;
+            this.label105.Text = "Kryton HA lineup";
+            // 
+            // KrytonHA6
+            // 
+            this.KrytonHA6.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.KrytonHA6.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.KrytonHA6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.KrytonHA6.FormattingEnabled = true;
+            this.KrytonHA6.Location = new System.Drawing.Point(348, 504);
+            this.KrytonHA6.Name = "KrytonHA6";
+            this.KrytonHA6.Size = new System.Drawing.Size(66, 21);
+            this.KrytonHA6.TabIndex = 124;
+            // 
+            // KrytonHA5
+            // 
+            this.KrytonHA5.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.KrytonHA5.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.KrytonHA5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.KrytonHA5.FormattingEnabled = true;
+            this.KrytonHA5.Location = new System.Drawing.Point(280, 504);
+            this.KrytonHA5.Name = "KrytonHA5";
+            this.KrytonHA5.Size = new System.Drawing.Size(66, 21);
+            this.KrytonHA5.TabIndex = 123;
+            // 
+            // KrytonHA4
+            // 
+            this.KrytonHA4.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.KrytonHA4.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.KrytonHA4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.KrytonHA4.FormattingEnabled = true;
+            this.KrytonHA4.Location = new System.Drawing.Point(211, 504);
+            this.KrytonHA4.Name = "KrytonHA4";
+            this.KrytonHA4.Size = new System.Drawing.Size(66, 21);
+            this.KrytonHA4.TabIndex = 122;
+            // 
+            // KrytonHA3
+            // 
+            this.KrytonHA3.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.KrytonHA3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.KrytonHA3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.KrytonHA3.FormattingEnabled = true;
+            this.KrytonHA3.Location = new System.Drawing.Point(142, 504);
+            this.KrytonHA3.Name = "KrytonHA3";
+            this.KrytonHA3.Size = new System.Drawing.Size(66, 21);
+            this.KrytonHA3.TabIndex = 121;
+            // 
+            // KrytonHA2
+            // 
+            this.KrytonHA2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.KrytonHA2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.KrytonHA2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.KrytonHA2.FormattingEnabled = true;
+            this.KrytonHA2.Location = new System.Drawing.Point(73, 504);
+            this.KrytonHA2.Name = "KrytonHA2";
+            this.KrytonHA2.Size = new System.Drawing.Size(66, 21);
+            this.KrytonHA2.TabIndex = 120;
+            // 
+            // KrytonHA1
+            // 
+            this.KrytonHA1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.KrytonHA1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.KrytonHA1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.KrytonHA1.FormattingEnabled = true;
+            this.KrytonHA1.Location = new System.Drawing.Point(4, 504);
+            this.KrytonHA1.Name = "KrytonHA1";
+            this.KrytonHA1.Size = new System.Drawing.Size(66, 21);
+            this.KrytonHA1.TabIndex = 119;
+            // 
+            // label106
+            // 
+            this.label106.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label106.Location = new System.Drawing.Point(8, 158);
+            this.label106.Name = "label106";
+            this.label106.Size = new System.Drawing.Size(415, 1);
+            this.label106.TabIndex = 99;
+            // 
+            // label107
+            // 
+            this.label107.AutoSize = true;
+            this.label107.Enabled = false;
+            this.label107.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label107.Location = new System.Drawing.Point(9, 169);
+            this.label107.Name = "label107";
+            this.label107.Size = new System.Drawing.Size(82, 16);
+            this.label107.TabIndex = 100;
+            this.label107.Text = "Dungeons:";
+            // 
+            // label108
+            // 
+            this.label108.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label108.Location = new System.Drawing.Point(14, 244);
+            this.label108.Name = "label108";
+            this.label108.Size = new System.Drawing.Size(415, 1);
+            this.label108.TabIndex = 101;
+            // 
+            // button2
+            // 
+            this.button2.Enabled = false;
+            this.button2.Location = new System.Drawing.Point(114, 165);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(124, 25);
+            this.button2.TabIndex = 102;
+            this.button2.Text = "Solve Dungeons now";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // label109
+            // 
+            this.label109.AutoSize = true;
+            this.label109.Enabled = false;
+            this.label109.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label109.Location = new System.Drawing.Point(194, 206);
+            this.label109.Name = "label109";
+            this.label109.Size = new System.Drawing.Size(55, 16);
+            this.label109.TabIndex = 103;
+            this.label109.Text = "TO DO";
+            // 
+            // coinsLevelCount
+            // 
+            this.coinsLevelCount.Location = new System.Drawing.Point(376, 109);
+            this.coinsLevelCount.Maximum = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.coinsLevelCount.Name = "coinsLevelCount";
+            this.coinsLevelCount.Size = new System.Drawing.Size(52, 20);
+            this.coinsLevelCount.TabIndex = 125;
+            this.coinsLevelCount.Value = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            // 
+            // label110
+            // 
+            this.label110.AutoSize = true;
+            this.label110.Location = new System.Drawing.Point(314, 111);
+            this.label110.Name = "label110";
+            this.label110.Size = new System.Drawing.Size(59, 13);
+            this.label110.TabIndex = 124;
+            this.label110.Text = "up to level:";
+            // 
+            // pranaLevelCount
+            // 
+            this.pranaLevelCount.Location = new System.Drawing.Point(376, 48);
+            this.pranaLevelCount.Maximum = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.pranaLevelCount.Name = "pranaLevelCount";
+            this.pranaLevelCount.Size = new System.Drawing.Size(52, 20);
+            this.pranaLevelCount.TabIndex = 127;
+            this.pranaLevelCount.Value = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            // 
+            // label111
+            // 
+            this.label111.AutoSize = true;
+            this.label111.Location = new System.Drawing.Point(314, 50);
+            this.label111.Name = "label111";
+            this.label111.Size = new System.Drawing.Size(59, 13);
+            this.label111.TabIndex = 126;
+            this.label111.Text = "up to level:";
+            // 
+            // spheresLevelCount
+            // 
+            this.spheresLevelCount.Location = new System.Drawing.Point(376, 172);
+            this.spheresLevelCount.Maximum = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.spheresLevelCount.Name = "spheresLevelCount";
+            this.spheresLevelCount.Size = new System.Drawing.Size(52, 20);
+            this.spheresLevelCount.TabIndex = 129;
+            this.spheresLevelCount.Value = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            // 
+            // label112
+            // 
+            this.label112.AutoSize = true;
+            this.label112.Location = new System.Drawing.Point(314, 174);
+            this.label112.Name = "label112";
+            this.label112.Size = new System.Drawing.Size(59, 13);
+            this.label112.TabIndex = 128;
+            this.label112.Text = "up to level:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(436, 477);
+            this.ClientSize = new System.Drawing.Size(459, 477);
             this.Controls.Add(this.ALIndicator);
             this.Controls.Add(this.ah3Indicator);
             this.Controls.Add(this.ah2Indicator);
@@ -3087,6 +3569,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.coinsBankCount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pranaBankCount)).EndInit();
             this.tabPage6.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.SuperKrytonNHAttacksCount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SuperKrytonNHReqCount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SuperKrytonHAAttacksCount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SuperKrytonHAReqCount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.KrytonNHAttacksCount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.KrytonNHReqCount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.KrytonHAAttacksCount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.KrytonHAReqCount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.coinsLevelCount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pranaLevelCount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spheresLevelCount)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3334,6 +3827,40 @@
         internal System.Windows.Forms.NumericUpDown superLOCNHReqCount;
         internal System.Windows.Forms.Label currentBossLabel;
         internal System.Windows.Forms.CheckBox safeModeWB;
+        private System.Windows.Forms.Label label96;
+        private System.Windows.Forms.Label label98;
+        private System.Windows.Forms.Label label99;
+        private System.Windows.Forms.Label label100;
+        internal System.Windows.Forms.NumericUpDown SuperKrytonNHAttacksCount;
+        internal System.Windows.Forms.NumericUpDown SuperKrytonNHReqCount;
+        internal System.Windows.Forms.NumericUpDown SuperKrytonHAAttacksCount;
+        internal System.Windows.Forms.NumericUpDown SuperKrytonHAReqCount;
+        internal System.Windows.Forms.NumericUpDown KrytonNHAttacksCount;
+        internal System.Windows.Forms.NumericUpDown KrytonNHReqCount;
+        private System.Windows.Forms.Label label101;
+        internal System.Windows.Forms.NumericUpDown KrytonHAAttacksCount;
+        internal System.Windows.Forms.NumericUpDown KrytonHAReqCount;
+        private System.Windows.Forms.Label label102;
+        private System.Windows.Forms.Label label103;
+        private System.Windows.Forms.Label label104;
+        private System.Windows.Forms.Label label105;
+        internal System.Windows.Forms.ComboBox KrytonHA6;
+        internal System.Windows.Forms.ComboBox KrytonHA5;
+        internal System.Windows.Forms.ComboBox KrytonHA4;
+        internal System.Windows.Forms.ComboBox KrytonHA3;
+        internal System.Windows.Forms.ComboBox KrytonHA2;
+        internal System.Windows.Forms.ComboBox KrytonHA1;
+        private System.Windows.Forms.Label label106;
+        private System.Windows.Forms.Label label107;
+        private System.Windows.Forms.Label label108;
+        internal System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label109;
+        internal System.Windows.Forms.NumericUpDown pranaLevelCount;
+        private System.Windows.Forms.Label label111;
+        internal System.Windows.Forms.NumericUpDown coinsLevelCount;
+        private System.Windows.Forms.Label label110;
+        internal System.Windows.Forms.NumericUpDown spheresLevelCount;
+        private System.Windows.Forms.Label label112;
     }
 }
 

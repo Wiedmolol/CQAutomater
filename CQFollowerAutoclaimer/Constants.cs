@@ -14,7 +14,7 @@ namespace CQFollowerAutoclaimer
             RARE = 3,
             LEG = 12,
             ASCEND = -2,
-            DEV = 750,
+            DEV = 12,
             NONLEVELABLE = -1
         };
 
@@ -66,7 +66,7 @@ namespace CQFollowerAutoclaimer
             "Ladyoftwilight", "Tiny", "Nebra", "Hunter", "Shaman", "Alpha", "Nimue", "Athos", "Jet", "Geron", "Rei", "Ailen", "Faefyr", "Auri",  "James", 
             "Kairy", "Taurus", "Tronix", "Aquortis", "Aeris", "Geum", "Rudean", "Aural", "Geror", "Veildur", "Brynhildr", "Groth", "Ourea", "Erebus", "Pontus",
             "Oymos", "Xarth", "Atzar", "Zeth", "Koth", "Gurth", "Sigrun", "Koldis", "Alvitr", "Hama", "Hallinskidi", "Rigr", "Sexysanta", "Toth", "Ganah", "Dagda",
-            "Arshen", "Rua", "Dorth", "Bylar", "Boor", "Bavah", "Hawking", "Kumu-San", "LiuCheng", "Hidoka"
+            "Arshen", "Rua", "Dorth", "Bylar", "Boor", "Bavah", "Hawking", "Kumu-San", "LiuCheng", "Hidoka", "Spyke", "Aoyuki", "Gaiabyte"
         };
 
         public static string[] cosmicCoinHeroes = new string[] {

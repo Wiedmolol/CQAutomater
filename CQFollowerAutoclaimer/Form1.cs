@@ -55,7 +55,7 @@ namespace CQFollowerAutoclaimer
         List<Label> auctionCountdowns;
         System.Timers.Timer tmr = new System.Timers.Timer();
         System.Timers.Timer countdownsTimer = new System.Timers.Timer();
-        System.Timers.Timer logoutTimer = new System.Timers.Timer();  
+        System.Timers.Timer logoutTimer = new System.Timers.Timer();
 
         List<CheckBox> enableBoxes;
         internal List<NumericUpDown> wbSettingsCounts;
@@ -72,7 +72,9 @@ namespace CQFollowerAutoclaimer
                 LOCHARequirementCount, LOCHAAttacksCount, superLOCHAReqCount, superLOCHAAtkCount,
                 LOCNHRequirementCount, LOCNHAttacksCount, superLOCNHReqCount, superLOCNHAtkCount,
                 MOAKHARequirementCount, MOAKHAAttacksCount, superMOAKHAReqCount, superMOAKHAAtkCount,
-                MOAKNHRequirementCount, MOAKNHAttacksCount, superMOAKNHReqCount, superMOAKNHAtkCount
+                MOAKNHRequirementCount, MOAKNHAttacksCount, superMOAKNHReqCount, superMOAKNHAtkCount,
+                KrytonHAReqCount, KrytonHAAttacksCount, SuperKrytonHAReqCount, SuperKrytonHAAttacksCount,
+                KrytonNHReqCount, KrytonNHAttacksCount, SuperKrytonNHReqCount, SuperKrytonNHAttacksCount
             };
             auctionCountdowns = new List<Label> { ahCountdown1, ahCountdown2, ahCountdown3 };
             toolTip1.SetToolTip(safeModeWB, "Asks for confirmation before attacking. Won't ask again for the same boss");
@@ -80,7 +82,8 @@ namespace CQFollowerAutoclaimer
             WBlineups = new List<List<ComboBox>> {
                     new List<ComboBox> {LOCHA1, LOCHA2, LOCHA3, LOCHA4, LOCHA5, LOCHA6},
                     new List<ComboBox> {MOAKHA1, MOAKHA2, MOAKHA3, MOAKHA4, MOAKHA5, MOAKHA6},
-                    new List<ComboBox> {DQLineup1, DQLineup2, DQLineup3, DQLineup4, DQLineup5, DQLineup6}
+                    new List<ComboBox> {DQLineup1, DQLineup2, DQLineup3, DQLineup4, DQLineup5, DQLineup6},
+                    new List<ComboBox> {KrytonHA1, KrytonHA2, KrytonHA3, KrytonHA4, KrytonHA5, KrytonHA6}
                 };
             auctionComboBoxes = new List<ComboBox> {
                 auctionHero1Combo, auctionHero2Combo, auctionHero3Combo,
@@ -140,7 +143,7 @@ namespace CQFollowerAutoclaimer
             {
                 appSettings = AppSettings.loadSettings();
                 token = appSettings.token;
-                KongregateId = appSettings.KongregateId;               
+                KongregateId = appSettings.KongregateId;
             }
             else if (File.Exists("MacroSettings.txt"))
             {
@@ -229,7 +232,7 @@ namespace CQFollowerAutoclaimer
             tmr.Interval = Math.Max(3000, (times.Min() - DateTime.Now).TotalMilliseconds);
             tmr.Elapsed += OnTmrElapsed;
             tmr.Start();
-            
+
             DQLevelLabel.Text = PFStuff.DQLevel;
             if (Int32.Parse(PFStuff.DQLevel) < 2)
             {
@@ -261,6 +264,8 @@ namespace CQFollowerAutoclaimer
             autoChests.FreeChestTimer.Interval = PFStuff.freeChestRecharge * 1000;
             autoChests.FreeChestTimer.Start();
             autoWB.getWebsiteData();
+            autoWB.WBTimer.Interval = 15 * 1000;
+            autoWB.nextWBRefresh = DateTime.Now.AddMilliseconds(autoWB.WBTimer.Interval);
             foreach (ComboBox c in auctionComboBoxes)
             {
                 c.Items.AddRange(auctionHouse.getAvailableHeroes());
@@ -291,12 +296,12 @@ namespace CQFollowerAutoclaimer
             }
             if (autoWB.nextWBRefresh != null)
             {
-                WBCountdownLabel.setText((autoWB.nextWBRefresh < DateTime.Now ? "-" : "") + (autoWB.nextWBRefresh - DateTime.Now).ToString("hh\\:mm\\:ss"));                
+                WBCountdownLabel.setText((autoWB.nextWBRefresh < DateTime.Now ? "-" : "") + (autoWB.nextWBRefresh - DateTime.Now).ToString("hh\\:mm\\:ss"));
                 AHCountdownLabel.setText((autoWB.nextWBRefresh < DateTime.Now ? "-" : "") + (autoWB.nextWBRefresh - DateTime.Now).ToString("hh\\:mm\\:ss"));
             }
             if (autoLevel.nextLevelCheck != null)
             {
-                ALCountdownLabel.setText((autoLevel.nextLevelCheck < DateTime.Now ? "-" : "") + (autoLevel.nextLevelCheck - DateTime.Now).ToString("hh\\:mm\\:ss"));                
+                ALCountdownLabel.setText((autoLevel.nextLevelCheck < DateTime.Now ? "-" : "") + (autoLevel.nextLevelCheck - DateTime.Now).ToString("hh\\:mm\\:ss"));
             }
             for (int i = 0; i < 3; i++)
             {
@@ -318,30 +323,17 @@ namespace CQFollowerAutoclaimer
             {
                 await login();
             }
-            await pf.GetGameData2();
+            await pf.GetGameData();
             autoDQ.nextDQTime = getTime(PFStuff.DQTime);
             autoDQ.DQTimer.Interval = (autoDQ.nextDQTime < DateTime.Now && DQCalcBox.Checked) ? 4000 : Math.Max(4000, (autoDQ.nextDQTime - DateTime.Now).TotalMilliseconds);
             DQLevelLabel.SynchronizedInvoke(() => DQLevelLabel.Text = PFStuff.DQLevel);
             DQTimeLabel.SynchronizedInvoke(() => DQTimeLabel.Text = autoDQ.nextDQTime.ToString());
         }
-        internal void getData3()
-        {
-            //return await pf.GetGameData();
-
-            Thread mt;
-            mt = new Thread(pf.GetGameData);
-            mt.Start();
-            mt.Join();
-            autoDQ.nextDQTime = getTime(PFStuff.DQTime);
-            autoDQ.DQTimer.Interval = (autoDQ.nextDQTime < DateTime.Now && DQCalcBox.Checked) ? 4000 : Math.Max(4000, (autoDQ.nextDQTime - DateTime.Now).TotalMilliseconds);
-            DQLevelLabel.SynchronizedInvoke(() => DQLevelLabel.Text = PFStuff.DQLevel);
-            DQTimeLabel.SynchronizedInvoke(() => DQTimeLabel.Text = autoDQ.nextDQTime.ToString());
-        }
-
+        
         internal async Task<bool> getCurr()
         {
             bool b = false;
-            while(!(b = await pf.getCurrencies2())) {}
+            while (!(b = await pf.getCurrencies())) { }
 
 
             if (PFStuff.freeChestAvailable && freeChestBox.Checked)
@@ -350,7 +342,7 @@ namespace CQFollowerAutoclaimer
             }
             autoChests.nextFreeChest = DateTime.Now.AddSeconds(PFStuff.freeChestRecharge);
 
-            FreeChestTimeLabel.setText(autoChests.nextFreeChest.ToString());            
+            FreeChestTimeLabel.setText(autoChests.nextFreeChest.ToString());
             NormalChestLabel.setText(PFStuff.normalChests.ToString());
             HeroChestLabel.setText(PFStuff.heroChests.ToString());
 
@@ -475,7 +467,7 @@ namespace CQFollowerAutoclaimer
         #endregion
 
         #region DQ
-        
+
         private async void DQRefreshButton_Click(object sender, EventArgs e)
         {
             await getData();
@@ -507,14 +499,14 @@ namespace CQFollowerAutoclaimer
                     autoDQ.fightDQWithPresetLineup();
                 }
             }
-        }       
-              
+        }
+
         private void runCalcButton_Click(object sender, EventArgs e)
         {
             autoDQ.fightDQWithPresetLineup();
         }
         #endregion
-        
+
         #region MIRACLES
         async private void OnTmrElapsed(Object source, System.Timers.ElapsedEventArgs e)
         {
@@ -665,6 +657,19 @@ namespace CQFollowerAutoclaimer
                     }
                     lineup = temp.ToArray();
                     break;
+                case 5:
+                    var l3 = PeblLineups.KrytonNHLineups.Last(x => x.Item1 < followers);
+                    lineup = l3.Item3;
+                    break;
+                case 6:
+                     foreach (ComboBox cb in WBlineups[3])
+                    {
+                        string s = "";
+                        cb.SynchronizedInvoke(() => s = cb.Text);
+                        temp.Add(Array.IndexOf(Constants.names, s) - Constants.heroesInGame);
+                    }
+                    lineup = temp.ToArray();
+                    break;
                 default:
                     lineup = new int[1];
                     break;
@@ -710,12 +715,14 @@ namespace CQFollowerAutoclaimer
             var values = wbSettingsCounts.Select(x => (int)x.Value);
             var LOC = WBlineups[0].Select(x => x.Text);
             var MOAK = WBlineups[1].Select(x => x.Text);
+            var Kryton = WBlineups[3].Select(x => x.Text);
             appSettings = AppSettings.loadSettings();
             appSettings.safeModeWBEnabled = safeModeWB.Checked;
             appSettings.autoWBEnabled = autoWBCheckbox.Checked;
             appSettings.WBsettings = values.ToList();
             appSettings.LoCLineup = LOC.ToList();
             appSettings.MOAKLineup = MOAK.ToList();
+            appSettings.KrytonLineup = Kryton.ToList();
             appSettings.saveSettings();
         }
 
@@ -800,7 +807,7 @@ namespace CQFollowerAutoclaimer
 
         private void autoLevelCheckbox_CheckedChanged(object sender, EventArgs e)
         {
-            if(autoLevelCheckbox.Checked)
+            if (autoLevelCheckbox.Checked)
             {
                 ALIndicator.BackColor = Color.Green;
                 autoLevel.levelTimer.Interval = 60 * 1000;

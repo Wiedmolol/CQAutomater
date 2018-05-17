@@ -24,6 +24,7 @@ namespace CQFollowerAutoclaimer
         public string defaultUpperLimit { get; set; }
         public List<string> LoCLineup { get; set; }
         public List<string> MOAKLineup { get; set; }
+        public List<string> KrytonLineup { get; set; }
         public List<string> defaultDQLineup { get; set; }
         public List<string> calcEnabledHeroes { get; set; }
         public bool? DQSoundEnabled { get; set; }
@@ -41,6 +42,7 @@ namespace CQFollowerAutoclaimer
         public bool? autoLevelEnabled { get; set; }
         public int[] bankedCurrencies { get; set; }
         public string[] herosToLevel { get; set; }
+        public int[] levelLimits { get; set; }
 
         public static AppSettings loadSettings()
         {

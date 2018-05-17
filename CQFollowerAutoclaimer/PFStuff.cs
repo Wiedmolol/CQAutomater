@@ -78,6 +78,29 @@ namespace CQFollowerAutoclaimer
             }
         }
 
+        private void logError(string err, PlayFabResult<ExecuteCloudScriptResult> result)
+        {
+            using (StreamWriter sw = new StreamWriter("ErrorLog", true))
+            {
+                sw.WriteLine(DateTime.Now);
+                string msg = "";
+                if (result == null)
+                {
+                    msg = "Unknown error";
+                }
+                else if (result.Result != null)
+                {
+                    msg = result.Result.ToString();
+                    if (result.Result.FunctionResult != null)
+                    {
+                        msg = result.Result.FunctionResult.ToString();
+                    }
+                }
+
+                sw.WriteLine("\tError " + err + " " + msg);
+            }
+        }
+
         #region Getting Data
         public async Task<bool> LoginKong()
         {
@@ -104,7 +127,7 @@ namespace CQFollowerAutoclaimer
             return false;
         }
 
-        public async Task<bool> GetGameData2()
+        public async Task<bool> GetGameData()
         {
             var request = new ExecuteCloudScriptRequest()
             {
@@ -120,7 +143,7 @@ namespace CQFollowerAutoclaimer
             }
             if (statusTask.Result == null || statusTask.Result.FunctionResult == null || !statusTask.Result.FunctionResult.ToString().Contains("true"))
             {
-                logError("Cloud Script Error", statusTask.Result.ToString());
+                logError("Cloud Script Error: status", statusTask);
                 return false;
             }
             else
@@ -139,47 +162,7 @@ namespace CQFollowerAutoclaimer
             }
         }
 
-        public void GetGameData()
-        {
-            var request = new ExecuteCloudScriptRequest()
-            {
-                RevisionSelection = CloudScriptRevisionOption.Live,
-                FunctionName = "status",
-                FunctionParameter = new { token = token, kid = kongID }
-            };
-            var statusTask = PlayFabClientAPI.ExecuteCloudScriptAsync(request);
-            bool _running = true;
-            while (_running)
-            {
-                if (statusTask.IsCompleted)
-                {
-                    var apiError = statusTask.Result.Error;
-                    var apiResult = statusTask.Result.Result;
 
-                    if (apiError != null)
-                    {
-                        return;
-                    }
-                    else if (apiResult.FunctionResult != null)
-                    {
-                        JObject json = JObject.Parse(apiResult.FunctionResult.ToString());
-                        string hLevels = json["data"]["city"]["hero"].ToString();
-                        heroLevels = getArray(hLevels);
-                        miracleTimes = json["data"]["miracles"].ToString();
-                        followers = json["data"]["followers"].ToString();
-                        DQTime = json["data"]["city"]["daily"]["timer2"].ToString();
-                        DQLevel = json["data"]["city"]["daily"]["lvl"].ToString();
-                        PVPTime = json["data"]["city"]["nextfight"].ToString();
-                        wbAttacksAvailable = int.Parse(json["data"]["city"]["WB"]["atks"].ToString());
-                        wbAttackNext = Form1.getTime(json["data"]["city"]["WB"]["next"].ToString());
-                        return;
-                    }
-                    _running = false;
-                }
-                Thread.Sleep(1);
-            }
-            return;
-        }
 
         public async Task<bool> getLeaderboard(int size)
         {
@@ -217,51 +200,13 @@ namespace CQFollowerAutoclaimer
             }
         }
 
-        //public void getLeaderboard()
-        //{
-        //    nearbyPlayersIDs = new string[LeaderboardRange];
-        //    var request = new GetLeaderboardAroundPlayerRequest
-        //    {
-        //        StatisticName = "Ranking",
-        //        MaxResultsCount = LeaderboardRange
-        //    };
-        //    var leaderboardTask = PlayFabClientAPI.GetLeaderboardAroundPlayerAsync(request);
-        //    bool _running = true;
-        //    while (_running)
-        //    {
-        //        if (leaderboardTask.IsCompleted)
-        //        {
-        //            var apiError = leaderboardTask.Result.Error;
-        //            var apiResult = leaderboardTask.Result.Result;
 
-        //            if (apiError != null)
-        //            {
-        //                return;
-        //            }
-        //            else if (apiResult != null)
-        //            {
-        //                for (int i = 0; i < LeaderboardRange; i++)
-        //                {
-        //                    nearbyPlayersIDs[i] = apiResult.Leaderboard[i].PlayFabId;
-        //                    if (apiResult.Leaderboard[i].DisplayName == username)
-        //                    {
-        //                        userIndex = i;
-        //                    }
-        //                }
-        //                return;
-        //            }
-        //            _running = false;
-        //        }
-        //        Thread.Sleep(1);
-        //    }
-        //    return;
-        //}
 
-        public async Task<bool> getCurrencies2()
+        public async Task<bool> getCurrencies()
         {
             var request = new GetUserInventoryRequest();
             var currenciesTask = await PlayFabClientAPI.GetUserInventoryAsync(request);
-            
+
             if (currenciesTask.Error != null)
             {
                 logError(currenciesTask.Error.Error.ToString(), currenciesTask.Error.ErrorMessage);
@@ -283,7 +228,7 @@ namespace CQFollowerAutoclaimer
             return false;
         }
 
-      
+
 
         internal static void getUsername(string id)
         {
@@ -338,7 +283,7 @@ namespace CQFollowerAutoclaimer
             }
         }
 
-        internal async Task<int> getWBData2(string id)
+        internal static async Task<int> getWBData(string id)
         {
             int retryCount = 4;
             while (retryCount > 0)
@@ -367,39 +312,39 @@ namespace CQFollowerAutoclaimer
                 }
                 catch (WebException wbDataException)
                 {
-                    retryCount--;                    
+                    retryCount--;
                     Console.Write(wbDataException.Message);
                 }
             }
             return 0;
         }
 
-        internal static int getWBData(string id)
-        {
-            try
-            {
-                if (username == null)
-                {
-                    getUsername(kongID);
-                }
+        //internal static int getWBDataOld(string id)
+        //{
+        //    try
+        //    {
+        //        if (username == null)
+        //        {
+        //            getUsername(kongID);
+        //        }
 
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(@"https://cosmosquest.net/wb.php?id=" + id);
-                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+        //        HttpWebRequest request = (HttpWebRequest)WebRequest.Create(@"https://cosmosquest.net/wb.php?id=" + id);
+        //        HttpWebResponse response = (HttpWebResponse)request.GetResponse();
 
-                string content = new StreamReader(response.GetResponseStream()).ReadToEnd();
-                string a = Regex.Match(content, username + ".*?</tr>").ToString();
-                var b = Regex.Matches(a, "(?<=\"small\">).*?(?=</td>)");
-                if (string.IsNullOrEmpty(a) || b.Count == 0)
-                {
-                    return 0;
-                }
-                return int.Parse(b[1].ToString().Replace(".", ""));
-            }
-            catch (WebException getWBDataException)
-            {
-                return -2;
-            }
-        }
+        //        string content = new StreamReader(response.GetResponseStream()).ReadToEnd();
+        //        string a = Regex.Match(content, username + ".*?</tr>").ToString();
+        //        var b = Regex.Matches(a, "(?<=\"small\">).*?(?=</td>)");
+        //        if (string.IsNullOrEmpty(a) || b.Count == 0)
+        //        {
+        //            return 0;
+        //        }
+        //        return int.Parse(b[1].ToString().Replace(".", ""));
+        //    }
+        //    catch (WebException getWBDataException)
+        //    {
+        //        return -2;
+        //    }
+        //}
         #endregion
 
         #region Sending requests
@@ -451,7 +396,7 @@ namespace CQFollowerAutoclaimer
             }
             if (statusTask == null || statusTask.Result.FunctionResult == null || !statusTask.Result.FunctionResult.ToString().Contains("true"))
             {
-                logError("Cloud Script Error: Claim All", statusTask.Result.FunctionResult.ToString());
+                logError("Cloud Script Error: Claim All", statusTask);
                 return false;
             }
             else
@@ -482,7 +427,7 @@ namespace CQFollowerAutoclaimer
             if (statusTask == null || statusTask.Result.FunctionResult == null || !statusTask.Result.FunctionResult.ToString().Contains("true"))
             {
                 battleResult = "";
-                logError("Cloud Script Error: PvP Fight", statusTask.Result.FunctionResult.ToString());
+                logError("Cloud Script Error: PvP Fight", statusTask);
                 return true;
             }
             else
@@ -523,11 +468,11 @@ namespace CQFollowerAutoclaimer
             {
                 logError(statusTask.Error.Error.ToString(), statusTask.Error.ErrorMessage);
                 chestResult = 801;
-                return false;
+                return true;
             }
             if (statusTask == null || statusTask.Result.FunctionResult == null || !statusTask.Result.FunctionResult.ToString().Contains("true"))
             {
-                logError("Cloud Script Error", statusTask.Result.FunctionResult.ToString());
+                logError("Cloud Script Error: Open chest", statusTask);
                 JObject json = JObject.Parse(statusTask.Result.FunctionResult.ToString());
                 chestResult = 800;
                 return true;
@@ -557,7 +502,7 @@ namespace CQFollowerAutoclaimer
             }
             if (statusTask == null || statusTask.Result.FunctionResult == null || !statusTask.Result.FunctionResult.ToString().Contains("true"))
             {
-                logError("Cloud Script Error: Send DQ", statusTask.Result.FunctionResult.ToString());
+                logError("Cloud Script Error: Send DQ", statusTask);
                 return false;
             }
             else
@@ -592,7 +537,7 @@ namespace CQFollowerAutoclaimer
             }
             if (statusTask == null || statusTask.Result.FunctionResult == null || !statusTask.Result.FunctionResult.ToString().Contains("true"))
             {
-                logError("Cloud Script Error", statusTask.Result.FunctionResult.ToString());
+                logError("Cloud Script Error: bid", statusTask);
                 using (StreamWriter sw = new StreamWriter("ActionLog.txt", true))
                 {
                     sw.WriteLine(DateTime.Now);
@@ -630,7 +575,7 @@ namespace CQFollowerAutoclaimer
             }
             if (statusTask == null || statusTask.Result.FunctionResult == null || !statusTask.Result.FunctionResult.ToString().Contains("true"))
             {
-                logError("Cloud Script Error: send WB", statusTask.Result.FunctionResult.ToString());
+                logError("Cloud Script Error: send WB", statusTask);
                 return true;
             }
             else
@@ -655,7 +600,7 @@ namespace CQFollowerAutoclaimer
             }
             if (statusTask == null || statusTask.Result.FunctionResult == null || !statusTask.Result.FunctionResult.ToString().Contains("true"))
             {
-                logError("Cloud Script Error: level up", statusTask.Result.FunctionResult.ToString());
+                logError("Cloud Script Error: level up", statusTask);
                 return true;
             }
             else
@@ -687,7 +632,7 @@ namespace CQFollowerAutoclaimer
             }
             if (statusTask == null || statusTask.Result.FunctionResult == null || !statusTask.Result.FunctionResult.ToString().Contains("true"))
             {
-                logError("Cloud Script Error: level up10", statusTask.Result.FunctionResult.ToString());
+                logError("Cloud Script Error: level up10", statusTask);
                 return true;
             }
             else
@@ -718,7 +663,7 @@ namespace CQFollowerAutoclaimer
             }
             if (statusTask == null || statusTask.Result.FunctionResult == null || !statusTask.Result.FunctionResult.ToString().Contains("true"))
             {
-                logError("Cloud Script Error: level super", statusTask.Result.FunctionResult.ToString());
+                logError("Cloud Script Error: level super", statusTask);
                 return true;
             }
             else
@@ -748,7 +693,7 @@ namespace CQFollowerAutoclaimer
             }
             if (statusTask == null || statusTask.Result.FunctionResult == null || !statusTask.Result.FunctionResult.ToString().Contains("true"))
             {
-                logError("Cloud Script Error: ascend hero", statusTask.Result.FunctionResult.ToString());
+                logError("Cloud Script Error: ascend hero", statusTask);
                 return true;
             }
             else
@@ -778,7 +723,7 @@ namespace CQFollowerAutoclaimer
             }
             if (statusTask == null || statusTask.Result.FunctionResult == null || !statusTask.Result.FunctionResult.ToString().Contains("true"))
             {
-                logError("Cloud Script Error: convert", statusTask.Result.FunctionResult.ToString());
+                logError("Cloud Script Error: convert", statusTask);
                 return true;
             }
             else

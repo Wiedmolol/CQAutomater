@@ -12,7 +12,7 @@ namespace CQFollowerAutoclaimer
     class AutoWB
     {
         Form1 main;
-        System.Timers.Timer WBTimer = new System.Timers.Timer();
+        public System.Timers.Timer WBTimer = new System.Timers.Timer();
         internal DateTime nextWBRefresh;
         static bool notAskedYet = true;
         internal string WBLogString = "";
@@ -20,7 +20,7 @@ namespace CQFollowerAutoclaimer
         public AutoWB(Form1 m)
         {
             main = m;
-            WBTimer.Interval = 60 * 1000;
+            WBTimer.Interval = 10 * 1000;
             WBTimer.Elapsed += WBTimer_Elapsed;
             WBTimer.Start();
             nextWBRefresh = DateTime.Now.AddMilliseconds(WBTimer.Interval);
@@ -52,6 +52,13 @@ namespace CQFollowerAutoclaimer
                     main.WBlineups[1][i].Text = main.appSettings.MOAKLineup[i];
                 }
             }
+            if (main.appSettings.KrytonLineup != null)
+            {
+                for (int i = 0; i < main.appSettings.KrytonLineup.Count; i++)
+                {
+                    main.WBlineups[3][i].Text = main.appSettings.KrytonLineup[i];
+                }
+            }
         }
 
         async void WBTimer_Elapsed(object sender, ElapsedEventArgs e)
@@ -62,7 +69,7 @@ namespace CQFollowerAutoclaimer
                 decimal attacksToDo = 0;
                 decimal requirement = 99;
                 int[] lineup = new int[2];
-                int r = PFStuff.getWBData((PFStuff.WB_ID).ToString());
+                int r = await PFStuff.getWBData((PFStuff.WB_ID).ToString());
                 main.userWBInfo.setText("Your current damage: " + PFStuff.wbDamageDealt + " with " + r + " attacks");
                 if (r == -2)
                 {
@@ -78,29 +85,93 @@ namespace CQFollowerAutoclaimer
                 }
                 else
                 {
-                    if (PFStuff.WBName == "LORD OF CHAOS" && PFStuff.wbMode == 0) //loc no heroes
+                    if (PFStuff.WBName.Contains("LORD OF CHAOS") && PFStuff.wbMode == 0) //loc no heroes
                     {
-                        attacksToDo = main.LOCNHAttacksCount.Value;
-                        requirement = main.LOCNHRequirementCount.Value;
+                        if (PFStuff.WBName.Contains("SUPER"))
+                        {                           
+                            attacksToDo = main.superLOCNHAtkCount.Value;
+                            requirement = main.superLOCNHReqCount.Value;                            
+                        }
+                        else
+                        {
+                            attacksToDo = main.LOCNHAttacksCount.Value;
+                            requirement = main.LOCNHRequirementCount.Value;
+                        }
                         lineup = main.getLineup(0, uint.Parse(PFStuff.followers));
                     }
-                    else if (PFStuff.WBName == "LORD OF CHAOS" && PFStuff.wbMode == 1) //loc heroes allowed
+                    else if (PFStuff.WBName.Contains("LORD OF CHAOS") && PFStuff.wbMode == 1) //loc heroes allowed
                     {
-                        attacksToDo = main.LOCHAAttacksCount.Value;
-                        requirement = main.LOCHARequirementCount.Value;
+                        if (PFStuff.WBName.Contains("SUPER"))
+                        {
+                            attacksToDo = main.superLOCHAAtkCount.Value;
+                            requirement = main.superLOCHAReqCount.Value;
+                        }
+                        else
+                        {
+                            attacksToDo = main.LOCHAAttacksCount.Value;
+                            requirement = main.LOCHARequirementCount.Value;
+                        }
                         lineup = main.getLineup(1, uint.Parse(PFStuff.followers));
                     }
-                    else if (PFStuff.WBName == "MOTHER OF ALL KODAMAS" && PFStuff.wbMode == 0) //moak no heroes
+                    else if (PFStuff.WBName.Contains("MOTHER OF ALL KODAMAS") && PFStuff.wbMode == 0) //moak no heroes
                     {
-                        attacksToDo = main.MOAKNHAttacksCount.Value;
-                        requirement = main.MOAKNHRequirementCount.Value;
+                        if (PFStuff.WBName.Contains("SUPER"))
+                        {
+                            attacksToDo = main.superMOAKNHAtkCount.Value;
+                            requirement = main.superMOAKNHReqCount.Value;
+                        }
+                        else
+                        {
+                            attacksToDo = main.MOAKNHAttacksCount.Value;
+                            requirement = main.MOAKNHRequirementCount.Value;
+                        }
                         lineup = main.getLineup(2, uint.Parse(PFStuff.followers));
                     }
-                    else if (PFStuff.WBName == "MOTHER OF ALL KODAMAS" && PFStuff.wbMode == 1) //moak heroes allowed
+                    else if (PFStuff.WBName.Contains("MOTHER OF ALL KODAMAS") && PFStuff.wbMode == 1) //moak heroes allowed
                     {
-                        attacksToDo = main.MOAKHAAttacksCount.Value;
-                        requirement = main.MOAKHARequirementCount.Value;
+                        if (PFStuff.WBName.Contains("SUPER"))
+                        {
+                            attacksToDo = main.superMOAKHAAtkCount.Value;
+                            requirement = main.superMOAKHAReqCount.Value;
+                        }
+                        else
+                        {
+                            attacksToDo = main.MOAKHAAttacksCount.Value;
+                            requirement = main.MOAKHARequirementCount.Value;
+                        }
                         lineup = main.getLineup(3, uint.Parse(PFStuff.followers));
+                    }
+                    else if (PFStuff.WBName.Contains("KRYTON") && PFStuff.wbMode == 0) //kryton no heroes
+                    {
+                        if (PFStuff.WBName.Contains("SUPER"))
+                        {
+                            attacksToDo = main.SuperKrytonNHAttacksCount.Value;
+                            requirement = main.SuperKrytonNHReqCount.Value;
+                        }
+                        else
+                        {
+                            attacksToDo = main.KrytonNHAttacksCount.Value;
+                            requirement = main.KrytonNHReqCount.Value;
+                        }
+                        lineup = main.getLineup(5, uint.Parse(PFStuff.followers));
+                    }
+                    else if (PFStuff.WBName.Contains("KRYTON") && PFStuff.wbMode == 1) //kryton heroes allowed
+                    {
+                        if (PFStuff.WBName.Contains("SUPER"))
+                        {
+                            attacksToDo = main.SuperKrytonHAAttacksCount.Value;
+                            requirement = main.SuperKrytonHAReqCount.Value;
+                        }
+                        else
+                        {
+                            attacksToDo = main.KrytonHAAttacksCount.Value;
+                            requirement = main.KrytonHAReqCount.Value;
+                        }
+                        lineup = main.getLineup(6, uint.Parse(PFStuff.followers));
+                    }
+                    else
+                    {
+                        return;
                     }
 
                     if (lineup.Contains(-1))
@@ -116,7 +187,9 @@ namespace CQFollowerAutoclaimer
                     if (PFStuff.WBchanged)
                     {
                         notAskedYet = true;
-                        main.autoLevel.levelTimer.Interval = 5 * 60 * 1000;
+                        main.autoLevel.levelTimer.Interval = 4 * 60 * 1000;
+                        main.autoLevel.nextLevelCheck = DateTime.Now.AddMilliseconds(main.autoLevel.levelTimer.Interval);
+                        return;
                     }
                     int attacksAvailable = PFStuff.wbAttacksAvailable + ((PFStuff.wbAttacksAvailable == 7 && PFStuff.wbAttackNext < DateTime.Now) ? 1 : 0);
                     if (attacksAvailable >= requirement - r && attacksToDo < (PFStuff.attacksLeft - 5))
@@ -201,6 +274,8 @@ namespace CQFollowerAutoclaimer
                     return "LoC";
                 case ("MOTHER OF ALL KODAMAS"):
                     return "MOAK";
+                case("KRYTON"):
+                    return "KRYTON";
                 default:
                     return "Unknowm";
             }

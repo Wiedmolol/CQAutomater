@@ -55,6 +55,8 @@ namespace CQFollowerAutoclaimer
         static public bool WBchanged = false;
         static public JArray auctionData;
 
+        TaskQueue logQueue = new TaskQueue();
+
         public PFStuff(string t, string kid)
         {
             token = t;
@@ -69,18 +71,31 @@ namespace CQFollowerAutoclaimer
             return result;
         }
 
-        private void logError(string err, string msg)
+        public Task<bool> addErrorToQueue(string err, string msg, DateTime dt)
         {
-            using (StreamWriter sw = new StreamWriter("ErrorLog", true))
+            try
             {
-                sw.WriteLine(DateTime.Now);
-                sw.WriteLine("\tError " + err + " " + msg);
+                using (StreamWriter sw = new StreamWriter(Constants.ErrorLog, true))
+                {
+                    sw.WriteLine(DateTime.Now);
+                    sw.WriteLine("\tError " + err + " " + msg);
+                    return Task.FromResult(true);
+                }
             }
+            catch
+            {
+                return Task.FromResult(false);
+            }
+        }
+
+        public void logError(string err, string msg)
+        {
+            logQueue.Enqueue(() => addErrorToQueue(err, msg, DateTime.Now), "log");
         }
 
         private void logError(string err, PlayFabResult<ExecuteCloudScriptResult> result)
         {
-            using (StreamWriter sw = new StreamWriter("ErrorLog", true))
+            using (StreamWriter sw = new StreamWriter(Constants.ErrorLog, true))
             {
                 sw.WriteLine(DateTime.Now);
                 string msg = "";
@@ -96,8 +111,7 @@ namespace CQFollowerAutoclaimer
                         msg = result.Result.FunctionResult.ToString();
                     }
                 }
-
-                sw.WriteLine("\tError " + err + " " + msg);
+                logQueue.Enqueue(() => addErrorToQueue(err, msg, DateTime.Now), "log");
             }
         }
 

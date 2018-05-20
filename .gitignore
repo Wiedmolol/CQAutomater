@@ -154,3 +154,5 @@ $RECYCLE.BIN/
 
 # Mac desktop service store files
 .DS_Store
+/packages/HtmlAgilityPack.1.8.0
+/.vs/CQAutomater/v15/Server/sqlite3

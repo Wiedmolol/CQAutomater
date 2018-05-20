@@ -612,6 +612,7 @@ namespace CQFollowerAutoclaimer
             appSettings.chestsToOpen = (int)chestToOpenCount.Value;
             appSettings.saveSettings();
         }
+        
         #endregion
 
         #region WB
@@ -834,6 +835,14 @@ namespace CQFollowerAutoclaimer
             {
                 WBIndicator.BackColor = Color.Red;
             }
+        }
+
+        private async void heroesToClipboardButton_Click(object sender, EventArgs e)
+        {
+            await pf.GetGameData();
+            string m = string.Join(",", PFStuff.heroLevels);
+            Clipboard.SetText(m);
+                //PFStuff.heroLevels.Aggregate((a,b) => a + "," + b);
         }
     }
 }

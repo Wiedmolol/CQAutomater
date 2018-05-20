@@ -305,6 +305,7 @@
             this.spheresLevelCount = new System.Windows.Forms.NumericUpDown();
             this.label112 = new System.Windows.Forms.Label();
             this.waitAutoLevelBox = new System.Windows.Forms.CheckBox();
+            this.heroesToClipboardButton = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.superMOAKNHAtkCount)).BeginInit();
@@ -2996,6 +2997,7 @@
             // 
             // tabPage6
             // 
+            this.tabPage6.Controls.Add(this.heroesToClipboardButton);
             this.tabPage6.Controls.Add(this.macroCreatorGithubButton);
             this.tabPage6.Controls.Add(this.automaterGithubButton);
             this.tabPage6.Controls.Add(this.openMSHButton);
@@ -3513,6 +3515,16 @@
             this.waitAutoLevelBox.Text = "Wait for autoLevel after WB changes";
             this.waitAutoLevelBox.UseVisualStyleBackColor = true;
             // 
+            // heroesToClipboardButton
+            // 
+            this.heroesToClipboardButton.Location = new System.Drawing.Point(161, 165);
+            this.heroesToClipboardButton.Name = "heroesToClipboardButton";
+            this.heroesToClipboardButton.Size = new System.Drawing.Size(121, 47);
+            this.heroesToClipboardButton.TabIndex = 3;
+            this.heroesToClipboardButton.Text = "Copy your hero levels to clipboard";
+            this.heroesToClipboardButton.UseVisualStyleBackColor = true;
+            this.heroesToClipboardButton.Click += new System.EventHandler(this.heroesToClipboardButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3874,6 +3886,7 @@
         internal System.Windows.Forms.NumericUpDown spheresLevelCount;
         private System.Windows.Forms.Label label112;
         internal System.Windows.Forms.CheckBox waitAutoLevelBox;
+        private System.Windows.Forms.Button heroesToClipboardButton;
     }
 }
 

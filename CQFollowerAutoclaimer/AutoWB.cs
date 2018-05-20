@@ -75,7 +75,7 @@ namespace CQFollowerAutoclaimer
                 {
                     using (StreamWriter sw = new StreamWriter("ActionLog.txt", true))
                     {
-                        sw.WriteLine(DateTime.Now + "\n\tError when downloading the data");
+                        sw.WriteLine(DateTime.Now + "\n\tError when downloading the WB data");
                     }
                    
                 }
@@ -189,7 +189,7 @@ namespace CQFollowerAutoclaimer
                         notAskedYet = true;
                         main.autoLevel.levelTimer.Interval = 4 * 60 * 1000;
                         main.autoLevel.nextLevelCheck = DateTime.Now.AddMilliseconds(main.autoLevel.levelTimer.Interval);
-                        if(main.waitAutoLevelBox.Checked)
+                        if(main.waitAutoLevelBox.Checked && PFStuff.wbMode == 1)
                             return;
                     }
                     int attacksAvailable = PFStuff.wbAttacksAvailable + ((PFStuff.wbAttacksAvailable == 7 && PFStuff.wbAttackNext < DateTime.Now) ? 1 : 0);
@@ -262,7 +262,7 @@ namespace CQFollowerAutoclaimer
             main.currentBossLabel.setText(shortBossName(PFStuff.WBName) + (PFStuff.wbMode == 0 ? " NH" : " HA") + ", Attacks left: " + PFStuff.attacksLeft);
             main.auctionHouse.loadAuctions(false);
             double x = await main.auctionHouse.getAuctionInterval();
-            WBTimer.Interval = Math.Min(Math.Max(PFStuff.attacksLeft * 5000, 20000), x);
+            WBTimer.Interval = Math.Min(Math.Max(PFStuff.attacksLeft * 2500, 5000), x);
             nextWBRefresh = DateTime.Now.AddMilliseconds(WBTimer.Interval);
         }
 

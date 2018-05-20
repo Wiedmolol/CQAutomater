@@ -1,6 +1,11 @@
 # CQAutomater
 
 CQAutomater is a tool that runs in the background and automatically claims your miracles as soon as they are ready. It can also open the daily free chest, start battles with random person when your hourly battle is ready, automatically send a predefined lineup to beat DQ or run the calc to solve it and finally fight World Bosses.
+
+# v 0.9.5
+Fixed lineups for NH Kryton. Auto-WB will wait for auto-level only if new boss is Heroes Allowed. Fixed leveling ascended hero if user doesn't have ascended version yet. Fixed problem with ErrorLog being accessed by multiple threads.
+
+
 # v 0.9.4
 #### Auto-Level
 Added option to specify to what level heroes should be leveled. Added Dev Heroes as possible choices in prana leveled hero.

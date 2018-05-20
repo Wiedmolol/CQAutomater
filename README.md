@@ -7,6 +7,7 @@ Added option to specify to what level heroes should be leveled. Added Dev Heroes
 
 #### Auto-WB:
 Implemented settings for Kryton. Enabled settings for Super bosses.
+Added option to delay WB attack if WB changes until AutoLeveler levels your heroes.
 
 
 

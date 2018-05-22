@@ -39,6 +39,30 @@
             this.chestIndicator = new System.Windows.Forms.Label();
             this.PVPIndicator = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.waitAutoLevelBox = new System.Windows.Forms.CheckBox();
+            this.label103 = new System.Windows.Forms.Label();
+            this.label104 = new System.Windows.Forms.Label();
+            this.label105 = new System.Windows.Forms.Label();
+            this.KrytonHA6 = new System.Windows.Forms.ComboBox();
+            this.KrytonHA5 = new System.Windows.Forms.ComboBox();
+            this.KrytonHA4 = new System.Windows.Forms.ComboBox();
+            this.KrytonHA3 = new System.Windows.Forms.ComboBox();
+            this.KrytonHA2 = new System.Windows.Forms.ComboBox();
+            this.KrytonHA1 = new System.Windows.Forms.ComboBox();
+            this.label96 = new System.Windows.Forms.Label();
+            this.label98 = new System.Windows.Forms.Label();
+            this.label99 = new System.Windows.Forms.Label();
+            this.label100 = new System.Windows.Forms.Label();
+            this.SuperKrytonNHAttacksCount = new System.Windows.Forms.NumericUpDown();
+            this.SuperKrytonNHReqCount = new System.Windows.Forms.NumericUpDown();
+            this.SuperKrytonHAAttacksCount = new System.Windows.Forms.NumericUpDown();
+            this.SuperKrytonHAReqCount = new System.Windows.Forms.NumericUpDown();
+            this.KrytonNHAttacksCount = new System.Windows.Forms.NumericUpDown();
+            this.KrytonNHReqCount = new System.Windows.Forms.NumericUpDown();
+            this.label101 = new System.Windows.Forms.Label();
+            this.KrytonHAAttacksCount = new System.Windows.Forms.NumericUpDown();
+            this.KrytonHAReqCount = new System.Windows.Forms.NumericUpDown();
+            this.label102 = new System.Windows.Forms.Label();
             this.userWBInfo = new System.Windows.Forms.Label();
             this.safeModeWB = new System.Windows.Forms.CheckBox();
             this.currentBossLabel = new System.Windows.Forms.Label();
@@ -133,6 +157,11 @@
             this.label24 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label109 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label108 = new System.Windows.Forms.Label();
+            this.label107 = new System.Windows.Forms.Label();
+            this.label106 = new System.Windows.Forms.Label();
             this.saveDQSettingsButton = new System.Windows.Forms.Button();
             this.label62 = new System.Windows.Forms.Label();
             this.label60 = new System.Windows.Forms.Label();
@@ -193,14 +222,12 @@
             this.claimtime7 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage7 = new System.Windows.Forms.TabPage();
-            this.label75 = new System.Windows.Forms.Label();
             this.ahCountdown3 = new System.Windows.Forms.Label();
             this.label83 = new System.Windows.Forms.Label();
             this.ahCountdown2 = new System.Windows.Forms.Label();
             this.label79 = new System.Windows.Forms.Label();
             this.ahCountdown1 = new System.Windows.Forms.Label();
             this.label74 = new System.Windows.Forms.Label();
-            this.label73 = new System.Windows.Forms.Label();
             this.saveAHSettingsButton = new System.Windows.Forms.Button();
             this.AHCountdownLabel = new System.Windows.Forms.Label();
             this.label84 = new System.Windows.Forms.Label();
@@ -237,6 +264,12 @@
             this.auctionHero2Box = new System.Windows.Forms.CheckBox();
             this.auctionHero1Box = new System.Windows.Forms.CheckBox();
             this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.spheresLevelCount = new System.Windows.Forms.NumericUpDown();
+            this.label112 = new System.Windows.Forms.Label();
+            this.pranaLevelCount = new System.Windows.Forms.NumericUpDown();
+            this.label111 = new System.Windows.Forms.Label();
+            this.coinsLevelCount = new System.Windows.Forms.NumericUpDown();
+            this.label110 = new System.Windows.Forms.Label();
             this.ALCountdownLabel = new System.Windows.Forms.Label();
             this.label97 = new System.Windows.Forms.Label();
             this.label95 = new System.Windows.Forms.Label();
@@ -261,6 +294,7 @@
             this.label80 = new System.Windows.Forms.Label();
             this.label76 = new System.Windows.Forms.Label();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.heroesToClipboardButton = new System.Windows.Forms.Button();
             this.macroCreatorGithubButton = new System.Windows.Forms.Button();
             this.automaterGithubButton = new System.Windows.Forms.Button();
             this.openMSHButton = new System.Windows.Forms.Button();
@@ -270,44 +304,16 @@
             this.ah2Indicator = new System.Windows.Forms.Label();
             this.ah3Indicator = new System.Windows.Forms.Label();
             this.ALIndicator = new System.Windows.Forms.Label();
-            this.label96 = new System.Windows.Forms.Label();
-            this.label98 = new System.Windows.Forms.Label();
-            this.label99 = new System.Windows.Forms.Label();
-            this.label100 = new System.Windows.Forms.Label();
-            this.SuperKrytonNHAttacksCount = new System.Windows.Forms.NumericUpDown();
-            this.SuperKrytonNHReqCount = new System.Windows.Forms.NumericUpDown();
-            this.SuperKrytonHAAttacksCount = new System.Windows.Forms.NumericUpDown();
-            this.SuperKrytonHAReqCount = new System.Windows.Forms.NumericUpDown();
-            this.KrytonNHAttacksCount = new System.Windows.Forms.NumericUpDown();
-            this.KrytonNHReqCount = new System.Windows.Forms.NumericUpDown();
-            this.label101 = new System.Windows.Forms.Label();
-            this.KrytonHAAttacksCount = new System.Windows.Forms.NumericUpDown();
-            this.KrytonHAReqCount = new System.Windows.Forms.NumericUpDown();
-            this.label102 = new System.Windows.Forms.Label();
-            this.label103 = new System.Windows.Forms.Label();
-            this.label104 = new System.Windows.Forms.Label();
-            this.label105 = new System.Windows.Forms.Label();
-            this.KrytonHA6 = new System.Windows.Forms.ComboBox();
-            this.KrytonHA5 = new System.Windows.Forms.ComboBox();
-            this.KrytonHA4 = new System.Windows.Forms.ComboBox();
-            this.KrytonHA3 = new System.Windows.Forms.ComboBox();
-            this.KrytonHA2 = new System.Windows.Forms.ComboBox();
-            this.KrytonHA1 = new System.Windows.Forms.ComboBox();
-            this.label106 = new System.Windows.Forms.Label();
-            this.label107 = new System.Windows.Forms.Label();
-            this.label108 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.label109 = new System.Windows.Forms.Label();
-            this.coinsLevelCount = new System.Windows.Forms.NumericUpDown();
-            this.label110 = new System.Windows.Forms.Label();
-            this.pranaLevelCount = new System.Windows.Forms.NumericUpDown();
-            this.label111 = new System.Windows.Forms.Label();
-            this.spheresLevelCount = new System.Windows.Forms.NumericUpDown();
-            this.label112 = new System.Windows.Forms.Label();
-            this.waitAutoLevelBox = new System.Windows.Forms.CheckBox();
-            this.heroesToClipboardButton = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.tabPage5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SuperKrytonNHAttacksCount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SuperKrytonNHReqCount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SuperKrytonHAAttacksCount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SuperKrytonHAReqCount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.KrytonNHAttacksCount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.KrytonNHReqCount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.KrytonHAAttacksCount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.KrytonHAReqCount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.superMOAKNHAtkCount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.superMOAKNHReqCount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.superMOAKHAAtkCount)).BeginInit();
@@ -342,21 +348,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.auctionHero2LevelCount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.auctionHero1LevelCount)).BeginInit();
             this.tabPage8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.spheresLevelCount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pranaLevelCount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.coinsLevelCount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spheresBankCount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.coinsBankCount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pranaBankCount)).BeginInit();
             this.tabPage6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.SuperKrytonNHAttacksCount)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SuperKrytonNHReqCount)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SuperKrytonHAAttacksCount)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SuperKrytonHAReqCount)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.KrytonNHAttacksCount)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.KrytonNHReqCount)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.KrytonHAAttacksCount)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.KrytonHAReqCount)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.coinsLevelCount)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pranaLevelCount)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spheresLevelCount)).BeginInit();
             this.SuspendLayout();
             // 
             // notifyIcon1
@@ -391,11 +389,11 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(410, 9);
+            this.label22.Location = new System.Drawing.Point(415, 9);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(37, 13);
             this.label22.TabIndex = 32;
-            this.label22.Text = "v0.9.4";
+            this.label22.Text = "v0.9.6";
             // 
             // DQIndicator
             // 
@@ -518,10 +516,304 @@
             this.tabPage5.Controls.Add(this.label25);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(442, 430);
+            this.tabPage5.Size = new System.Drawing.Size(442, 438);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "WB";
             this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // waitAutoLevelBox
+            // 
+            this.waitAutoLevelBox.AutoSize = true;
+            this.waitAutoLevelBox.Location = new System.Drawing.Point(7, 64);
+            this.waitAutoLevelBox.Name = "waitAutoLevelBox";
+            this.waitAutoLevelBox.Size = new System.Drawing.Size(202, 17);
+            this.waitAutoLevelBox.TabIndex = 128;
+            this.waitAutoLevelBox.Text = "Wait for autoLevel after WB changes";
+            this.waitAutoLevelBox.UseVisualStyleBackColor = true;
+            // 
+            // label103
+            // 
+            this.label103.AutoSize = true;
+            this.label103.Location = new System.Drawing.Point(369, 487);
+            this.label103.Name = "label103";
+            this.label103.Size = new System.Drawing.Size(39, 13);
+            this.label103.TabIndex = 127;
+            this.label103.Text = "Last ->";
+            // 
+            // label104
+            // 
+            this.label104.AutoSize = true;
+            this.label104.Location = new System.Drawing.Point(5, 487);
+            this.label104.Name = "label104";
+            this.label104.Size = new System.Drawing.Size(38, 13);
+            this.label104.TabIndex = 126;
+            this.label104.Text = "<- First";
+            // 
+            // label105
+            // 
+            this.label105.AutoSize = true;
+            this.label105.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label105.Location = new System.Drawing.Point(152, 485);
+            this.label105.Name = "label105";
+            this.label105.Size = new System.Drawing.Size(102, 13);
+            this.label105.TabIndex = 125;
+            this.label105.Text = "Kryton HA lineup";
+            // 
+            // KrytonHA6
+            // 
+            this.KrytonHA6.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.KrytonHA6.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.KrytonHA6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.KrytonHA6.FormattingEnabled = true;
+            this.KrytonHA6.Location = new System.Drawing.Point(348, 504);
+            this.KrytonHA6.Name = "KrytonHA6";
+            this.KrytonHA6.Size = new System.Drawing.Size(66, 21);
+            this.KrytonHA6.TabIndex = 124;
+            // 
+            // KrytonHA5
+            // 
+            this.KrytonHA5.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.KrytonHA5.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.KrytonHA5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.KrytonHA5.FormattingEnabled = true;
+            this.KrytonHA5.Location = new System.Drawing.Point(280, 504);
+            this.KrytonHA5.Name = "KrytonHA5";
+            this.KrytonHA5.Size = new System.Drawing.Size(66, 21);
+            this.KrytonHA5.TabIndex = 123;
+            // 
+            // KrytonHA4
+            // 
+            this.KrytonHA4.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.KrytonHA4.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.KrytonHA4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.KrytonHA4.FormattingEnabled = true;
+            this.KrytonHA4.Location = new System.Drawing.Point(211, 504);
+            this.KrytonHA4.Name = "KrytonHA4";
+            this.KrytonHA4.Size = new System.Drawing.Size(66, 21);
+            this.KrytonHA4.TabIndex = 122;
+            // 
+            // KrytonHA3
+            // 
+            this.KrytonHA3.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.KrytonHA3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.KrytonHA3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.KrytonHA3.FormattingEnabled = true;
+            this.KrytonHA3.Location = new System.Drawing.Point(142, 504);
+            this.KrytonHA3.Name = "KrytonHA3";
+            this.KrytonHA3.Size = new System.Drawing.Size(66, 21);
+            this.KrytonHA3.TabIndex = 121;
+            // 
+            // KrytonHA2
+            // 
+            this.KrytonHA2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.KrytonHA2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.KrytonHA2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.KrytonHA2.FormattingEnabled = true;
+            this.KrytonHA2.Location = new System.Drawing.Point(73, 504);
+            this.KrytonHA2.Name = "KrytonHA2";
+            this.KrytonHA2.Size = new System.Drawing.Size(66, 21);
+            this.KrytonHA2.TabIndex = 120;
+            // 
+            // KrytonHA1
+            // 
+            this.KrytonHA1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.KrytonHA1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.KrytonHA1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.KrytonHA1.FormattingEnabled = true;
+            this.KrytonHA1.Location = new System.Drawing.Point(4, 504);
+            this.KrytonHA1.Name = "KrytonHA1";
+            this.KrytonHA1.Size = new System.Drawing.Size(66, 21);
+            this.KrytonHA1.TabIndex = 119;
+            // 
+            // label96
+            // 
+            this.label96.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label96.Location = new System.Drawing.Point(4, 381);
+            this.label96.Name = "label96";
+            this.label96.Size = new System.Drawing.Size(405, 1);
+            this.label96.TabIndex = 118;
+            // 
+            // label98
+            // 
+            this.label98.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label98.Location = new System.Drawing.Point(4, 331);
+            this.label98.Name = "label98";
+            this.label98.Size = new System.Drawing.Size(405, 1);
+            this.label98.TabIndex = 117;
+            // 
+            // label99
+            // 
+            this.label99.AutoSize = true;
+            this.label99.Location = new System.Drawing.Point(220, 360);
+            this.label99.Name = "label99";
+            this.label99.Size = new System.Drawing.Size(73, 13);
+            this.label99.TabIndex = 116;
+            this.label99.Text = "Super variant:";
+            // 
+            // label100
+            // 
+            this.label100.AutoSize = true;
+            this.label100.Location = new System.Drawing.Point(220, 310);
+            this.label100.Name = "label100";
+            this.label100.Size = new System.Drawing.Size(73, 13);
+            this.label100.TabIndex = 115;
+            this.label100.Text = "Super variant:";
+            // 
+            // SuperKrytonNHAttacksCount
+            // 
+            this.SuperKrytonNHAttacksCount.Location = new System.Drawing.Point(373, 358);
+            this.SuperKrytonNHAttacksCount.Maximum = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.SuperKrytonNHAttacksCount.Name = "SuperKrytonNHAttacksCount";
+            this.SuperKrytonNHAttacksCount.Size = new System.Drawing.Size(35, 20);
+            this.SuperKrytonNHAttacksCount.TabIndex = 114;
+            // 
+            // SuperKrytonNHReqCount
+            // 
+            this.SuperKrytonNHReqCount.Location = new System.Drawing.Point(299, 358);
+            this.SuperKrytonNHReqCount.Maximum = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
+            this.SuperKrytonNHReqCount.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.SuperKrytonNHReqCount.Name = "SuperKrytonNHReqCount";
+            this.SuperKrytonNHReqCount.Size = new System.Drawing.Size(40, 20);
+            this.SuperKrytonNHReqCount.TabIndex = 113;
+            this.SuperKrytonNHReqCount.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            // 
+            // SuperKrytonHAAttacksCount
+            // 
+            this.SuperKrytonHAAttacksCount.Location = new System.Drawing.Point(373, 308);
+            this.SuperKrytonHAAttacksCount.Maximum = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.SuperKrytonHAAttacksCount.Name = "SuperKrytonHAAttacksCount";
+            this.SuperKrytonHAAttacksCount.Size = new System.Drawing.Size(35, 20);
+            this.SuperKrytonHAAttacksCount.TabIndex = 112;
+            // 
+            // SuperKrytonHAReqCount
+            // 
+            this.SuperKrytonHAReqCount.Location = new System.Drawing.Point(299, 308);
+            this.SuperKrytonHAReqCount.Maximum = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
+            this.SuperKrytonHAReqCount.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.SuperKrytonHAReqCount.Name = "SuperKrytonHAReqCount";
+            this.SuperKrytonHAReqCount.Size = new System.Drawing.Size(40, 20);
+            this.SuperKrytonHAReqCount.TabIndex = 111;
+            this.SuperKrytonHAReqCount.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            // 
+            // KrytonNHAttacksCount
+            // 
+            this.KrytonNHAttacksCount.Location = new System.Drawing.Point(373, 335);
+            this.KrytonNHAttacksCount.Maximum = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
+            this.KrytonNHAttacksCount.Name = "KrytonNHAttacksCount";
+            this.KrytonNHAttacksCount.Size = new System.Drawing.Size(35, 20);
+            this.KrytonNHAttacksCount.TabIndex = 110;
+            // 
+            // KrytonNHReqCount
+            // 
+            this.KrytonNHReqCount.Location = new System.Drawing.Point(299, 335);
+            this.KrytonNHReqCount.Maximum = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
+            this.KrytonNHReqCount.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.KrytonNHReqCount.Name = "KrytonNHReqCount";
+            this.KrytonNHReqCount.Size = new System.Drawing.Size(40, 20);
+            this.KrytonNHReqCount.TabIndex = 109;
+            this.KrytonNHReqCount.Value = new decimal(new int[] {
+            7,
+            0,
+            0,
+            0});
+            // 
+            // label101
+            // 
+            this.label101.AutoSize = true;
+            this.label101.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label101.Location = new System.Drawing.Point(4, 335);
+            this.label101.Name = "label101";
+            this.label101.Size = new System.Drawing.Size(81, 16);
+            this.label101.TabIndex = 108;
+            this.label101.Text = "Kryton, NH";
+            // 
+            // KrytonHAAttacksCount
+            // 
+            this.KrytonHAAttacksCount.Location = new System.Drawing.Point(373, 285);
+            this.KrytonHAAttacksCount.Maximum = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
+            this.KrytonHAAttacksCount.Name = "KrytonHAAttacksCount";
+            this.KrytonHAAttacksCount.Size = new System.Drawing.Size(35, 20);
+            this.KrytonHAAttacksCount.TabIndex = 107;
+            // 
+            // KrytonHAReqCount
+            // 
+            this.KrytonHAReqCount.Location = new System.Drawing.Point(299, 285);
+            this.KrytonHAReqCount.Maximum = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
+            this.KrytonHAReqCount.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.KrytonHAReqCount.Name = "KrytonHAReqCount";
+            this.KrytonHAReqCount.Size = new System.Drawing.Size(40, 20);
+            this.KrytonHAReqCount.TabIndex = 106;
+            this.KrytonHAReqCount.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            // 
+            // label102
+            // 
+            this.label102.AutoSize = true;
+            this.label102.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label102.Location = new System.Drawing.Point(2, 285);
+            this.label102.Name = "label102";
+            this.label102.Size = new System.Drawing.Size(80, 16);
+            this.label102.TabIndex = 105;
+            this.label102.Text = "Kryton, HA";
             // 
             // userWBInfo
             // 
@@ -1230,7 +1522,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(442, 430);
+            this.tabPage4.Size = new System.Drawing.Size(442, 438);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "PvP";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -1381,7 +1673,7 @@
             this.tabPage3.Controls.Add(this.label23);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(442, 430);
+            this.tabPage3.Size = new System.Drawing.Size(442, 438);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Chests";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1611,10 +1903,58 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(442, 430);
+            this.tabPage2.Size = new System.Drawing.Size(442, 438);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "DQ";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // label109
+            // 
+            this.label109.AutoSize = true;
+            this.label109.Enabled = false;
+            this.label109.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label109.Location = new System.Drawing.Point(194, 206);
+            this.label109.Name = "label109";
+            this.label109.Size = new System.Drawing.Size(55, 16);
+            this.label109.TabIndex = 103;
+            this.label109.Text = "TO DO";
+            // 
+            // button2
+            // 
+            this.button2.Enabled = false;
+            this.button2.Location = new System.Drawing.Point(114, 165);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(124, 25);
+            this.button2.TabIndex = 102;
+            this.button2.Text = "Solve Dungeons now";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // label108
+            // 
+            this.label108.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label108.Location = new System.Drawing.Point(14, 244);
+            this.label108.Name = "label108";
+            this.label108.Size = new System.Drawing.Size(415, 1);
+            this.label108.TabIndex = 101;
+            // 
+            // label107
+            // 
+            this.label107.AutoSize = true;
+            this.label107.Enabled = false;
+            this.label107.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label107.Location = new System.Drawing.Point(9, 169);
+            this.label107.Name = "label107";
+            this.label107.Size = new System.Drawing.Size(82, 16);
+            this.label107.TabIndex = 100;
+            this.label107.Text = "Dungeons:";
+            // 
+            // label106
+            // 
+            this.label106.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label106.Location = new System.Drawing.Point(8, 158);
+            this.label106.Name = "label106";
+            this.label106.Size = new System.Drawing.Size(415, 1);
+            this.label106.TabIndex = 99;
             // 
             // saveDQSettingsButton
             // 
@@ -1918,7 +2258,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(442, 430);
+            this.tabPage1.Size = new System.Drawing.Size(442, 438);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Followers";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -2246,19 +2586,17 @@
             this.tabControl1.Location = new System.Drawing.Point(6, 9);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(450, 456);
+            this.tabControl1.Size = new System.Drawing.Size(450, 464);
             this.tabControl1.TabIndex = 31;
             // 
             // tabPage7
             // 
-            this.tabPage7.Controls.Add(this.label75);
             this.tabPage7.Controls.Add(this.ahCountdown3);
             this.tabPage7.Controls.Add(this.label83);
             this.tabPage7.Controls.Add(this.ahCountdown2);
             this.tabPage7.Controls.Add(this.label79);
             this.tabPage7.Controls.Add(this.ahCountdown1);
             this.tabPage7.Controls.Add(this.label74);
-            this.tabPage7.Controls.Add(this.label73);
             this.tabPage7.Controls.Add(this.saveAHSettingsButton);
             this.tabPage7.Controls.Add(this.AHCountdownLabel);
             this.tabPage7.Controls.Add(this.label84);
@@ -2297,21 +2635,10 @@
             this.tabPage7.Location = new System.Drawing.Point(4, 22);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(442, 430);
+            this.tabPage7.Size = new System.Drawing.Size(442, 438);
             this.tabPage7.TabIndex = 6;
             this.tabPage7.Text = "AH";
             this.tabPage7.UseVisualStyleBackColor = true;
-            // 
-            // label75
-            // 
-            this.label75.AutoSize = true;
-            this.label75.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F);
-            this.label75.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label75.Location = new System.Drawing.Point(147, 339);
-            this.label75.Name = "label75";
-            this.label75.Size = new System.Drawing.Size(78, 9);
-            this.label75.TabIndex = 123;
-            this.label75.Text = "It should work though.";
             // 
             // ahCountdown3
             // 
@@ -2366,16 +2693,6 @@
             this.label74.Size = new System.Drawing.Size(44, 13);
             this.label74.TabIndex = 117;
             this.label74.Text = "ends in:";
-            // 
-            // label73
-            // 
-            this.label73.AutoSize = true;
-            this.label73.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            this.label73.Location = new System.Drawing.Point(52, 304);
-            this.label73.Name = "label73";
-            this.label73.Size = new System.Drawing.Size(322, 34);
-            this.label73.TabIndex = 116;
-            this.label73.Text = "Auto-AH is working now but don\'t blame me if you \r\nlose UM or something xD";
             // 
             // saveAHSettingsButton
             // 
@@ -2761,10 +3078,88 @@
             this.tabPage8.Location = new System.Drawing.Point(4, 22);
             this.tabPage8.Name = "tabPage8";
             this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage8.Size = new System.Drawing.Size(442, 430);
+            this.tabPage8.Size = new System.Drawing.Size(442, 438);
             this.tabPage8.TabIndex = 7;
             this.tabPage8.Text = "Level";
             this.tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // spheresLevelCount
+            // 
+            this.spheresLevelCount.Location = new System.Drawing.Point(376, 172);
+            this.spheresLevelCount.Maximum = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.spheresLevelCount.Name = "spheresLevelCount";
+            this.spheresLevelCount.Size = new System.Drawing.Size(52, 20);
+            this.spheresLevelCount.TabIndex = 129;
+            this.spheresLevelCount.Value = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            // 
+            // label112
+            // 
+            this.label112.AutoSize = true;
+            this.label112.Location = new System.Drawing.Point(314, 174);
+            this.label112.Name = "label112";
+            this.label112.Size = new System.Drawing.Size(59, 13);
+            this.label112.TabIndex = 128;
+            this.label112.Text = "up to level:";
+            // 
+            // pranaLevelCount
+            // 
+            this.pranaLevelCount.Location = new System.Drawing.Point(376, 48);
+            this.pranaLevelCount.Maximum = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.pranaLevelCount.Name = "pranaLevelCount";
+            this.pranaLevelCount.Size = new System.Drawing.Size(52, 20);
+            this.pranaLevelCount.TabIndex = 127;
+            this.pranaLevelCount.Value = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            // 
+            // label111
+            // 
+            this.label111.AutoSize = true;
+            this.label111.Location = new System.Drawing.Point(314, 50);
+            this.label111.Name = "label111";
+            this.label111.Size = new System.Drawing.Size(59, 13);
+            this.label111.TabIndex = 126;
+            this.label111.Text = "up to level:";
+            // 
+            // coinsLevelCount
+            // 
+            this.coinsLevelCount.Location = new System.Drawing.Point(376, 109);
+            this.coinsLevelCount.Maximum = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.coinsLevelCount.Name = "coinsLevelCount";
+            this.coinsLevelCount.Size = new System.Drawing.Size(52, 20);
+            this.coinsLevelCount.TabIndex = 125;
+            this.coinsLevelCount.Value = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            // 
+            // label110
+            // 
+            this.label110.AutoSize = true;
+            this.label110.Location = new System.Drawing.Point(314, 111);
+            this.label110.Name = "label110";
+            this.label110.Size = new System.Drawing.Size(59, 13);
+            this.label110.TabIndex = 124;
+            this.label110.Text = "up to level:";
             // 
             // ALCountdownLabel
             // 
@@ -3005,10 +3400,20 @@
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage6.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.tabPage6.Size = new System.Drawing.Size(442, 430);
+            this.tabPage6.Size = new System.Drawing.Size(442, 438);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Other";
             this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // heroesToClipboardButton
+            // 
+            this.heroesToClipboardButton.Location = new System.Drawing.Point(161, 165);
+            this.heroesToClipboardButton.Name = "heroesToClipboardButton";
+            this.heroesToClipboardButton.Size = new System.Drawing.Size(121, 47);
+            this.heroesToClipboardButton.TabIndex = 3;
+            this.heroesToClipboardButton.Text = "Copy your hero levels to clipboard";
+            this.heroesToClipboardButton.UseVisualStyleBackColor = true;
+            this.heroesToClipboardButton.Click += new System.EventHandler(this.heroesToClipboardButton_Click);
             // 
             // macroCreatorGithubButton
             // 
@@ -3095,436 +3500,6 @@
             this.ALIndicator.TabIndex = 39;
             this.ALIndicator.Text = "          ";
             // 
-            // label96
-            // 
-            this.label96.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label96.Location = new System.Drawing.Point(4, 381);
-            this.label96.Name = "label96";
-            this.label96.Size = new System.Drawing.Size(405, 1);
-            this.label96.TabIndex = 118;
-            // 
-            // label98
-            // 
-            this.label98.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label98.Location = new System.Drawing.Point(4, 331);
-            this.label98.Name = "label98";
-            this.label98.Size = new System.Drawing.Size(405, 1);
-            this.label98.TabIndex = 117;
-            // 
-            // label99
-            // 
-            this.label99.AutoSize = true;
-            this.label99.Location = new System.Drawing.Point(220, 360);
-            this.label99.Name = "label99";
-            this.label99.Size = new System.Drawing.Size(73, 13);
-            this.label99.TabIndex = 116;
-            this.label99.Text = "Super variant:";
-            // 
-            // label100
-            // 
-            this.label100.AutoSize = true;
-            this.label100.Location = new System.Drawing.Point(220, 310);
-            this.label100.Name = "label100";
-            this.label100.Size = new System.Drawing.Size(73, 13);
-            this.label100.TabIndex = 115;
-            this.label100.Text = "Super variant:";
-            // 
-            // SuperKrytonNHAttacksCount
-            // 
-            this.SuperKrytonNHAttacksCount.Location = new System.Drawing.Point(373, 358);
-            this.SuperKrytonNHAttacksCount.Maximum = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-            this.SuperKrytonNHAttacksCount.Name = "SuperKrytonNHAttacksCount";
-            this.SuperKrytonNHAttacksCount.Size = new System.Drawing.Size(35, 20);
-            this.SuperKrytonNHAttacksCount.TabIndex = 114;
-            // 
-            // SuperKrytonNHReqCount
-            // 
-            this.SuperKrytonNHReqCount.Location = new System.Drawing.Point(299, 358);
-            this.SuperKrytonNHReqCount.Maximum = new decimal(new int[] {
-            8,
-            0,
-            0,
-            0});
-            this.SuperKrytonNHReqCount.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.SuperKrytonNHReqCount.Name = "SuperKrytonNHReqCount";
-            this.SuperKrytonNHReqCount.Size = new System.Drawing.Size(40, 20);
-            this.SuperKrytonNHReqCount.TabIndex = 113;
-            this.SuperKrytonNHReqCount.Value = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-            // 
-            // SuperKrytonHAAttacksCount
-            // 
-            this.SuperKrytonHAAttacksCount.Location = new System.Drawing.Point(373, 308);
-            this.SuperKrytonHAAttacksCount.Maximum = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-            this.SuperKrytonHAAttacksCount.Name = "SuperKrytonHAAttacksCount";
-            this.SuperKrytonHAAttacksCount.Size = new System.Drawing.Size(35, 20);
-            this.SuperKrytonHAAttacksCount.TabIndex = 112;
-            // 
-            // SuperKrytonHAReqCount
-            // 
-            this.SuperKrytonHAReqCount.Location = new System.Drawing.Point(299, 308);
-            this.SuperKrytonHAReqCount.Maximum = new decimal(new int[] {
-            8,
-            0,
-            0,
-            0});
-            this.SuperKrytonHAReqCount.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.SuperKrytonHAReqCount.Name = "SuperKrytonHAReqCount";
-            this.SuperKrytonHAReqCount.Size = new System.Drawing.Size(40, 20);
-            this.SuperKrytonHAReqCount.TabIndex = 111;
-            this.SuperKrytonHAReqCount.Value = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-            // 
-            // KrytonNHAttacksCount
-            // 
-            this.KrytonNHAttacksCount.Location = new System.Drawing.Point(373, 335);
-            this.KrytonNHAttacksCount.Maximum = new decimal(new int[] {
-            8,
-            0,
-            0,
-            0});
-            this.KrytonNHAttacksCount.Name = "KrytonNHAttacksCount";
-            this.KrytonNHAttacksCount.Size = new System.Drawing.Size(35, 20);
-            this.KrytonNHAttacksCount.TabIndex = 110;
-            // 
-            // KrytonNHReqCount
-            // 
-            this.KrytonNHReqCount.Location = new System.Drawing.Point(299, 335);
-            this.KrytonNHReqCount.Maximum = new decimal(new int[] {
-            8,
-            0,
-            0,
-            0});
-            this.KrytonNHReqCount.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.KrytonNHReqCount.Name = "KrytonNHReqCount";
-            this.KrytonNHReqCount.Size = new System.Drawing.Size(40, 20);
-            this.KrytonNHReqCount.TabIndex = 109;
-            this.KrytonNHReqCount.Value = new decimal(new int[] {
-            7,
-            0,
-            0,
-            0});
-            // 
-            // label101
-            // 
-            this.label101.AutoSize = true;
-            this.label101.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label101.Location = new System.Drawing.Point(4, 335);
-            this.label101.Name = "label101";
-            this.label101.Size = new System.Drawing.Size(81, 16);
-            this.label101.TabIndex = 108;
-            this.label101.Text = "Kryton, NH";
-            // 
-            // KrytonHAAttacksCount
-            // 
-            this.KrytonHAAttacksCount.Location = new System.Drawing.Point(373, 285);
-            this.KrytonHAAttacksCount.Maximum = new decimal(new int[] {
-            8,
-            0,
-            0,
-            0});
-            this.KrytonHAAttacksCount.Name = "KrytonHAAttacksCount";
-            this.KrytonHAAttacksCount.Size = new System.Drawing.Size(35, 20);
-            this.KrytonHAAttacksCount.TabIndex = 107;
-            // 
-            // KrytonHAReqCount
-            // 
-            this.KrytonHAReqCount.Location = new System.Drawing.Point(299, 285);
-            this.KrytonHAReqCount.Maximum = new decimal(new int[] {
-            8,
-            0,
-            0,
-            0});
-            this.KrytonHAReqCount.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.KrytonHAReqCount.Name = "KrytonHAReqCount";
-            this.KrytonHAReqCount.Size = new System.Drawing.Size(40, 20);
-            this.KrytonHAReqCount.TabIndex = 106;
-            this.KrytonHAReqCount.Value = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-            // 
-            // label102
-            // 
-            this.label102.AutoSize = true;
-            this.label102.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label102.Location = new System.Drawing.Point(2, 285);
-            this.label102.Name = "label102";
-            this.label102.Size = new System.Drawing.Size(80, 16);
-            this.label102.TabIndex = 105;
-            this.label102.Text = "Kryton, HA";
-            // 
-            // label103
-            // 
-            this.label103.AutoSize = true;
-            this.label103.Location = new System.Drawing.Point(369, 487);
-            this.label103.Name = "label103";
-            this.label103.Size = new System.Drawing.Size(39, 13);
-            this.label103.TabIndex = 127;
-            this.label103.Text = "Last ->";
-            // 
-            // label104
-            // 
-            this.label104.AutoSize = true;
-            this.label104.Location = new System.Drawing.Point(5, 487);
-            this.label104.Name = "label104";
-            this.label104.Size = new System.Drawing.Size(38, 13);
-            this.label104.TabIndex = 126;
-            this.label104.Text = "<- First";
-            // 
-            // label105
-            // 
-            this.label105.AutoSize = true;
-            this.label105.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label105.Location = new System.Drawing.Point(152, 485);
-            this.label105.Name = "label105";
-            this.label105.Size = new System.Drawing.Size(102, 13);
-            this.label105.TabIndex = 125;
-            this.label105.Text = "Kryton HA lineup";
-            // 
-            // KrytonHA6
-            // 
-            this.KrytonHA6.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.KrytonHA6.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.KrytonHA6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.KrytonHA6.FormattingEnabled = true;
-            this.KrytonHA6.Location = new System.Drawing.Point(348, 504);
-            this.KrytonHA6.Name = "KrytonHA6";
-            this.KrytonHA6.Size = new System.Drawing.Size(66, 21);
-            this.KrytonHA6.TabIndex = 124;
-            // 
-            // KrytonHA5
-            // 
-            this.KrytonHA5.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.KrytonHA5.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.KrytonHA5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.KrytonHA5.FormattingEnabled = true;
-            this.KrytonHA5.Location = new System.Drawing.Point(280, 504);
-            this.KrytonHA5.Name = "KrytonHA5";
-            this.KrytonHA5.Size = new System.Drawing.Size(66, 21);
-            this.KrytonHA5.TabIndex = 123;
-            // 
-            // KrytonHA4
-            // 
-            this.KrytonHA4.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.KrytonHA4.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.KrytonHA4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.KrytonHA4.FormattingEnabled = true;
-            this.KrytonHA4.Location = new System.Drawing.Point(211, 504);
-            this.KrytonHA4.Name = "KrytonHA4";
-            this.KrytonHA4.Size = new System.Drawing.Size(66, 21);
-            this.KrytonHA4.TabIndex = 122;
-            // 
-            // KrytonHA3
-            // 
-            this.KrytonHA3.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.KrytonHA3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.KrytonHA3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.KrytonHA3.FormattingEnabled = true;
-            this.KrytonHA3.Location = new System.Drawing.Point(142, 504);
-            this.KrytonHA3.Name = "KrytonHA3";
-            this.KrytonHA3.Size = new System.Drawing.Size(66, 21);
-            this.KrytonHA3.TabIndex = 121;
-            // 
-            // KrytonHA2
-            // 
-            this.KrytonHA2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.KrytonHA2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.KrytonHA2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.KrytonHA2.FormattingEnabled = true;
-            this.KrytonHA2.Location = new System.Drawing.Point(73, 504);
-            this.KrytonHA2.Name = "KrytonHA2";
-            this.KrytonHA2.Size = new System.Drawing.Size(66, 21);
-            this.KrytonHA2.TabIndex = 120;
-            // 
-            // KrytonHA1
-            // 
-            this.KrytonHA1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.KrytonHA1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.KrytonHA1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.KrytonHA1.FormattingEnabled = true;
-            this.KrytonHA1.Location = new System.Drawing.Point(4, 504);
-            this.KrytonHA1.Name = "KrytonHA1";
-            this.KrytonHA1.Size = new System.Drawing.Size(66, 21);
-            this.KrytonHA1.TabIndex = 119;
-            // 
-            // label106
-            // 
-            this.label106.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label106.Location = new System.Drawing.Point(8, 158);
-            this.label106.Name = "label106";
-            this.label106.Size = new System.Drawing.Size(415, 1);
-            this.label106.TabIndex = 99;
-            // 
-            // label107
-            // 
-            this.label107.AutoSize = true;
-            this.label107.Enabled = false;
-            this.label107.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label107.Location = new System.Drawing.Point(9, 169);
-            this.label107.Name = "label107";
-            this.label107.Size = new System.Drawing.Size(82, 16);
-            this.label107.TabIndex = 100;
-            this.label107.Text = "Dungeons:";
-            // 
-            // label108
-            // 
-            this.label108.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label108.Location = new System.Drawing.Point(14, 244);
-            this.label108.Name = "label108";
-            this.label108.Size = new System.Drawing.Size(415, 1);
-            this.label108.TabIndex = 101;
-            // 
-            // button2
-            // 
-            this.button2.Enabled = false;
-            this.button2.Location = new System.Drawing.Point(114, 165);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(124, 25);
-            this.button2.TabIndex = 102;
-            this.button2.Text = "Solve Dungeons now";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // label109
-            // 
-            this.label109.AutoSize = true;
-            this.label109.Enabled = false;
-            this.label109.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label109.Location = new System.Drawing.Point(194, 206);
-            this.label109.Name = "label109";
-            this.label109.Size = new System.Drawing.Size(55, 16);
-            this.label109.TabIndex = 103;
-            this.label109.Text = "TO DO";
-            // 
-            // coinsLevelCount
-            // 
-            this.coinsLevelCount.Location = new System.Drawing.Point(376, 109);
-            this.coinsLevelCount.Maximum = new decimal(new int[] {
-            99,
-            0,
-            0,
-            0});
-            this.coinsLevelCount.Name = "coinsLevelCount";
-            this.coinsLevelCount.Size = new System.Drawing.Size(52, 20);
-            this.coinsLevelCount.TabIndex = 125;
-            this.coinsLevelCount.Value = new decimal(new int[] {
-            99,
-            0,
-            0,
-            0});
-            // 
-            // label110
-            // 
-            this.label110.AutoSize = true;
-            this.label110.Location = new System.Drawing.Point(314, 111);
-            this.label110.Name = "label110";
-            this.label110.Size = new System.Drawing.Size(59, 13);
-            this.label110.TabIndex = 124;
-            this.label110.Text = "up to level:";
-            // 
-            // pranaLevelCount
-            // 
-            this.pranaLevelCount.Location = new System.Drawing.Point(376, 48);
-            this.pranaLevelCount.Maximum = new decimal(new int[] {
-            99,
-            0,
-            0,
-            0});
-            this.pranaLevelCount.Name = "pranaLevelCount";
-            this.pranaLevelCount.Size = new System.Drawing.Size(52, 20);
-            this.pranaLevelCount.TabIndex = 127;
-            this.pranaLevelCount.Value = new decimal(new int[] {
-            99,
-            0,
-            0,
-            0});
-            // 
-            // label111
-            // 
-            this.label111.AutoSize = true;
-            this.label111.Location = new System.Drawing.Point(314, 50);
-            this.label111.Name = "label111";
-            this.label111.Size = new System.Drawing.Size(59, 13);
-            this.label111.TabIndex = 126;
-            this.label111.Text = "up to level:";
-            // 
-            // spheresLevelCount
-            // 
-            this.spheresLevelCount.Location = new System.Drawing.Point(376, 172);
-            this.spheresLevelCount.Maximum = new decimal(new int[] {
-            99,
-            0,
-            0,
-            0});
-            this.spheresLevelCount.Name = "spheresLevelCount";
-            this.spheresLevelCount.Size = new System.Drawing.Size(52, 20);
-            this.spheresLevelCount.TabIndex = 129;
-            this.spheresLevelCount.Value = new decimal(new int[] {
-            99,
-            0,
-            0,
-            0});
-            // 
-            // label112
-            // 
-            this.label112.AutoSize = true;
-            this.label112.Location = new System.Drawing.Point(314, 174);
-            this.label112.Name = "label112";
-            this.label112.Size = new System.Drawing.Size(59, 13);
-            this.label112.TabIndex = 128;
-            this.label112.Text = "up to level:";
-            // 
-            // waitAutoLevelBox
-            // 
-            this.waitAutoLevelBox.AutoSize = true;
-            this.waitAutoLevelBox.Location = new System.Drawing.Point(7, 64);
-            this.waitAutoLevelBox.Name = "waitAutoLevelBox";
-            this.waitAutoLevelBox.Size = new System.Drawing.Size(202, 17);
-            this.waitAutoLevelBox.TabIndex = 128;
-            this.waitAutoLevelBox.Text = "Wait for autoLevel after WB changes";
-            this.waitAutoLevelBox.UseVisualStyleBackColor = true;
-            // 
-            // heroesToClipboardButton
-            // 
-            this.heroesToClipboardButton.Location = new System.Drawing.Point(161, 165);
-            this.heroesToClipboardButton.Name = "heroesToClipboardButton";
-            this.heroesToClipboardButton.Size = new System.Drawing.Size(121, 47);
-            this.heroesToClipboardButton.TabIndex = 3;
-            this.heroesToClipboardButton.Text = "Copy your hero levels to clipboard";
-            this.heroesToClipboardButton.UseVisualStyleBackColor = true;
-            this.heroesToClipboardButton.Click += new System.EventHandler(this.heroesToClipboardButton_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3547,6 +3522,14 @@
             this.contextMenuStrip1.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SuperKrytonNHAttacksCount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SuperKrytonNHReqCount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SuperKrytonHAAttacksCount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SuperKrytonHAReqCount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.KrytonNHAttacksCount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.KrytonNHReqCount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.KrytonHAAttacksCount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.KrytonHAReqCount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.superMOAKNHAtkCount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.superMOAKNHReqCount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.superMOAKHAAtkCount)).EndInit();
@@ -3589,21 +3572,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.auctionHero1LevelCount)).EndInit();
             this.tabPage8.ResumeLayout(false);
             this.tabPage8.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.spheresLevelCount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pranaLevelCount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.coinsLevelCount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spheresBankCount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.coinsBankCount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pranaBankCount)).EndInit();
             this.tabPage6.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.SuperKrytonNHAttacksCount)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SuperKrytonNHReqCount)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SuperKrytonHAAttacksCount)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SuperKrytonHAReqCount)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.KrytonNHAttacksCount)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.KrytonNHReqCount)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.KrytonHAAttacksCount)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.KrytonHAReqCount)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.coinsLevelCount)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pranaLevelCount)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spheresLevelCount)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3748,7 +3723,6 @@
         private System.Windows.Forms.Label AHCountdownLabel;
         private System.Windows.Forms.Label label84;
         private System.Windows.Forms.Button saveAHSettingsButton;
-        private System.Windows.Forms.Label label73;
         private System.Windows.Forms.Button saveDQSettingsButton;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Label label74;
@@ -3761,7 +3735,6 @@
         private System.Windows.Forms.Label ah2Indicator;
         private System.Windows.Forms.Label ah3Indicator;
         private System.Windows.Forms.TabPage tabPage8;
-        private System.Windows.Forms.Label label75;
         private System.Windows.Forms.Label label76;
         private System.Windows.Forms.Label label86;
         private System.Windows.Forms.Label label85;

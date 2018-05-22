@@ -619,13 +619,13 @@ namespace CQFollowerAutoclaimer
 
         internal int[] getLineup(int ID, uint followers)
         {
-            int[] lineup;
+            int[] lineup = new int[6];
             List<int> temp = new List<int>();
             switch (ID)
             {
                 case 0:
                     var l1 = PeblLineups.LOCNHLineups.Last(x => x.Item1 < followers);
-                    lineup = l1.Item3;
+                    Array.Copy(l1.Item3, lineup, l1.Item3.Length);
                     break;
                 case 1:
                     foreach (ComboBox cb in WBlineups[0])
@@ -638,7 +638,7 @@ namespace CQFollowerAutoclaimer
                     break;
                 case 2:
                     var l2 = PeblLineups.MOAKNHLineups.Last(x => x.Item1 < followers);
-                    lineup = l2.Item3;
+                    Array.Copy(l2.Item3, lineup, l2.Item3.Length);
                     break;
                 case 3:
                     foreach (ComboBox cb in WBlineups[1])
@@ -660,7 +660,7 @@ namespace CQFollowerAutoclaimer
                     break;
                 case 5:
                     var l3 = PeblLineups.KrytonNHLineups.Last(x => x.Item1 < followers);
-                    lineup = l3.Item3;
+                    Array.Copy(l3.Item3, lineup, l3.Item3.Length);
                     break;
                 case 6:
                      foreach (ComboBox cb in WBlineups[3])

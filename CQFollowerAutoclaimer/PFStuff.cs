@@ -256,7 +256,7 @@ namespace CQFollowerAutoclaimer
                 JObject json = JObject.Parse(content);
                 username = json["username"].ToString();
             }
-            catch (WebException nameEx)
+            catch
             {
                 username = null;
             }

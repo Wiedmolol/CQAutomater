@@ -338,7 +338,7 @@ namespace CQFollowerAutoclaimer
 
             if (PFStuff.freeChestAvailable && freeChestBox.Checked)
             {
-                taskQueue.Enqueue(() => pf.sendOpen("normal"), "chest");
+                taskQueue.Enqueue(() => autoChests.openChest("normal"), "chest");
             }
             autoChests.nextFreeChest = DateTime.Now.AddSeconds(PFStuff.freeChestRecharge);
 

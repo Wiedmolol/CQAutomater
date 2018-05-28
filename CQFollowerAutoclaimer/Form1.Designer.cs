@@ -393,7 +393,7 @@
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(37, 13);
             this.label22.TabIndex = 32;
-            this.label22.Text = "v0.9.6";
+            this.label22.Text = "v0.9.7";
             // 
             // DQIndicator
             // 

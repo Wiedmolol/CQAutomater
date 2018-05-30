@@ -48,6 +48,7 @@ namespace CQFollowerAutoclaimer
             if (getData)
             {
                 PFStuff.getWebsiteData(main.appSettings.KongregateId);
+                main.currentDungLevelLabel.Text = PFStuff.DungLevel;
             }
             auctionList = new List<Auction>();
             foreach (JObject jo in PFStuff.auctionData)

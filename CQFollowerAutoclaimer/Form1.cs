@@ -245,7 +245,7 @@ namespace CQFollowerAutoclaimer
                 }
                 if (DQCalcBox.Checked)
                 {
-                    autoDQ.RunCalc();
+                    autoDQ.RunCalc(AutoDQ.CalcMode.DQ);
                 }
             }
             else
@@ -496,14 +496,14 @@ namespace CQFollowerAutoclaimer
                 DialogResult dr = MessageBox.Show("Do you want to run the auto-solve now?", "Calc Question", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
                 if (dr == DialogResult.Yes)
                 {
-                    autoDQ.fightDQWithPresetLineup();
+                    autoDQ.fightWithPresetLineup(AutoDQ.CalcMode.DQ);
                 }
             }
         }
 
         private void runCalcButton_Click(object sender, EventArgs e)
         {
-            autoDQ.fightDQWithPresetLineup();
+            autoDQ.fightWithPresetLineup(AutoDQ.CalcMode.DQ);
         }
         #endregion
 
@@ -842,7 +842,11 @@ namespace CQFollowerAutoclaimer
             await pf.GetGameData();
             string m = string.Join(",", PFStuff.heroLevels);
             Clipboard.SetText(m);
-                //PFStuff.heroLevels.Aggregate((a,b) => a + "," + b);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            autoDQ.fightWithPresetLineup(AutoDQ.CalcMode.DUNG);
         }
     }
 }

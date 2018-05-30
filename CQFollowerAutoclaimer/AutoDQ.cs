@@ -28,8 +28,9 @@ namespace CQFollowerAutoclaimer
             main = m;
             DQTimer.Elapsed += DQTimer_Elapsed;
             loadDQSettings();
-
         }
+
+        public enum CalcMode { DQ, DUNG};
 
         void loadDQSettings()
         {
@@ -56,30 +57,33 @@ namespace CQFollowerAutoclaimer
             }
             if (main.DQCalcBox.Checked || main.DQBestBox.Checked)
             {
-                fightDQWithPresetLineup();
+                fightWithPresetLineup(CalcMode.DQ);
             }
             else
             {
                 await main.getData();
             }
         }
-        private async Task<bool> sendDQsolution(int[] lineup)
+        private async Task<bool> sendSolution(int[] lineup, CalcMode mode)
         {
             if (DQFailedAttempts >= 3)
             {
                 if (main.DQCalcBox.getCheckState())
                 {
-                    RunCalc();
+                    RunCalc(mode);
                 }
             }
             else
             {
-                bool b = await main.pf.sendDQSolution(lineup);
+                bool b = false;
+                if(mode == CalcMode.DQ)
+                     b = await main.pf.sendDQSolution(lineup);
+                if(mode == CalcMode.DUNG)
+                    b = await main.pf.sendDungSolution(lineup);
                 if (!b)
                 {
                     DQFailedAttempts++;
-                    main.taskQueue.Enqueue(() => sendDQsolution(lineup), "DQ");
-
+                    main.taskQueue.Enqueue(() => sendSolution(lineup, mode), "DQ");
                 }
                 else
                 {
@@ -87,14 +91,14 @@ namespace CQFollowerAutoclaimer
                     {
                         if (main.DQCalcBox.getCheckState())
                         {
-                            RunCalc();
+                            RunCalc(mode);
                         }
                     }
                     else
                     {
                         DQFailedAttempts = 0;
                         currentDQ = int.Parse(PFStuff.DQLevel);
-                        main.taskQueue.Enqueue(() => sendDQsolution(lineup), "DQ");
+                        main.taskQueue.Enqueue(() => sendSolution(lineup, mode), "DQ");
                         main.autoLevel.levelTimer.Interval = 60 * 1000;
                     }
                 }
@@ -102,7 +106,7 @@ namespace CQFollowerAutoclaimer
             return true;
         }
 
-        internal void fightDQWithPresetLineup()
+        internal void fightWithPresetLineup(CalcMode mode)
         {
             List<string> DQl = new List<string>();
             string s = "";
@@ -116,11 +120,11 @@ namespace CQFollowerAutoclaimer
                 int[] Lineup = main.getLineup(4, 0);
                 currentDQ = int.Parse(PFStuff.DQLevel);
                 main.calcStatus.SynchronizedInvoke(() => main.calcStatus.Text = "Using best lineup.");
-                main.taskQueue.Enqueue(() => sendDQsolution(Lineup), "DQ");
+                main.taskQueue.Enqueue(() => sendSolution(Lineup, mode), "DQ");
             }
             else if (main.DQCalcBox.Checked)
             {
-                RunCalc();
+                RunCalc(mode);
             }
             else
             {
@@ -129,7 +133,7 @@ namespace CQFollowerAutoclaimer
            
         }
 
-        internal void RunCalc()
+        internal void RunCalc(CalcMode mode)
         {
             if (File.Exists("CQMacroCreator.exe") && File.Exists("CosmosQuest.exe"))
             {
@@ -138,7 +142,7 @@ namespace CQFollowerAutoclaimer
                 calcOut = "";
                 var proc = new Process();
                 proc.StartInfo.FileName = "CQMacroCreator";
-                proc.StartInfo.Arguments = "quick";
+                proc.StartInfo.Arguments = mode == CalcMode.DQ ? "quick" : "quickdung";
 
                 proc.StartInfo.RedirectStandardOutput = true;
                 proc.StartInfo.RedirectStandardError = true;
@@ -181,11 +185,14 @@ namespace CQFollowerAutoclaimer
        async void proc_Exited(object sender, EventArgs e)
         {
             await main.getData();
+            await PFStuff.getWBData(main.KongregateId);
             main.calcStatus.SynchronizedInvoke(() => main.calcStatus.Text = "Calc finished");
             nextDQTime = Form1.getTime(PFStuff.DQTime);
             DQTimer.Interval = (nextDQTime < DateTime.Now && main.DQCalcBox.Checked) ? 4000 : Math.Max(4000, (nextDQTime - DateTime.Now).TotalMilliseconds);
             main.DQLevelLabel.SynchronizedInvoke(() => main.DQLevelLabel.Text = PFStuff.DQLevel);
             main.DQTimeLabel.SynchronizedInvoke(() => main.DQTimeLabel.Text = nextDQTime.ToString());
+
+            main.currentDungLevelLabel.setText(PFStuff.DungLevel);
             main.autoLevel.levelTimer.Interval = 1.5 * 60 * 1000;
             DQTimer.Start();
             if (!string.IsNullOrEmpty(calcErrorOut))

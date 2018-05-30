@@ -27,6 +27,7 @@ namespace CQFollowerAutoclaimer
         static public bool DQResult;
         static public string PVPTime;
         static public int[] heroLevels;
+        static public string DungLevel;
 
         static public string[] nearbyPlayersIDs;
         static public string username;
@@ -278,7 +279,14 @@ namespace CQFollowerAutoclaimer
                 wbMode = int.Parse(WBData["mode"].ToString());
                 WBName = WBData["name"].ToString();
                 attacksLeft = int.Parse(WBData["atk"].ToString());
-
+                if(json["dungeon"] != null)
+                {
+                    DungLevel = json["dungeon"]["lvl"].ToString();
+                }
+                else
+                {
+                    DungLevel = "-/-";
+                }
 
                 HttpWebRequest request2 = (HttpWebRequest)WebRequest.Create(@"https://cosmosquest.net/wb.php");
                 HttpWebResponse response2 = (HttpWebResponse)request2.GetResponse();
@@ -524,6 +532,34 @@ namespace CQFollowerAutoclaimer
                 JObject json = JObject.Parse(statusTask.Result.FunctionResult.ToString());
                 DQLevel = json["data"]["city"]["daily"]["lvl"].ToString();
                 DQResult = true;
+                return true;
+            }
+        }
+
+        public async Task<bool> sendDungSolution(int[] DungLineup)
+        {
+            var request = new ExecuteCloudScriptRequest()
+            {
+                RevisionSelection = CloudScriptRevisionOption.Live,
+                FunctionName = "dungeon",
+                FunctionParameter = new { setup = DungLineup, max = true }
+            };
+            var statusTask = await PlayFabClientAPI.ExecuteCloudScriptAsync(request);
+            if (statusTask.Error != null)
+            {
+                logError(statusTask.Error.Error.ToString(), statusTask.Error.ErrorMessage);
+                return false;
+            }
+            if (statusTask == null || statusTask.Result.FunctionResult == null || !statusTask.Result.FunctionResult.ToString().Contains("true"))
+            {
+                logError("Cloud Script Error: Send Dung", statusTask);
+                return false;
+            }
+            else
+            {
+                //JObject json = JObject.Parse(statusTask.Result.FunctionResult.ToString());
+                //DQLevel = json["data"]["city"]["daily"]["lvl"].ToString();
+                //DQResult = true;
                 return true;
             }
         }

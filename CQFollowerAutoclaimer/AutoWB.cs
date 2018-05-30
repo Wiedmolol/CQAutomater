@@ -217,7 +217,7 @@ namespace CQFollowerAutoclaimer
                         {
                             dr = DialogResult.Yes;
                         }
-                        if (dr == DialogResult.Yes)
+                        if (dr == DialogResult.Yes && !main.taskQueue.Contains("WB")) //enqueue new attacks only if there are no attacks in queue already
                         {
                             for (int i = 0; i < Math.Min(attacksToDo, attacksAvailable); i++)
                             {
@@ -271,6 +271,7 @@ namespace CQFollowerAutoclaimer
             double x = await main.auctionHouse.getAuctionInterval();
             WBTimer.Interval = Math.Min(Math.Max(PFStuff.attacksLeft * 2500, 5000), x);
             nextWBRefresh = DateTime.Now.AddMilliseconds(WBTimer.Interval);
+            main.currentDungLevelLabel.Text = PFStuff.DungLevel;
         }
 
 

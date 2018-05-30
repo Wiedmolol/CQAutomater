@@ -21,6 +21,14 @@ namespace CQFollowerAutoclaimer
         {
             if (_queue.Count > 0)
             {
+                //if (!await _queue[0].Item1.Invoke())
+                //{
+                //    Enqueue(_queue.Pop());
+                //}
+                //else
+                //{
+                //    _queue.Pop();
+                //}
                 var t = _queue.Pop();
                 if (!await t.Item1.Invoke())
                 {

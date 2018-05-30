@@ -157,7 +157,6 @@
             this.label24 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.label109 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.label108 = new System.Windows.Forms.Label();
             this.label107 = new System.Windows.Forms.Label();
@@ -304,6 +303,8 @@
             this.ah2Indicator = new System.Windows.Forms.Label();
             this.ah3Indicator = new System.Windows.Forms.Label();
             this.ALIndicator = new System.Windows.Forms.Label();
+            this.currentDungLevelLabel = new System.Windows.Forms.Label();
+            this.label75 = new System.Windows.Forms.Label();
             this.contextMenuStrip1.SuspendLayout();
             this.tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SuperKrytonNHAttacksCount)).BeginInit();
@@ -393,7 +394,7 @@
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(37, 13);
             this.label22.TabIndex = 32;
-            this.label22.Text = "v0.9.7";
+            this.label22.Text = "v0.9.8";
             // 
             // DQIndicator
             // 
@@ -534,20 +535,20 @@
             // label103
             // 
             this.label103.AutoSize = true;
-            this.label103.Location = new System.Drawing.Point(369, 487);
+            this.label103.Location = new System.Drawing.Point(340, 487);
             this.label103.Name = "label103";
-            this.label103.Size = new System.Drawing.Size(39, 13);
+            this.label103.Size = new System.Drawing.Size(74, 13);
             this.label103.TabIndex = 127;
-            this.label103.Text = "Last ->";
+            this.label103.Text = "Attacks last ->";
             // 
             // label104
             // 
             this.label104.AutoSize = true;
             this.label104.Location = new System.Drawing.Point(5, 487);
             this.label104.Name = "label104";
-            this.label104.Size = new System.Drawing.Size(38, 13);
+            this.label104.Size = new System.Drawing.Size(74, 13);
             this.label104.TabIndex = 126;
-            this.label104.Text = "<- First";
+            this.label104.Text = "<- Attacks first";
             // 
             // label105
             // 
@@ -905,20 +906,20 @@
             // label48
             // 
             this.label48.AutoSize = true;
-            this.label48.Location = new System.Drawing.Point(369, 439);
+            this.label48.Location = new System.Drawing.Point(340, 439);
             this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(39, 13);
+            this.label48.Size = new System.Drawing.Size(74, 13);
             this.label48.TabIndex = 80;
-            this.label48.Text = "Last ->";
+            this.label48.Text = "Attacks last ->";
             // 
             // label47
             // 
             this.label47.AutoSize = true;
             this.label47.Location = new System.Drawing.Point(5, 439);
             this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(38, 13);
+            this.label47.Size = new System.Drawing.Size(74, 13);
             this.label47.TabIndex = 79;
-            this.label47.Text = "<- First";
+            this.label47.Text = "<- Attacks first";
             // 
             // label44
             // 
@@ -1436,20 +1437,20 @@
             // label39
             // 
             this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(369, 390);
+            this.label39.Location = new System.Drawing.Point(340, 390);
             this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(39, 13);
+            this.label39.Size = new System.Drawing.Size(74, 13);
             this.label39.TabIndex = 9;
-            this.label39.Text = "Last ->";
+            this.label39.Text = "Attacks last ->";
             // 
             // label38
             // 
             this.label38.AutoSize = true;
             this.label38.Location = new System.Drawing.Point(5, 390);
             this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(38, 13);
+            this.label38.Size = new System.Drawing.Size(74, 13);
             this.label38.TabIndex = 8;
-            this.label38.Text = "<- First";
+            this.label38.Text = "<- Attacks first";
             // 
             // LOCHAAttacksCount
             // 
@@ -1872,7 +1873,8 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.label109);
+            this.tabPage2.Controls.Add(this.currentDungLevelLabel);
+            this.tabPage2.Controls.Add(this.label75);
             this.tabPage2.Controls.Add(this.button2);
             this.tabPage2.Controls.Add(this.label108);
             this.tabPage2.Controls.Add(this.label107);
@@ -1908,26 +1910,15 @@
             this.tabPage2.Text = "DQ";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // label109
-            // 
-            this.label109.AutoSize = true;
-            this.label109.Enabled = false;
-            this.label109.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label109.Location = new System.Drawing.Point(194, 206);
-            this.label109.Name = "label109";
-            this.label109.Size = new System.Drawing.Size(55, 16);
-            this.label109.TabIndex = 103;
-            this.label109.Text = "TO DO";
-            // 
             // button2
             // 
-            this.button2.Enabled = false;
             this.button2.Location = new System.Drawing.Point(114, 165);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(124, 25);
             this.button2.TabIndex = 102;
             this.button2.Text = "Solve Dungeons now";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // label108
             // 
@@ -1940,7 +1931,6 @@
             // label107
             // 
             this.label107.AutoSize = true;
-            this.label107.Enabled = false;
             this.label107.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label107.Location = new System.Drawing.Point(9, 169);
             this.label107.Name = "label107";
@@ -3500,6 +3490,24 @@
             this.ALIndicator.TabIndex = 39;
             this.ALIndicator.Text = "          ";
             // 
+            // currentDungLevelLabel
+            // 
+            this.currentDungLevelLabel.AutoSize = true;
+            this.currentDungLevelLabel.Location = new System.Drawing.Point(136, 199);
+            this.currentDungLevelLabel.Name = "currentDungLevelLabel";
+            this.currentDungLevelLabel.Size = new System.Drawing.Size(18, 13);
+            this.currentDungLevelLabel.TabIndex = 104;
+            this.currentDungLevelLabel.Text = "-/-";
+            // 
+            // label75
+            // 
+            this.label75.AutoSize = true;
+            this.label75.Location = new System.Drawing.Point(11, 199);
+            this.label75.Name = "label75";
+            this.label75.Size = new System.Drawing.Size(119, 13);
+            this.label75.TabIndex = 103;
+            this.label75.Text = "Current Dungeon level: ";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3851,7 +3859,6 @@
         private System.Windows.Forms.Label label107;
         private System.Windows.Forms.Label label108;
         internal System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Label label109;
         internal System.Windows.Forms.NumericUpDown pranaLevelCount;
         private System.Windows.Forms.Label label111;
         internal System.Windows.Forms.NumericUpDown coinsLevelCount;
@@ -3860,6 +3867,8 @@
         private System.Windows.Forms.Label label112;
         internal System.Windows.Forms.CheckBox waitAutoLevelBox;
         private System.Windows.Forms.Button heroesToClipboardButton;
+        internal System.Windows.Forms.Label currentDungLevelLabel;
+        private System.Windows.Forms.Label label75;
     }
 }
 

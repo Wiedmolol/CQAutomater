@@ -157,6 +157,8 @@
             this.label24 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.currentDungLevelLabel = new System.Windows.Forms.Label();
+            this.label75 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.label108 = new System.Windows.Forms.Label();
             this.label107 = new System.Windows.Forms.Label();
@@ -303,8 +305,6 @@
             this.ah2Indicator = new System.Windows.Forms.Label();
             this.ah3Indicator = new System.Windows.Forms.Label();
             this.ALIndicator = new System.Windows.Forms.Label();
-            this.currentDungLevelLabel = new System.Windows.Forms.Label();
-            this.label75 = new System.Windows.Forms.Label();
             this.contextMenuStrip1.SuspendLayout();
             this.tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SuperKrytonNHAttacksCount)).BeginInit();
@@ -394,7 +394,7 @@
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(37, 13);
             this.label22.TabIndex = 32;
-            this.label22.Text = "v0.9.8";
+            this.label22.Text = "v0.9.9";
             // 
             // DQIndicator
             // 
@@ -537,9 +537,9 @@
             this.label103.AutoSize = true;
             this.label103.Location = new System.Drawing.Point(340, 487);
             this.label103.Name = "label103";
-            this.label103.Size = new System.Drawing.Size(74, 13);
+            this.label103.Size = new System.Drawing.Size(71, 13);
             this.label103.TabIndex = 127;
-            this.label103.Text = "Attacks last ->";
+            this.label103.Text = "Attacks first->";
             // 
             // label104
             // 
@@ -548,7 +548,7 @@
             this.label104.Name = "label104";
             this.label104.Size = new System.Drawing.Size(74, 13);
             this.label104.TabIndex = 126;
-            this.label104.Text = "<- Attacks first";
+            this.label104.Text = "<- Attacks last";
             // 
             // label105
             // 
@@ -566,7 +566,7 @@
             this.KrytonHA6.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.KrytonHA6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.KrytonHA6.FormattingEnabled = true;
-            this.KrytonHA6.Location = new System.Drawing.Point(348, 504);
+            this.KrytonHA6.Location = new System.Drawing.Point(4, 504);
             this.KrytonHA6.Name = "KrytonHA6";
             this.KrytonHA6.Size = new System.Drawing.Size(66, 21);
             this.KrytonHA6.TabIndex = 124;
@@ -577,7 +577,7 @@
             this.KrytonHA5.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.KrytonHA5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.KrytonHA5.FormattingEnabled = true;
-            this.KrytonHA5.Location = new System.Drawing.Point(280, 504);
+            this.KrytonHA5.Location = new System.Drawing.Point(73, 504);
             this.KrytonHA5.Name = "KrytonHA5";
             this.KrytonHA5.Size = new System.Drawing.Size(66, 21);
             this.KrytonHA5.TabIndex = 123;
@@ -588,7 +588,7 @@
             this.KrytonHA4.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.KrytonHA4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.KrytonHA4.FormattingEnabled = true;
-            this.KrytonHA4.Location = new System.Drawing.Point(211, 504);
+            this.KrytonHA4.Location = new System.Drawing.Point(142, 504);
             this.KrytonHA4.Name = "KrytonHA4";
             this.KrytonHA4.Size = new System.Drawing.Size(66, 21);
             this.KrytonHA4.TabIndex = 122;
@@ -599,7 +599,7 @@
             this.KrytonHA3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.KrytonHA3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.KrytonHA3.FormattingEnabled = true;
-            this.KrytonHA3.Location = new System.Drawing.Point(142, 504);
+            this.KrytonHA3.Location = new System.Drawing.Point(211, 504);
             this.KrytonHA3.Name = "KrytonHA3";
             this.KrytonHA3.Size = new System.Drawing.Size(66, 21);
             this.KrytonHA3.TabIndex = 121;
@@ -610,7 +610,7 @@
             this.KrytonHA2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.KrytonHA2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.KrytonHA2.FormattingEnabled = true;
-            this.KrytonHA2.Location = new System.Drawing.Point(73, 504);
+            this.KrytonHA2.Location = new System.Drawing.Point(280, 504);
             this.KrytonHA2.Name = "KrytonHA2";
             this.KrytonHA2.Size = new System.Drawing.Size(66, 21);
             this.KrytonHA2.TabIndex = 120;
@@ -621,7 +621,7 @@
             this.KrytonHA1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.KrytonHA1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.KrytonHA1.FormattingEnabled = true;
-            this.KrytonHA1.Location = new System.Drawing.Point(4, 504);
+            this.KrytonHA1.Location = new System.Drawing.Point(348, 504);
             this.KrytonHA1.Name = "KrytonHA1";
             this.KrytonHA1.Size = new System.Drawing.Size(66, 21);
             this.KrytonHA1.TabIndex = 119;
@@ -908,9 +908,9 @@
             this.label48.AutoSize = true;
             this.label48.Location = new System.Drawing.Point(340, 439);
             this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(74, 13);
+            this.label48.Size = new System.Drawing.Size(71, 13);
             this.label48.TabIndex = 80;
-            this.label48.Text = "Attacks last ->";
+            this.label48.Text = "Attacks first->";
             // 
             // label47
             // 
@@ -919,7 +919,7 @@
             this.label47.Name = "label47";
             this.label47.Size = new System.Drawing.Size(74, 13);
             this.label47.TabIndex = 79;
-            this.label47.Text = "<- Attacks first";
+            this.label47.Text = "<- Attacks last";
             // 
             // label44
             // 
@@ -1230,7 +1230,7 @@
             this.MOAKHA6.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.MOAKHA6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.MOAKHA6.FormattingEnabled = true;
-            this.MOAKHA6.Location = new System.Drawing.Point(348, 456);
+            this.MOAKHA6.Location = new System.Drawing.Point(5, 456);
             this.MOAKHA6.Name = "MOAKHA6";
             this.MOAKHA6.Size = new System.Drawing.Size(66, 21);
             this.MOAKHA6.TabIndex = 39;
@@ -1241,7 +1241,7 @@
             this.MOAKHA5.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.MOAKHA5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.MOAKHA5.FormattingEnabled = true;
-            this.MOAKHA5.Location = new System.Drawing.Point(280, 456);
+            this.MOAKHA5.Location = new System.Drawing.Point(73, 456);
             this.MOAKHA5.Name = "MOAKHA5";
             this.MOAKHA5.Size = new System.Drawing.Size(66, 21);
             this.MOAKHA5.TabIndex = 38;
@@ -1252,7 +1252,7 @@
             this.MOAKHA4.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.MOAKHA4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.MOAKHA4.FormattingEnabled = true;
-            this.MOAKHA4.Location = new System.Drawing.Point(211, 456);
+            this.MOAKHA4.Location = new System.Drawing.Point(142, 456);
             this.MOAKHA4.Name = "MOAKHA4";
             this.MOAKHA4.Size = new System.Drawing.Size(66, 21);
             this.MOAKHA4.TabIndex = 37;
@@ -1263,7 +1263,7 @@
             this.MOAKHA3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.MOAKHA3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.MOAKHA3.FormattingEnabled = true;
-            this.MOAKHA3.Location = new System.Drawing.Point(142, 456);
+            this.MOAKHA3.Location = new System.Drawing.Point(211, 456);
             this.MOAKHA3.Name = "MOAKHA3";
             this.MOAKHA3.Size = new System.Drawing.Size(66, 21);
             this.MOAKHA3.TabIndex = 36;
@@ -1274,7 +1274,7 @@
             this.MOAKHA2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.MOAKHA2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.MOAKHA2.FormattingEnabled = true;
-            this.MOAKHA2.Location = new System.Drawing.Point(73, 456);
+            this.MOAKHA2.Location = new System.Drawing.Point(280, 456);
             this.MOAKHA2.Name = "MOAKHA2";
             this.MOAKHA2.Size = new System.Drawing.Size(66, 21);
             this.MOAKHA2.TabIndex = 35;
@@ -1285,7 +1285,7 @@
             this.MOAKHA1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.MOAKHA1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.MOAKHA1.FormattingEnabled = true;
-            this.MOAKHA1.Location = new System.Drawing.Point(4, 456);
+            this.MOAKHA1.Location = new System.Drawing.Point(348, 456);
             this.MOAKHA1.Name = "MOAKHA1";
             this.MOAKHA1.Size = new System.Drawing.Size(66, 21);
             this.MOAKHA1.TabIndex = 34;
@@ -1340,7 +1340,7 @@
             this.LOCHA6.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.LOCHA6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.LOCHA6.FormattingEnabled = true;
-            this.LOCHA6.Location = new System.Drawing.Point(349, 406);
+            this.LOCHA6.Location = new System.Drawing.Point(4, 406);
             this.LOCHA6.Name = "LOCHA6";
             this.LOCHA6.Size = new System.Drawing.Size(66, 21);
             this.LOCHA6.TabIndex = 24;
@@ -1351,7 +1351,7 @@
             this.LOCHA5.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.LOCHA5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.LOCHA5.FormattingEnabled = true;
-            this.LOCHA5.Location = new System.Drawing.Point(280, 406);
+            this.LOCHA5.Location = new System.Drawing.Point(73, 406);
             this.LOCHA5.Name = "LOCHA5";
             this.LOCHA5.Size = new System.Drawing.Size(66, 21);
             this.LOCHA5.TabIndex = 23;
@@ -1362,7 +1362,7 @@
             this.LOCHA4.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.LOCHA4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.LOCHA4.FormattingEnabled = true;
-            this.LOCHA4.Location = new System.Drawing.Point(211, 406);
+            this.LOCHA4.Location = new System.Drawing.Point(142, 406);
             this.LOCHA4.Name = "LOCHA4";
             this.LOCHA4.Size = new System.Drawing.Size(66, 21);
             this.LOCHA4.TabIndex = 22;
@@ -1373,7 +1373,7 @@
             this.LOCHA3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.LOCHA3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.LOCHA3.FormattingEnabled = true;
-            this.LOCHA3.Location = new System.Drawing.Point(142, 406);
+            this.LOCHA3.Location = new System.Drawing.Point(211, 406);
             this.LOCHA3.Name = "LOCHA3";
             this.LOCHA3.Size = new System.Drawing.Size(66, 21);
             this.LOCHA3.TabIndex = 21;
@@ -1384,7 +1384,7 @@
             this.LOCHA2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.LOCHA2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.LOCHA2.FormattingEnabled = true;
-            this.LOCHA2.Location = new System.Drawing.Point(73, 406);
+            this.LOCHA2.Location = new System.Drawing.Point(280, 406);
             this.LOCHA2.Name = "LOCHA2";
             this.LOCHA2.Size = new System.Drawing.Size(66, 21);
             this.LOCHA2.TabIndex = 20;
@@ -1395,7 +1395,7 @@
             this.LOCHA1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.LOCHA1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.LOCHA1.FormattingEnabled = true;
-            this.LOCHA1.Location = new System.Drawing.Point(4, 406);
+            this.LOCHA1.Location = new System.Drawing.Point(348, 406);
             this.LOCHA1.Name = "LOCHA1";
             this.LOCHA1.Size = new System.Drawing.Size(66, 21);
             this.LOCHA1.TabIndex = 19;
@@ -1439,9 +1439,9 @@
             this.label39.AutoSize = true;
             this.label39.Location = new System.Drawing.Point(340, 390);
             this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(74, 13);
+            this.label39.Size = new System.Drawing.Size(71, 13);
             this.label39.TabIndex = 9;
-            this.label39.Text = "Attacks last ->";
+            this.label39.Text = "Attacks first->";
             // 
             // label38
             // 
@@ -1450,7 +1450,7 @@
             this.label38.Name = "label38";
             this.label38.Size = new System.Drawing.Size(74, 13);
             this.label38.TabIndex = 8;
-            this.label38.Text = "<- Attacks first";
+            this.label38.Text = "<- Attacks last";
             // 
             // LOCHAAttacksCount
             // 
@@ -1910,6 +1910,24 @@
             this.tabPage2.Text = "DQ";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // currentDungLevelLabel
+            // 
+            this.currentDungLevelLabel.AutoSize = true;
+            this.currentDungLevelLabel.Location = new System.Drawing.Point(136, 199);
+            this.currentDungLevelLabel.Name = "currentDungLevelLabel";
+            this.currentDungLevelLabel.Size = new System.Drawing.Size(18, 13);
+            this.currentDungLevelLabel.TabIndex = 104;
+            this.currentDungLevelLabel.Text = "-/-";
+            // 
+            // label75
+            // 
+            this.label75.AutoSize = true;
+            this.label75.Location = new System.Drawing.Point(11, 199);
+            this.label75.Name = "label75";
+            this.label75.Size = new System.Drawing.Size(119, 13);
+            this.label75.TabIndex = 103;
+            this.label75.Text = "Current Dungeon level: ";
+            // 
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(114, 165);
@@ -1992,7 +2010,7 @@
             this.DQLineup6.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.DQLineup6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.DQLineup6.FormattingEnabled = true;
-            this.DQLineup6.Location = new System.Drawing.Point(368, 269);
+            this.DQLineup6.Location = new System.Drawing.Point(3, 269);
             this.DQLineup6.Name = "DQLineup6";
             this.DQLineup6.Size = new System.Drawing.Size(70, 21);
             this.DQLineup6.TabIndex = 85;
@@ -2003,7 +2021,7 @@
             this.DQLineup5.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.DQLineup5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.DQLineup5.FormattingEnabled = true;
-            this.DQLineup5.Location = new System.Drawing.Point(295, 269);
+            this.DQLineup5.Location = new System.Drawing.Point(76, 269);
             this.DQLineup5.Name = "DQLineup5";
             this.DQLineup5.Size = new System.Drawing.Size(70, 21);
             this.DQLineup5.TabIndex = 84;
@@ -2014,7 +2032,7 @@
             this.DQLineup4.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.DQLineup4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.DQLineup4.FormattingEnabled = true;
-            this.DQLineup4.Location = new System.Drawing.Point(222, 269);
+            this.DQLineup4.Location = new System.Drawing.Point(149, 269);
             this.DQLineup4.Name = "DQLineup4";
             this.DQLineup4.Size = new System.Drawing.Size(70, 21);
             this.DQLineup4.TabIndex = 83;
@@ -2025,7 +2043,7 @@
             this.DQLineup3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.DQLineup3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.DQLineup3.FormattingEnabled = true;
-            this.DQLineup3.Location = new System.Drawing.Point(149, 269);
+            this.DQLineup3.Location = new System.Drawing.Point(223, 269);
             this.DQLineup3.Name = "DQLineup3";
             this.DQLineup3.Size = new System.Drawing.Size(70, 21);
             this.DQLineup3.TabIndex = 82;
@@ -2036,7 +2054,7 @@
             this.DQLineup2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.DQLineup2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.DQLineup2.FormattingEnabled = true;
-            this.DQLineup2.Location = new System.Drawing.Point(76, 269);
+            this.DQLineup2.Location = new System.Drawing.Point(296, 269);
             this.DQLineup2.Name = "DQLineup2";
             this.DQLineup2.Size = new System.Drawing.Size(70, 21);
             this.DQLineup2.TabIndex = 81;
@@ -2047,7 +2065,7 @@
             this.DQLineup1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.DQLineup1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.DQLineup1.FormattingEnabled = true;
-            this.DQLineup1.Location = new System.Drawing.Point(3, 269);
+            this.DQLineup1.Location = new System.Drawing.Point(369, 269);
             this.DQLineup1.Name = "DQLineup1";
             this.DQLineup1.Size = new System.Drawing.Size(70, 21);
             this.DQLineup1.TabIndex = 80;
@@ -2055,20 +2073,20 @@
             // label58
             // 
             this.label58.AutoSize = true;
-            this.label58.Location = new System.Drawing.Point(373, 253);
+            this.label58.Location = new System.Drawing.Point(364, 253);
             this.label58.Name = "label58";
-            this.label58.Size = new System.Drawing.Size(39, 13);
+            this.label58.Size = new System.Drawing.Size(74, 13);
             this.label58.TabIndex = 79;
-            this.label58.Text = "Last ->";
+            this.label58.Text = "Attacks first ->";
             // 
             // label59
             // 
             this.label59.AutoSize = true;
             this.label59.Location = new System.Drawing.Point(6, 253);
             this.label59.Name = "label59";
-            this.label59.Size = new System.Drawing.Size(38, 13);
+            this.label59.Size = new System.Drawing.Size(74, 13);
             this.label59.TabIndex = 78;
-            this.label59.Text = "<- First";
+            this.label59.Text = "<- Attacks last";
             // 
             // runCalcButton
             // 
@@ -3489,24 +3507,6 @@
             this.ALIndicator.Size = new System.Drawing.Size(13, 6);
             this.ALIndicator.TabIndex = 39;
             this.ALIndicator.Text = "          ";
-            // 
-            // currentDungLevelLabel
-            // 
-            this.currentDungLevelLabel.AutoSize = true;
-            this.currentDungLevelLabel.Location = new System.Drawing.Point(136, 199);
-            this.currentDungLevelLabel.Name = "currentDungLevelLabel";
-            this.currentDungLevelLabel.Size = new System.Drawing.Size(18, 13);
-            this.currentDungLevelLabel.TabIndex = 104;
-            this.currentDungLevelLabel.Text = "-/-";
-            // 
-            // label75
-            // 
-            this.label75.AutoSize = true;
-            this.label75.Location = new System.Drawing.Point(11, 199);
-            this.label75.Name = "label75";
-            this.label75.Size = new System.Drawing.Size(119, 13);
-            this.label75.TabIndex = 103;
-            this.label75.Text = "Current Dungeon level: ";
             // 
             // Form1
             // 

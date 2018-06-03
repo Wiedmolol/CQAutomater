@@ -335,8 +335,7 @@ namespace CQFollowerAutoclaimer
             bool b = false;
             while (!(b = await pf.getCurrencies())) { }
 
-
-            if (PFStuff.freeChestAvailable && freeChestBox.Checked)
+            if (PFStuff.freeChestAvailable && freeChestBox.Checked && !taskQueue.Contains("chest"))
             {
                 taskQueue.Enqueue(() => autoChests.openChest("normal"), "chest");
             }
@@ -346,7 +345,7 @@ namespace CQFollowerAutoclaimer
             NormalChestLabel.setText(PFStuff.normalChests.ToString());
             HeroChestLabel.setText(PFStuff.heroChests.ToString());
 
-            autoChests.FreeChestTimer.Interval = PFStuff.freeChestAvailable == true ? 6000 : Math.Max(4000, PFStuff.freeChestRecharge * 1000);
+            autoChests.FreeChestTimer.Interval = PFStuff.freeChestAvailable == true ? 20000 : Math.Max(4000, PFStuff.freeChestRecharge * 1000);
             return b;
         }
 

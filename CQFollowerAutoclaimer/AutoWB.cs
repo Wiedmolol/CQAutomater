@@ -189,14 +189,13 @@ namespace CQFollowerAutoclaimer
                         notAskedYet = true;
                         main.autoLevel.levelTimer.Interval = 4 * 60 * 1000;
                         main.autoLevel.nextLevelCheck = DateTime.Now.AddMilliseconds(main.autoLevel.levelTimer.Interval);
-
                         if (main.waitAutoLevelBox.Checked && PFStuff.wbMode == 1) {
                             WBTimer.Interval = 5 * 60 * 1000;
                             return;
                         }
                     }
                     int attacksAvailable = PFStuff.wbAttacksAvailable + ((PFStuff.wbAttacksAvailable == 7 && PFStuff.wbAttackNext < DateTime.Now) ? 1 : 0);
-                    if ((attacksAvailable >= requirement - r && attacksToDo < (PFStuff.attacksLeft - 5)) && !(r == 0 && PFStuff.wbDamageDealt != 0 ))
+                    if ((attacksAvailable >= requirement - r && attacksToDo < (PFStuff.attacksLeft - 5)) && !(r == 0 && PFStuff.wbDamageDealt != 0 ) && !(r != 0 && PFStuff.wbDamageDealt == 0))
                     {
                         DialogResult dr = DialogResult.No;
                         if (main.safeModeWB.Checked)

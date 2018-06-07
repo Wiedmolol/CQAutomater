@@ -51,7 +51,7 @@ namespace CQFollowerAutoclaimer
         static public DateTime wbAttackNext;
         static public int WB_ID = 1;
         static public string WBName;
-        static public int attacksLeft;
+        static public int attacksLeft = 0;
 
         static public bool WBchanged = false;
         static public JArray auctionData;
@@ -278,6 +278,7 @@ namespace CQFollowerAutoclaimer
                 wbDamageDealt = Int64.Parse(WBData["dealt"].ToString());
                 wbMode = int.Parse(WBData["mode"].ToString());
                 WBName = WBData["name"].ToString();
+                WBchanged = (int.Parse(WBData["atk"].ToString()) > attacksLeft);               
                 attacksLeft = int.Parse(WBData["atk"].ToString());
                 if(json["dungeon"] != null)
                 {
@@ -287,17 +288,20 @@ namespace CQFollowerAutoclaimer
                 {
                     DungLevel = "-/-";
                 }
-
-                HttpWebRequest request2 = (HttpWebRequest)WebRequest.Create(@"https://cosmosquest.net/wb.php");
-                HttpWebResponse response2 = (HttpWebResponse)request2.GetResponse();
-                string content2 = new StreamReader(response2.GetResponseStream()).ReadToEnd();
-                string a = Regex.Match(content2, "(?<=<a href.*>).*?(?=</a>)").ToString();
-                WBchanged = (WB_ID != int.Parse(a)) ? true : false;
-                if (requestsSent++ == 1)
+                if (WBchanged)
                 {
-                    WBchanged = true;
+                    HttpWebRequest request2 = (HttpWebRequest)WebRequest.Create(@"https://cosmosquest.net/wb.php");
+                    HttpWebResponse response2 = (HttpWebResponse)request2.GetResponse();
+                    string content2 = new StreamReader(response2.GetResponseStream()).ReadToEnd();
+                    string a = Regex.Match(content2, "(?<=<a href.*>).*?(?=</a>)").ToString();
+                    WB_ID = int.Parse(a);
                 }
-                WB_ID = int.Parse(a);
+                //WBchanged = (WB_ID != int.Parse(a)) ? true : false;
+                //if (requestsSent++ == 1)
+                //{
+                //    WBchanged = true;
+                //}
+                
             }
             catch (WebException webex)
             {
@@ -341,32 +345,6 @@ namespace CQFollowerAutoclaimer
             return 0;
         }
 
-        //internal static int getWBDataOld(string id)
-        //{
-        //    try
-        //    {
-        //        if (username == null)
-        //        {
-        //            getUsername(kongID);
-        //        }
-
-        //        HttpWebRequest request = (HttpWebRequest)WebRequest.Create(@"https://cosmosquest.net/wb.php?id=" + id);
-        //        HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-
-        //        string content = new StreamReader(response.GetResponseStream()).ReadToEnd();
-        //        string a = Regex.Match(content, username + ".*?</tr>").ToString();
-        //        var b = Regex.Matches(a, "(?<=\"small\">).*?(?=</td>)");
-        //        if (string.IsNullOrEmpty(a) || b.Count == 0)
-        //        {
-        //            return 0;
-        //        }
-        //        return int.Parse(b[1].ToString().Replace(".", ""));
-        //    }
-        //    catch (WebException getWBDataException)
-        //    {
-        //        return -2;
-        //    }
-        //}
         #endregion
 
         #region Sending requests

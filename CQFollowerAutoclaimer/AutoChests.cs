@@ -45,7 +45,14 @@ namespace CQFollowerAutoclaimer
             else
             {
                 string rew = "Got ";
-                rew += PFStuff.chestResult < 0 ? Constants.heroNames[-PFStuff.chestResult] : Constants.rewardNames[PFStuff.chestResult];
+                if (-PFStuff.chestResult >= Constants.heroNames.Length)
+                {
+                    rew += "Unknown Hero(ID: " + PFStuff.chestResult + ")";
+                }
+                else
+                {
+                    rew += PFStuff.chestResult < 0 ? Constants.heroNames[-PFStuff.chestResult] : Constants.rewardNames[PFStuff.chestResult];
+                }
                 main.ChestLog.SynchronizedInvoke(() => main.ChestLog.AppendText(rew + "\n"));
             }
             if (!main.taskQueue.Contains("chest"))

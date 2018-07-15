@@ -124,10 +124,20 @@ namespace CQFollowerAutoclaimer
                     times.Add((a.endTime - DateTime.Now).TotalMilliseconds - 15000);
                     b.Add(a);
                 }                
-            }            
-            var temp = from c in b
-                        where c.endTime < DateTime.Now.AddSeconds(40)
-                        select c;
+            }
+            IEnumerable<Auction> temp;
+            if (main.instaBidCBox.Checked)
+            {
+                temp = from c in b
+                       where c.endTime < DateTime.Now.AddSeconds(40) || (c.currentPrice * 1.1 < c.maxPrice && c.currentPrice * 1.21 > c.maxPrice)
+                       select c;
+            }
+            else
+            {
+                 temp = from c in b
+                           where c.endTime < DateTime.Now.AddSeconds(40)
+                           select c;
+            }
             if (temp.ToList().Count > 0)
             {
                 await main.getData();
@@ -155,6 +165,7 @@ namespace CQFollowerAutoclaimer
         public void loadSettings()
         {
             AppSettings ap = AppSettings.loadSettings();
+            main.instaBidCBox.Checked = ap.instantMaxPriceBid ?? false;
             if (ap.bids != null)
             {
                 main.auctionHero1Combo.Text = ap.bids[0].name ?? "";

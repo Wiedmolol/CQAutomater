@@ -223,6 +223,7 @@
             this.claimtime7 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.instaBidCBox = new System.Windows.Forms.CheckBox();
             this.ahCountdown3 = new System.Windows.Forms.Label();
             this.label83 = new System.Windows.Forms.Label();
             this.ahCountdown2 = new System.Windows.Forms.Label();
@@ -394,7 +395,7 @@
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(37, 13);
             this.label22.TabIndex = 32;
-            this.label22.Text = "v0.9.9";
+            this.label22.Text = "v1.0.0";
             // 
             // DQIndicator
             // 
@@ -2599,6 +2600,7 @@
             // 
             // tabPage7
             // 
+            this.tabPage7.Controls.Add(this.instaBidCBox);
             this.tabPage7.Controls.Add(this.ahCountdown3);
             this.tabPage7.Controls.Add(this.label83);
             this.tabPage7.Controls.Add(this.ahCountdown2);
@@ -2647,6 +2649,18 @@
             this.tabPage7.TabIndex = 6;
             this.tabPage7.Text = "AH";
             this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // instaBidCBox
+            // 
+            this.instaBidCBox.AutoSize = true;
+            this.instaBidCBox.Checked = true;
+            this.instaBidCBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.instaBidCBox.Location = new System.Drawing.Point(12, 278);
+            this.instaBidCBox.Name = "instaBidCBox";
+            this.instaBidCBox.Size = new System.Drawing.Size(294, 17);
+            this.instaBidCBox.TabIndex = 131;
+            this.instaBidCBox.Text = "Bid immediately if last bid allowed by max price is possible";
+            this.instaBidCBox.UseVisualStyleBackColor = true;
             // 
             // ahCountdown3
             // 
@@ -3869,6 +3883,7 @@
         private System.Windows.Forms.Button heroesToClipboardButton;
         internal System.Windows.Forms.Label currentDungLevelLabel;
         private System.Windows.Forms.Label label75;
+        internal System.Windows.Forms.CheckBox instaBidCBox;
     }
 }
 

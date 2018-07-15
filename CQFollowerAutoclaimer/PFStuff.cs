@@ -259,6 +259,7 @@ namespace CQFollowerAutoclaimer
             }
             catch
             {
+                //logError("Username Error", "Error");
                 username = null;
             }
         }

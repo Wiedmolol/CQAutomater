@@ -208,6 +208,7 @@ namespace CQFollowerAutoclaimer
                 maxLevel = (int)main.auctionHero3LevelCount.Value
             };
             ap.bids = new List<AuctionBids> { a1, a2, a3 };
+            ap.instantMaxPriceBid = main.instaBidCBox.Checked;
             ap.saveSettings();
         }
     }

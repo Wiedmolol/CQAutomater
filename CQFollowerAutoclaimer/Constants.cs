@@ -26,7 +26,7 @@ namespace CQFollowerAutoclaimer
             "20 UM", "50 UM", "200 UM"};
 
         public static string[] names = {
-            "defile", "putrid", "taint", "pokerface", "luxurious", "dicemaster", "kryton",
+            "neil", "defile", "putrid", "taint", "pokerface", "luxurious", "dicemaster", "kryton",
             "hidoka", "liucheng", "kumu-san", "masterlee", "hawking", "abavah" ,
             "flynn", "leaf", "sparks", "leprechaun", "bavah", "boor", "bylar", "adagda", "hattori", "hirate", "takeda", "hosokawa", "moak", "arigr", "dorth",
             "rua", "arshen", "aatzar", "apontus",  "bubbles",  "dagda",  "ganah", "toth",  "sexysanta", "santaclaus", "reindeer", "christmaself", "lordofchaos", "ageror",
@@ -50,7 +50,7 @@ namespace CQFollowerAutoclaimer
             "Atr0n1x", "Ageum", "Ageror", "Lordofchaos", "Christmaself", "Reindeer", "Santaclaus", "Sexysanta", "Toth", "Ganah", "Dagda", "Bubbles", "Apontus", "Aatzar",
             "Arshen", "Rua", "Dorth", "Arigr", "Moak", "Hosokawa", "Takeda", "Hirate", "Hattori", "Adagda", "Bylar", "Boor", "Bavah", "Leprechaun", "Sparks", "Leaf", "Flynn",
             "Abavah", "Hawking", "MasterLee", "Kumu-San", "LiuCheng", "Hidoka", "Kryton",
-            "Dicemaster", "Luxurious", "Pokerface", "Taint", "Putrid", "Defile"
+            "Dicemaster", "Luxurious", "Pokerface", "Taint", "Putrid", "Defile", "Neil"
         };
 
         public static prices[] heroPrices = new prices[] {
@@ -66,6 +66,7 @@ namespace CQFollowerAutoclaimer
             prices.ASCEND, prices.COMMON, prices.RARE, prices.LEG, prices.LEG, prices.NONLEVELABLE, prices.NONLEVELABLE, prices.NONLEVELABLE,
             prices.ASCEND, prices.LEG, prices.ASCEND, prices.LEG, prices.LEG, prices.LEG, prices.NONLEVELABLE,
             prices.COMMON, prices.RARE, prices.LEG,prices.COMMON, prices.RARE, prices.LEG, //defile
+            prices.LEG //neil
 
         };
 
@@ -79,7 +80,8 @@ namespace CQFollowerAutoclaimer
 
         public static string[] cosmicCoinHeroes = new string[] {
             "Valor", "Rokka", "Pyromancer", "Bewat", "Nicte", "Forestdruid", "Ignitor", "Undine", "Chroma", "Petry", "Zaytus", "Ladyodelith",
-            "Shygu", "Thert", "Lordkirk", "Neptunius", "Werewolf", "Jackoknight", "Dullahan", "Leprechaun",  "Hosokawa", "Takeda", "Hirate", "Hattori"
+            "Shygu", "Thert", "Lordkirk", "Neptunius", "Werewolf", "Jackoknight", "Dullahan", "Leprechaun",  "Hosokawa", "Takeda", "Hirate", "Hattori",
+            "Neil"
         };
 
         public static string[] ascensionHeroes = new string[] {
